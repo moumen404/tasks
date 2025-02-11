@@ -9,3 +9,7 @@ orjson>=3.6.0
 uvloop>=0.16.0
 httptools>=0.3.0
 aiofiles>=22.0.0
+Flask==3.0.0
+google-generativeai==0.3.0
+python-dotenv==1.0.0
+Werkzeug==3.0.1
