@@ -37,7 +37,7 @@ function toggleCompletedTasks(event) {
     if (event) {
         event.stopPropagation();
     }
-    
+
     if (activeModal === completedTaskModal) {
         closeModal(completedTaskModal);
         activeModal = null;
@@ -150,7 +150,7 @@ function closeTaskDetailsModal() {
     const modal = document.getElementById('taskDetailsModal');
     modal.classList.remove('show');
     document.body.style.overflow = '';
-    
+
     // Remove the event listener to prevent duplicates
     const importanceSlider = document.getElementById('taskDetailImportance');
     importanceSlider.removeEventListener('input', null);
@@ -193,7 +193,7 @@ async function generateAISettings() {
         const generateButton = document.querySelector('button[onclick="generateAISettings()"]');
         // Or alternatively:
         // const generateButton = document.querySelector('.modal-buttons button:first-child');
-        
+
         if (!generateButton) {
             console.error('Generate button not found');
             return;
@@ -316,7 +316,7 @@ function renderGoals(goals) {
 
     // Get the latest goal (last one in the array)
     const latestGoal = goals[goals.length - 1];
-    
+
     const goalSection = document.createElement('div');
     goalSection.className = 'goal-section';
     goalSection.innerHTML = `
@@ -359,11 +359,11 @@ function renderTasks(tasks, taskListId) {
         const importance = parseInt(task.importance);
         const priorityClass = importance > 75 ? 'high' : importance > 50 ? 'medium' : 'low';
         taskItem.dataset.importance = priorityClass;
-        
+
         taskItem.innerHTML = `
             <div class="task-content">
-                <input type="checkbox" 
-                       ${task.completed ? 'checked' : ''} 
+                <input type="checkbox"
+                       ${task.completed ? 'checked' : ''}
                        onclick="toggleTask('${task.id}', event)">
                 <div class="task-details">
                     <span class="task-text">${task.text}</span>
@@ -389,35 +389,65 @@ function showTaskDetails(task) {
     const modal = document.getElementById('taskDetailsModal');
     const taskId = document.getElementById('taskDetailsId');
     const taskText = document.getElementById('taskDetailText');
-    const dueDate = document.getElementById('taskDetailDueDate');
-    const context = document.getElementById('taskDetailContext');
-    const importance = document.getElementById('taskDetailImportance');
+    const taskDetailsDueDate = document.getElementById('taskDetailDueDate');
+    const taskDetailsContext = document.getElementById('taskDetailContext');
+    const taskDetailsImportance = document.getElementById('taskDetailImportance');
+    const deleteTaskButton = document.getElementById('deleteTaskButton'); // Get the delete button
 
     taskId.value = task.id;
     taskText.value = task.text;
-    dueDate.value = task.due_date || '';
-    context.value = task.context || '';
-    importance.value = task.importance || 50;
+    taskDetailsDueDate.value = task.due_date || ''; // Corrected here
+    taskDetailsContext.value = task.context || ''; // Corrected here
+    taskDetailsImportance.value = task.importance || 50; // Corrected here
 
     // Initialize the slider
-    updateImportanceSlider(importance, importance.value);
-    
+    updateImportanceSlider(taskDetailsImportance, taskDetailsImportance.value);
+
     // Add input event listener for real-time updates
-    importance.addEventListener('input', (e) => {
+    taskDetailsImportance.addEventListener('input', (e) => {
         updateImportanceSlider(e.target, e.target.value);
     });
+
+    // Set up delete button click handler - moved inside showTaskDetails to have access to task.id
+    deleteTaskButton.onclick = function() { // Assign function directly to onclick
+        deleteTask(task.id);
+    };
 
     openModal(modal);
     activeModal = modal;
 }
 
+async function deleteTask(taskId) {
+    try {
+        const response = await fetch(`/task/${taskId}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (!response.ok) {
+            const message = await response.json();
+            throw new Error(message.message || 'Failed to delete task');
+        }
+
+        closeTaskDetailsModal();
+        await loadCategorizedTasks(); // Refresh tasks after deletion
+        // removed this line to prevent the success message from showing
+        // addMessage('Task deleted successfully.', 'success');
+
+    } catch (error) {
+        console.error('Error deleting task:', error);
+        addMessage('Failed to delete task. Please try again.', 'error');
+    }
+}
+
+
 function updateImportanceSlider(slider, value) {
     const container = slider.closest('.importance-slider-container');
     const displayValue = slider.closest('.task-detail-item').querySelector('.importance-value');
-    
+
     // Update the value display
     displayValue.textContent = value;
-    
+
     // Update the progress bar
     const percent = ((value - slider.min) / (slider.max - slider.min)) * 100;
     container.style.setProperty('--slider-value', `${percent}%`);
@@ -433,9 +463,9 @@ function getImportanceColor(value) {
 async function saveTaskDetails() {
     const taskId = document.getElementById('taskDetailsId').value;
     const taskText = document.getElementById('taskDetailText').value;
-    const dueDate = document.getElementById('taskDetailDueDate').value;
+    const dueDate = document.getElementById('taskDetailsDueDate').value;
     const context = document.getElementById('taskDetailContext').value;
-    const importance = document.getElementById('taskDetailImportance').value;
+    const importance = document.getElementById('taskDetailsImportance').value;
 
     if (!taskId || !taskText) {
         console.error('Missing required fields');
@@ -444,7 +474,7 @@ async function saveTaskDetails() {
 
     try {
         console.log('Sending task update:', { taskId, text: taskText, dueDate, context, importance }); // Debug log
-        
+
         const response = await fetch('/update-task', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -458,7 +488,7 @@ async function saveTaskDetails() {
         });
 
         const result = await response.json();
-        
+
         if (!response.ok) {
             throw new Error(result.error || 'Failed to update task');
         }
@@ -474,16 +504,16 @@ async function saveTaskDetails() {
 
 async function renderCompletedTasks() {
     modalCompletedTaskList.innerHTML = '';
-    
+
     try {
         const response = await fetch('/tasks/all');
         if (!response.ok) {
             throw new Error('Failed to fetch tasks');
         }
-        
+
         const tasks = await response.json();
         let completedTasks = tasks.filter(task => task.completed);
-        
+
         if (completedTasks.length === 0) {
             const emptyTasks = document.createElement('div');
             emptyTasks.className = 'empty-state';
@@ -496,11 +526,11 @@ async function renderCompletedTasks() {
             const taskItem = document.createElement('div');
             taskItem.className = 'task-item completed';
             taskItem.dataset.taskId = task.id;
-            
+
             taskItem.innerHTML = `
                 <div class="task-content">
-                    <input type="checkbox" 
-                           checked 
+                    <input type="checkbox"
+                           checked
                            onclick="toggleTask('${task.id}', event)">
                     <span class="task-text">${task.text}</span>
                 </div>
@@ -521,7 +551,7 @@ async function toggleTask(taskId, event) {
     event.stopPropagation();
     const checkbox = event.target;
     const originalState = checkbox.checked;
-    
+
     try {
         const response = await fetch('/task', {
             method: 'PUT',
@@ -544,7 +574,7 @@ async function toggleTask(taskId, event) {
             const taskItem = checkbox.closest('.task-item');
             if (taskItem) {
                 taskItem.remove();
-                
+
                 // Check if there are no more completed tasks
                 if (modalCompletedTaskList.children.length === 0) {
                     const emptyTasks = document.createElement('div');
@@ -607,12 +637,12 @@ async function loadCategorizedTasks() {
     try {
         const response = await fetch('/tasks/categorized');
         const data = await response.json();
-        
+
         // Clear existing tasks
         document.getElementById('todayTasks').innerHTML = '';
         document.getElementById('tomorrowTasks').innerHTML = '';
         document.getElementById('futureTasks').innerHTML = '';
-        
+
         // Render tasks in their respective categories
         Object.entries(data).forEach(([category, tasks]) => {
             const container = document.getElementById(`${category}Tasks`);
@@ -633,16 +663,16 @@ function createTaskElement(task) {
     const taskElement = document.createElement('div');
     taskElement.className = `task-item ${task.completed ? 'completed' : ''}`;
     taskElement.dataset.taskId = task.id;
-    
+
     // Add progress indicator
     const importance = parseInt(task.importance);
     const priorityClass = importance > 75 ? 'high' : importance > 50 ? 'medium' : 'low';
     taskElement.dataset.importance = priorityClass;
-    
+
     taskElement.innerHTML = `
         <div class="task-content">
-            <input type="checkbox" 
-                   ${task.completed ? 'checked' : ''} 
+            <input type="checkbox"
+                   ${task.completed ? 'checked' : ''}
                    onclick="toggleTask('${task.id}', event)">
             <div class="task-details">
                 <span class="task-text">${task.text}</span>
@@ -652,14 +682,14 @@ function createTaskElement(task) {
             </div>
         </div>
     `;
-    
+
     // Add click handler for task details
     taskElement.addEventListener('click', (e) => {
         if (!e.target.matches('input[type="checkbox"]')) {
             showTaskDetails(task);
         }
     });
-    
+
     return taskElement;
 }
 
@@ -668,16 +698,16 @@ async function sendMessage() {
     if (message) {
         // Clear input
         chatInput.value = '';
-        
+
         // Remove welcome message if it exists
         const welcomeMessage = document.querySelector('.empty-state');
         if (welcomeMessage) {
             welcomeMessage.remove();
         }
-        
+
         // Add message to chat
         addMessage(message, 'user');
-        
+
         // Handle the message
         await handleMessage(message);
     }
@@ -719,7 +749,7 @@ async function handleMessage(message) {
         }
 
         const data = await response.json();
-        
+
         // Remove loading message if it exists
         const loadingMessage = document.querySelector('.message.loading');
         if (loadingMessage) {
@@ -766,9 +796,78 @@ async function addGoal() {
     }
 }
 
+function toggleChat() {
+    const chatContainer = document.querySelector('.chat-container');
+    const taskContainer = document.querySelector('.task-container');
+    const chatToggleButton = document.getElementById('chatToggleButton');
+
+    chatContainer.classList.toggle('hidden');
+    taskContainer.classList.toggle('chat-hidden');
+
+    // You can also change the icon if you want to indicate the state
+    if (chatContainer.classList.contains('hidden')) {
+        // Icon for showing chat (e.g., a filled chat bubble)
+        chatToggleButton.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8m-8 0H28m-16 0a2 2 0 11-4 0 2 2 0 014 0zM8 15h8m-8 0H28m-16 0a2 2 0 11-4 0 2 2 0 014 0z" />
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        `;
+    } else {
+        // Icon for hiding chat (e.g., the original chat bubble)
+        chatToggleButton.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M16 11V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v4m7 7h4m-4-4h4m-4-4h4"></path>
+            </svg>
+        `;
+    }
+}
+
+// Function to handle login form submission
+async function loginFormSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            alert(errorData.message_detail || 'Login failed'); // Show error message
+        } else {
+            const successData = await response.json();
+            if (successData.success) {
+                window.location.href = '/'; // Redirect to index page
+
+                // Open settings modal AFTER successful login and redirect
+                window.onload = () => { // Wait for the page to fully load after redirect
+                    toggleSettingsModal();
+                };
+            } else {
+                alert(successData.message_detail || 'Login failed');
+            }
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        alert('Login failed. Please try again later.');
+    }
+}
+
+
 // Initial load
 document.addEventListener('DOMContentLoaded', () => {
     loadGoals();
+
+    // No longer open settings modal automatically on initial site load
 
     // Add event listener for Enter key in chat input
     chatInput.addEventListener('keydown', function(event) {
@@ -785,7 +884,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        switch(event.key.toLowerCase()) {
+        switch (event.key.toLowerCase()) {
             case 't':
                 event.preventDefault();
                 toggleAddTaskModal();
@@ -807,10 +906,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add importance slider event listener
     const importanceSlider = document.getElementById('taskDetailImportance');
     const importanceValue = document.querySelector('.importance-value');
-    
+
     importanceSlider.addEventListener('input', (e) => {
         importanceValue.textContent = e.target.value;
-        
+
         // Update the gradient of the track
         const value = (e.target.value - e.target.min) / (e.target.max - e.target.min) * 100;
         e.target.style.background = `linear-gradient(to right, var(--accent) 0%, var(--accent) ${value}%, var(--border) ${value}%, var(--border) 100%)`;
@@ -844,3 +943,11 @@ function updateClickHandlers() {
     document.querySelector('[onclick="openAddTaskModal()"]').setAttribute('onclick', 'toggleAddTaskModal()');
     document.querySelector('[onclick="openSettingsModal()"]').setAttribute('onclick', 'toggleSettingsModal()');
 }
+
+// Attach loginFormSubmit to your login form's submit event
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm'); // Assuming your form has id="loginForm"
+    if (loginForm) {
+        loginForm.addEventListener('submit', loginFormSubmit);
+    }
+});
