@@ -118,7 +118,8 @@ def extract_date_from_text(text):
     return today.strftime('%Y-%m-%d')
 
 def generate_context(task):
-    prompt = f"""Task: "{task}"
+    prompt = f"""User's Name: {session.get('user_name')}
+Task: "{task}"
 
     Generate a concise and actionable context (maximum 2 sentences) that explains:
     1. Why this task is important for achieving goals.
@@ -137,7 +138,8 @@ def generate_context(task):
         return "Context not available"
 
 def generate_importance(task):
-    prompt = f"""Task: "{task}"
+    prompt = f"""User's Name: {session.get('user_name')}
+Task: "{task}"
 
     Return EXACTLY in this format:
     IMPORTANCE: [number 1-100]
@@ -153,7 +155,8 @@ def generate_importance(task):
         return "50"
 
 def generate_task_tags(task_text):
-    prompt = f"""Given this task: "{task_text}"
+    prompt = f"""User's Name: {session.get('user_name')}
+Given this task: "{task_text}"
     Generate 2-3 relevant tags/categories (e.g., #work, #personal, #urgent)
     Return only the tags, comma-separated."""
 
@@ -244,6 +247,7 @@ def chat():
     try:
         data = request.get_json()
         message = data.get('message', '')
+        user_name = session.get('user_name')
 
         if not message:
             return jsonify({"error": "Message is required", "message_detail": "Please provide a message to process."}), 400
@@ -261,7 +265,8 @@ def chat():
                 if work_description:
                     task_prompt_context = f" considering the user's work description: '{work_description}', "
 
-                task_prompt = f"List 6 clear, actionable steps for: {message}{task_prompt_context}. Return only tasks, one per line. Be concise and relevant."
+                task_prompt = f"""User's Name: {user_name}
+List 6 clear, actionable steps for: {message}{task_prompt_context}. Return only tasks, one per line. Be concise and relevant."""
                 task_response = model.generate_content(task_prompt)
 
                 if not task_response or not task_response.text:
@@ -309,7 +314,8 @@ def chat():
                                     if goal['id'] == goal_id:
                                         for task in goal['tasks']:
                                             try:
-                                                detail_prompt = f"For the task: {task['text']}\nProvide on two lines:\nCONTEXT: (brief task context)\nIMPORTANCE: (number 1-100)"
+                                                detail_prompt = f"""User's Name: {session.get('user_name')}
+For the task: {task['text']}\nProvide on two lines:\nCONTEXT: (brief task context)\nIMPORTANCE: (number 1-100)"""
                                                 detail_response = model.generate_content(detail_prompt)
 
                                                 if detail_response and detail_response.text:
@@ -346,7 +352,8 @@ def chat():
                 })
 
             else:
-                prompt = f"Brief helpful response for: {message}"
+                prompt = f"""User's Name: {user_name}
+Brief helpful response for: {message}"""
                 response = model.generate_content(prompt)
 
                 if not response or not response.text:
@@ -487,10 +494,12 @@ def generate_ai_settings():
     try:
         data = request.get_json()
         work_description = data.get('workDescription', '')
+        user_name = session.get('user_name')
         if not work_description:
             return jsonify({"error": "Work description is required", "message_detail": "Please provide a description of your work to generate settings."}), 400
 
-        prompt = f"""Based on this work description: "{work_description}"
+        prompt = f"""User's Name: {user_name}
+Based on this work description: "{work_description}"
 
         Generate appropriate settings in exactly this format:
         SHORT TERM FOCUS: [3-month goals and immediate priorities based on the work description]
@@ -522,6 +531,7 @@ def generate_tasks():
         data = request.get_json()
         goal_text = data.get('goalText')
         goal_id = data.get('goalId')
+        user_name = session.get('user_name')
 
         if not goal_text or not goal_id:
             return jsonify({"error": "Goal text and ID are required", "message_detail": "Please provide both goal text and goal ID."}), 400
@@ -533,7 +543,8 @@ def generate_tasks():
         if work_description:
             task_prompt_context = f" considering my work description: '{work_description}', "
 
-        task_prompt = f"""Create 6 clear, actionable steps for: {goal_text}{task_prompt_context}
+        task_prompt = f"""User's Name: {user_name}
+Create 6 clear, actionable steps for: {goal_text}{task_prompt_context}
         Even if the goal is not directly related to my work description, generate relevant and helpful tasks.
         Return only the tasks, one per line. Be specific and concise."""
 
@@ -579,11 +590,13 @@ def generate_task_details():
         data = request.get_json()
         task_id = data.get('task_id')
         task_text = data.get('task_text')
+        user_name = session.get('user_name')
 
         if not task_text or not task_id:
             return jsonify({"error": "Task text and ID required", "message_detail": "Please provide both task text and task ID."}), 400
 
-        prompt = f"""For the task: "{task_text}"
+        prompt = f"""User's Name: {user_name}
+For the task: "{task_text}"
         Return EXACTLY in this format:
         CONTEXT: [one quick tip in 3-5 words only] just the context without numbers  or any other information
         IMPORTANCE: [number 1-100]
@@ -832,7 +845,8 @@ def generate_task_dependencies(tasks):
     dependencies = []
     for i, task in enumerate(tasks):
         if i > 0:
-            prompt = f"""Given these two tasks:
+            prompt = f"""User's Name: {session.get('user_name')}
+Given these two tasks:
             1. {tasks[i-1]}
             2. {task}
 
@@ -855,12 +869,14 @@ def generate_task_suggestions(user_id):
     user = get_user_data(user_id)
     settings = user.get('settings', {})
     completed_tasks = []
+    user_name = user.get('name')
 
     if user.get('goals'):
         latest_goal = user['goals'][-1]
         completed_tasks = [t['text'] for t in latest_goal.get('tasks', []) if t.get('completed')]
 
-    prompt = f"""Based on:
+    prompt = f"""User's Name: {user_name}
+Based on:
     - Work description: {settings.get('workDescription')}
     - Completed tasks: {', '.join(completed_tasks)}
 
