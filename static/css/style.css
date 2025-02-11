@@ -1,46 +1,39 @@
 :root {
-    /* Luxury Black & White Variables - Adjusted for Faster Transitions */
-    --black: #000000; /* True Black */
-    --white: #ffffff; /* True White */
-    --gray-50: #f9f9f9; /* Very Light Gray */
-    --gray-100: #f2f2f2; /* Light Gray */
-    --gray-200: #e5e5e5; /* Medium Light Gray */
-    --gray-300: #d4d4d4; /* Medium Gray */
-    --gray-400: #a3a3a3; /* Medium Dark Gray */
-    --gray-500: #737373; /* Dark Gray */
-    --gray-600: #525252; /* Even Darker Gray - for subtle text */
-
+    --black: #000000;
+    --white: #ffffff;
+    --gray-50: #f9f9f9;
+    --gray-100: #f2f2f2;
+    --gray-200: #e5e5e5;
+    --gray-300: #d4d4d4;
+    --gray-400: #a3a3a3;
+    --gray-500: #737373;
+    --gray-600: #525252;
     --bg-primary: var(--white);
-    --bg-secondary: var(--gray-50); /* Very subtle background */
+    --bg-secondary: var(--gray-50);
     --text-primary: var(--black);
-    --text-secondary: var(--gray-500); /* Softer text color */
-    --accent: var(--black); /* Keeping accent as black for monochrome */
-    --border: var(--gray-200); /* Very subtle border */
-    --input-border: var(--gray-300); /* Input border slightly more defined */
-
-    --radius-sm: 8px; /* Slightly rounded corners */
-    --radius-md: 12px; /* More rounded for key elements */
-    --radius-lg: 16px; /* Rounded for modals */
-
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Very subtle shadow */
-    --shadow-md: 0 3px 7px rgba(0, 0, 0, 0.08); /* Medium subtle shadow */
-    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1); /* Larger subtle shadow */
-
-    --transition: 0.18s cubic-bezier(0.33, 1, 0.68, 1); /* Faster & Smooth - easeOutCubic */ /* Reduced duration, changed easing */
-
-    /* Responsive */
+    --text-secondary: var(--gray-500);
+    --accent: var(--black);
+    --border: var(--gray-200);
+    --input-border: var(--gray-300);
+    --radius-sm: 7px;
+    --radius-md: 11px;
+    --radius-lg: 15px;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+    --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.07);
+    --shadow-lg: 0 6px 12px rgba(0, 0, 0, 0.09);
+    --transition: 0.15s cubic-bezier(0.33, 1, 0.68, 1);
     --phone-breakpoint: 768px;
-    --phone-padding: 24px; /* Slightly increased mobile padding */
+    --phone-padding: 20px;
     --slider-value: 50%;
     --slider-color: var(--accent);
+    font-size: 17px;
 }
 
-/* General Styles - Refined for Luxury */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Helvetica Neue for a cleaner, more luxury feel */
+    font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -52,7 +45,7 @@ body {
     height: 100vh;
     overflow: hidden;
     position: relative;
-    line-height: 1.7; /* Increased line height for better readability and spaciousness */
+    line-height: 1.6;
 }
 
 .container {
@@ -63,12 +56,11 @@ body {
     position: relative;
 }
 
-/* Chat Container - Smoother & Cleaner */
 .chat-container {
-    width: 68%;
+    width: 35%; /* Increased chat container width */
     display: flex;
     flex-direction: column;
-    border-right: 1px solid var(--border); /* Subtler border */
+    border-right: 1px solid var(--border);
     background: var(--bg-primary);
     position: relative;
 }
@@ -76,21 +68,21 @@ body {
 .chat-messages {
     flex: 1;
     overflow-y: auto;
-    padding: 32px; /* Increased padding */
+    padding: 28px;
     background: var(--bg-primary);
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Increased gap between messages */
+    gap: 20px;
     scroll-behavior: smooth;
-    overscroll-behavior: contain; /* Prevent scroll chaining on mobile */
+    overscroll-behavior: contain;
 }
 
 .chat-messages::-webkit-scrollbar {
-    width: 6px; /* Thinner scrollbar */
+    width: 6px;
 }
 
 .chat-messages::-webkit-scrollbar-track {
-    background: var(--gray-100); /* Light scrollbar track */
+    background: var(--gray-100);
     border-radius: 3px;
 }
 
@@ -105,8 +97,8 @@ body {
 
 .chat-input-container {
     display: flex;
-    gap: 16px; /* Increased gap */
-    padding: 32px; /* Increased padding */
+    gap: 14px;
+    padding: 28px;
     border-top: 1px solid var(--border);
     background: var(--bg-primary);
     align-items: center;
@@ -118,25 +110,25 @@ body {
 
 .chat-input input {
     width: 100%;
-    padding: 16px 20px; /* Increased padding */
+    padding: 16px 20px;
     border: 1px solid var(--input-border);
     border-radius: var(--radius-md);
     background: var(--bg-primary);
     color: var(--text-primary);
-    font-size: 1rem;
+    font-size: 1.1rem;
     transition: var(--transition);
-    box-shadow: none; /* Removed input shadow for cleaner look */
+    box-shadow: none;
 }
 
 .chat-input input:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); /* Very subtle focus shadow */
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
     outline: none;
 }
 
 .send-button {
-    width: 48px; /* Slightly larger send button */
-    height: 48px; /* Slightly larger send button */
+    width: 45px;
+    height: 45px;
     padding: 0;
     border-radius: 50%;
     display: flex;
@@ -145,101 +137,99 @@ body {
     background: var(--accent);
     border: none;
     cursor: pointer;
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
-    box-shadow: none; /* Removed send button shadow for cleaner look */
+    transition: all 0.15s ease-out;
+    box-shadow: none;
 }
 
 .send-button:hover {
-    transform: scale(1.05); /* Subtle scale on hover */
-    background: var(--gray-600); /* Darker shade on hover */
+    transform: scale(1.03);
+    background: var(--gray-600);
 }
 
 .send-button:active {
     transform: scale(1.0);
-    background: var(--black); /* True black on active */
+    background: var(--black);
 }
 
 .send-button svg {
-    width: 24px; /* Slightly larger send icon */
-    height: 24px; /* Slightly larger send icon */
+    width: 22px;
+    height: 22px;
     color: var(--white);
     stroke-width: 2;
     transform: rotate(45deg) scale(0.9);
 }
 
-/* Message Styles - Smoother & Cleaner */
 .message {
     max-width: 85%;
-    padding: 16px 24px; /* Increased padding */
-    margin-bottom: 12px; /* Increased margin */
-    font-size: 1rem;
+    padding: 14px 20px;
+    margin-bottom: 12px;
+    font-size: 1.05rem;
     line-height: 1.6;
     border-radius: var(--radius-md);
-    box-shadow: none; /* Removed message shadow for cleaner look */
+    box-shadow: none;
 }
 
 .user-message {
-    background: var(--black); /* True black for user message */
+    background: var(--black);
     color: var(--white);
     margin-left: auto;
-    border-bottom-right-radius: 0; /* Square bottom right */
+    border-bottom-right-radius: 0;
 }
 
 .ai-message {
-    background: var(--gray-50); /* Very light gray for AI message */
+    background: var(--gray-50);
     color: var(--text-primary);
     margin-right: auto;
-    border-bottom-left-radius: 0; /* Square bottom left */
-    border: 1px solid var(--border); /* Keeping subtle border */
+    border-bottom-left-radius: 0;
+    border: 1px solid var(--border);
 }
 
-/* Task Container - Smoother & Cleaner */
 .task-container {
-    width: 32%;
-    background: var(--bg-secondary); /* Very light background */
+    width: 65%; /* Reduced task container width to accommodate bigger chat */
+    background: var(--bg-secondary);
     display: flex;
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
     position: relative;
-    box-shadow: inset 1px 0 0 var(--border); /* Subtler inner border */
+    box-shadow: inset 1px 0 0 var(--border);
 }
 
 .task-list-container {
     flex: 1;
     overflow-y: auto;
-    padding: 24px; /* Reduced padding for smaller tasks */
+    padding: 20px;
     scroll-behavior: smooth;
-    overscroll-behavior: contain; /* Prevent scroll chaining on mobile */
+    overscroll-behavior: contain;
 }
 
 .task-list {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Reduced gap for smaller tasks */
+    gap: 12px;
 }
 
 .goal-section {
     background: var(--bg-primary);
     border-radius: var(--radius-md);
-    padding: 20px; /* Reduced padding for smaller tasks */
-    box-shadow: none; /* Removed goal section shadow for cleaner look */
-    margin-bottom: 24px; /* Reduced margin for smaller tasks */
-    border: 1px solid var(--border); /* Keeping subtle border */
+    padding: 20px;
+    box-shadow: none;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
 }
 
 .goal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px; /* Reduced margin for smaller tasks */
-    padding-bottom: 12px; /* Reduced padding for smaller tasks */
+    margin-bottom: 14px;
+    padding-bottom: 12px;
     border-bottom: 1px solid var(--border);
 }
 
 .goal-header h3 {
-    font-size: 1.1rem; /* Slightly smaller goal header font */
-    font-weight: 500; /* Slightly lighter font weight */
+    font-size: 1.2rem;
+    font-weight: 500;
     color: var(--text-primary);
 }
 
@@ -249,80 +239,80 @@ body {
     border-radius: var(--radius-md);
     transition: var(--transition);
     position: relative;
-    padding-left: 10px; /* Reduced left padding for smaller tasks */
-    border-left-width: 3px; /* Thinner importance indicator */
-    box-shadow: none; /* Removed task item shadow for cleaner look */
+    padding-left: 6px;
+    border-left-width: 2px;
+    box-shadow: none;
 }
 
 .task-item[data-importance="high"] {
-    border-left-color: var(--black); /* Black importance indicator */
+    border-left-color: var(--black);
 }
 
 .task-item[data-importance="medium"] {
-    border-left-color: var(--gray-400); /* Gray importance indicator */
+    border-left-color: var(--gray-400);
 }
 
 .task-item[data-importance="low"] {
-    border-left-color: var(--gray-300); /* Lighter gray importance indicator */
+    border-left-color: var(--gray-300);
 }
 
 .task-content {
     display: grid;
-    grid-template-columns: 24px 1fr; /* Smaller checkbox area */
+    grid-template-columns: 18px 1fr;
     align-items: center;
-    padding: 12px 20px; /* Reduced padding for smaller tasks */
-    gap: 12px; /* Reduced gap for smaller tasks */
+    padding: 8px 12px;
+    gap: 8px;
 }
 
 .task-content input[type="checkbox"] {
-    width: 18px; /* Smaller checkbox */
-    height: 18px; /* Smaller checkbox */
+    width: 14px;
+    height: 14px;
     margin: 0;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
-    border: 2px solid var(--gray-300);
-    border-radius: 4px;
+    border: 1.3px solid var(--gray-300);
+    border-radius: 3px;
     position: relative;
     transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: none; /* Removed checkbox shadow for cleaner look */
+    box-shadow: none;
 }
 
 .task-content input[type="checkbox"]:checked {
-    background-color: var(--black); /* Black checkbox when checked */
+    background-color: var(--black);
     border-color: var(--black);
 }
 
 .task-content input[type="checkbox"]:checked::after {
     content: '✓';
     color: var(--white);
-    font-size: 12px; /* Smaller checkmark */
+    font-size: 9px;
     position: absolute;
 }
 
 .task-content input[type="checkbox"]:hover {
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05); /* Very subtle hover shadow */
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 .task-content span {
-    font-size: 0.95rem; /* Slightly smaller task text */
+    font-size: 0.85rem;
     color: var(--text-primary);
-    line-height: 1.4; /* Slightly reduced line height */
+    line-height: 1.2;
 }
 
 .task-item:hover {
-    transform: translateY(-1px); /* More subtle hover effect */
+    transform: translateY(-0.3px);
     border-color: var(--accent);
-    box-shadow: var(--shadow); /* Re-introduce very subtle shadow on task hover if needed */
+    box-shadow: var(--shadow);
 }
 
 .task-item.completed {
-    background: var(--gray-100); /* Lighter background for completed tasks */
-    opacity: 0.8;
+    background: var(--gray-100);
+    opacity: 0.6;
 }
 
 .task-item.completed .task-content span {
@@ -330,29 +320,27 @@ body {
     color: var(--text-secondary);
 }
 
-/* Custom scrollbar for task list - Smoother & Cleaner */
 .task-list-container::-webkit-scrollbar {
-    width: 5px; /* Even Thinner scrollbar */
+    width: 4px;
 }
 
 .task-list-container::-webkit-scrollbar-track {
-    background: var(--gray-100); /* Light scrollbar track */
-    border-radius: 2.5px;
+    background: var(--gray-100);
+    border-radius: 2px;
 }
 
 .task-list-container::-webkit-scrollbar-thumb {
     background: var(--gray-300);
-    border-radius: 2.5px;
+    border-radius: 2px;
 }
 
 .task-list-container::-webkit-scrollbar-thumb:hover {
     background: var(--gray-400);
 }
 
-/* Task Header - Smoother & Cleaner */
 .task-header {
-    padding: 32px; /* Reduced padding for smaller tasks */
-    padding-bottom: 20px; /* Adjusted bottom padding */
+    padding: 28px;
+    padding-bottom: 20px;
     margin-bottom: 0;
     border-bottom: 1px solid var(--border);
     background: var(--bg-secondary);
@@ -361,50 +349,49 @@ body {
 }
 
 .task-header h2 {
-    font-size: 1.6rem; /* Smaller task header font */
-    font-weight: 500; /* Slightly lighter font weight */
+    font-size: 1.8rem;
+    font-weight: 500;
     color: var(--text-primary);
 }
 
 .header-icons {
     position: absolute;
-    top: 32px; /* Adjusted top position */
-    right: 32px; /* Adjusted right position */
+    top: 28px;
+    right: 28px;
     display: flex;
-    gap: 16px; /* Reduced gap */
+    gap: 14px;
     z-index: 4;
 }
 
 .icon-wrapper {
-    width: 40px; /* Smaller icon wrapper */
-    height: 40px; /* Smaller icon wrapper */
+    width: 45px;
+    height: 45px;
     background: var(--accent);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
-    box-shadow: none; /* Removed icon wrapper shadow for cleaner look */
+    transition: all 0.15s ease-out;
+    box-shadow: none;
 }
 
 .icon-wrapper:hover {
-    transform: scale(1.05); /* Subtle scale on hover */
-    background: var(--gray-600); /* Darker shade on hover */
+    transform: scale(1.03);
+    background: var(--gray-600);
 }
 
 .icon-wrapper:active {
     transform: scale(1.0);
-    background: var(--black); /* True black on active */
+    background: var(--black);
 }
 
 .icon-wrapper svg {
-    width: 20px; /* Smaller icon */
-    height: 20px; /* Smaller icon */
+    width: 22px;
+    height: 22px;
     color: var(--white);
 }
 
-/* Modal - Smoother & Cleaner */
 .modal {
     display: none;
     position: fixed;
@@ -412,8 +399,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2); /* Even lighter modal backdrop */
-    backdrop-filter: blur(8px); /* Increased blur */
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
     z-index: 1000;
 }
 
@@ -426,90 +413,90 @@ body {
 .modal-content {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: 32px; /* Reduced padding for smaller tasks */
-    box-shadow: var(--shadow-md); /* Keeping subtle shadow on modal */
-    max-width: 520px; /* Slightly narrower modal */
-    animation: modalFadeIn 0.18s ease-out forwards; /* Faster animation */ /* Reduced duration, changed easing */
-    border: none; /* Removed modal border for cleaner look */
+    padding: 30px;
+    box-shadow: var(--shadow-md);
+    max-width: 520px;
+    animation: modalFadeIn 0.15s ease-out forwards;
+    border: none;
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem; /* Reduced margin for smaller tasks */
-    padding-bottom: 1.25rem; /* Reduced padding for smaller tasks */
+    margin-bottom: 1.8rem;
+    padding-bottom: 1.2rem;
     border-bottom: 1px solid var(--border);
 }
 
 .modal-header h2 {
-    font-size: 1.4rem; /* Smaller modal header font */
-    font-weight: 500; /* Slightly lighter font weight */
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .close-button {
     background: none;
     border: none;
-    font-size: 1.4rem; /* Smaller close button icon */
-    padding: 8px; /* Reduced padding */
+    font-size: 1.5rem;
+    padding: 8px;
     color: var(--text-primary);
-    opacity: 0.6; /* Slightly less opaque close button */
-    transition: opacity 0.18s ease-out, transform 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
+    opacity: 0.4;
+    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
 }
 
 .close-button:hover {
     opacity: 1;
-    transform: scale(1.1); /* Subtle scale on hover */
+    transform: scale(1.04);
     background: none;
     box-shadow: none;
 }
 
 .modal-buttons {
     display: flex;
-    justify-content: flex-end; /* Align buttons to the right */
+    justify-content: flex-end;
     align-items: center;
-    margin-top: 24px; /* Reduced margin for smaller tasks */
-    gap: 12px; /* Reduced gap */
+    margin-top: 20px;
+    gap: 10px;
 }
 
 .modal-buttons .right-buttons {
     display: flex;
-    gap: 8px; /* Reduced gap */
+    gap: 6px;
 }
 
 button {
-    background: var(--black); /* True black buttons */
+    background: var(--black);
     color: var(--white);
-    padding: 14px 28px; /* Slightly reduced button padding */
-    min-width: 120px; /* Narrower buttons */
+    padding: 14px 28px;
+    min-width: 110px;
     border: none;
     border-radius: var(--radius-md);
-    font-size: 0.9rem; /* Smaller button font */
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
+    transition: all 0.15s ease-out;
     position: relative;
     overflow: hidden;
-    letter-spacing: 0.5px; /* Slight letter spacing */
-    box-shadow: none; /* Removed button shadow for cleaner look */
+    letter-spacing: 0.3px;
+    box-shadow: none;
 }
 
 button:hover {
-    transform: scale(1.03); /* Subtle scale on hover */
-    background: var(--gray-600); /* Darker shade on hover */
+    transform: scale(1.01);
+    background: var(--gray-600);
 }
 
 button:active {
     transform: scale(1.0);
-    background: var(--black); /* True black on active */
+    background: var(--black);
 }
 
 .modal-buttons button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 14px 28px; /* Slightly reduced button padding */
+    gap: 6px;
+    padding: 14px 28px;
 }
 
 .modal-buttons .secondary-button {
@@ -519,62 +506,61 @@ button:active {
 }
 
 .modal-buttons .secondary-button:hover {
-    background: var(--gray-100); /* Light hover background */
+    background: var(--gray-100);
     color: var(--text-primary);
-    transform: scale(1.03); /* Subtle scale on hover */
+    transform: scale(1.01);
 }
 
 .modal-buttons .secondary-button:active {
     transform: scale(1.0);
-    background: transparent; /* No background on active */
+    background: transparent;
 }
 
 .modal-buttons .delete-button {
     background: rgb(229, 43, 43);
-    border: 1px solid white; /* Gray delete button */
+    border: 1px solid white;
     color: white;
 }
 
 .modal-buttons .delete-button:hover {
-    background: rgb(229, 43, 43); /* Gray hover background */
+    background: rgb(229, 43, 43);
     color: white;
-    transform: scale(1.03); /* Subtle scale on hover */
+    transform: scale(1.01);
 }
 
 .modal-buttons .delete-button:active {
     transform: scale(1.0);
-    background: rgb(229, 43, 43); /* Gray active background */
+    background: rgb(229, 43, 43);
 }
 
 .modal-buttons .delete-button svg {
-    width: 16px; /* Smaller delete icon */
-    height: 16px; /* Smaller delete icon */
+    width: 16px;
+    height: 16px;
     stroke: currentColor;
 }
 
-/* Empty State - Smoother & Cleaner */
 .empty-state {
     text-align: center;
     color: var(--text-secondary);
-    padding: 140px 48px; /* Reduced padding for smaller tasks */
-    animation: fadeIn 0.3s ease-out forwards; /* Faster animation */ /* Reduced duration, changed easing */
+    padding: 120px 28px;
+    animation: fadeIn 0.2s ease-out forwards;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px; /* Reduced gap for smaller tasks */
+    gap: 14px;
 }
 
 .empty-state h3 {
-    font-size: 2rem; /* Smaller empty state header font */
-    font-weight: 500; /* Slightly lighter font weight */
+    font-size: 1.8rem;
+    font-weight: 500;
     color: var(--text-primary);
 }
 
 .empty-state p {
-    font-size: 1.1rem; /* Smaller empty state paragraph font */
+    font-size: 1.1rem;
     color: var(--text-secondary);
-    max-width: 450px; /* Slightly narrower paragraph */
+    max-width: 400px;
     line-height: 1.7;
 }
 
@@ -596,23 +582,22 @@ button:active {
     }
 }
 
-/* Form Elements - Smoother & Cleaner */
 input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 18px; /* Smaller checkbox */
-    height: 18px; /* Smaller checkbox */
-    border: 2px solid var(--accent);
-    border-radius: 4px;
+    width: 14px;
+    height: 14px;
+    border: 1.3px solid var(--accent);
+    border-radius: 3px;
     margin: 0;
     cursor: pointer;
     position: relative;
     transition: var(--transition);
-    box-shadow: none; /* Removed checkbox shadow */
+    box-shadow: none;
 }
 
 input[type="checkbox"]:checked {
-    background: var(--black); /* Black checkbox when checked */
+    background: var(--black);
 }
 
 input[type="checkbox"]:checked::after {
@@ -622,164 +607,160 @@ input[type="checkbox"]:checked::after {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 12px; /* Smaller checkmark */
+    font-size: 9px;
 }
 
 input[type="checkbox"]:hover {
-    opacity: 0.9; /* Slightly less opaque on hover */
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05); /* Very subtle hover shadow */
+    opacity: 0.9;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 input[type="text"],
 input[type="date"],
 textarea {
     width: 100%;
-    padding: 14px 20px; /* Reduced padding for smaller inputs/textarea */
+    padding: 14px 18px;
     background: var(--bg-primary);
     border: 1px solid var(--input-border);
     border-radius: var(--radius-md);
     color: var(--text-primary);
-    font-size: 0.95rem; /* Smaller input font */
+    font-size: 1rem;
     transition: var(--transition);
-    box-shadow: none; /* Removed input/textarea shadow */
+    box-shadow: none;
 }
 
 input[type="text"]:focus,
 input[type="date"]:focus,
 textarea:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); /* Very subtle focus shadow */
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
     outline: none;
 }
 
 textarea {
     resize: vertical;
-    min-height: 100px; /* Slightly shorter textarea */
+    min-height: 80px;
 }
 
-/* Priority Label - Smoother & Cleaner */
 .priority-label {
-    padding: 4px 10px; /* Reduced padding for smaller labels */
+    padding: 4px 8px;
     border-radius: var(--radius-sm);
-    font-size: 0.75rem; /* Smaller priority label font */
+    font-size: 0.8rem;
     font-weight: 500;
-    letter-spacing: 0.05em; /* Slight letter spacing */
-    box-shadow: none; /* Removed priority label shadow */
+    letter-spacing: 0.03em;
+    box-shadow: none;
 }
 
 .priority-high {
     background: var(--gray-100);
-    color: var(--black); /* Black priority text */
+    color: var(--black);
 }
 
 .priority-medium {
     background: var(--gray-100);
-    color: var(--gray-600); /* Darker gray priority text */
+    color: var(--gray-600);
 }
 
 .priority-low {
     background: var(--gray-100);
-    color: var(--gray-500); /* Gray priority text */
+    color: var(--gray-500);
 }
 
-/* Task Detail Item - Smoother & Cleaner */
 .task-detail-item {
-    margin-bottom: 24px; /* Reduced margin for smaller task details */
+    margin-bottom: 20px;
 }
 
 .task-detail-item label {
     display: block;
-    font-size: 0.85rem; /* Smaller label font */
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--text-secondary);
-    margin-bottom: 10px; /* Reduced margin */
+    margin-bottom: 8px;
 }
 
 .task-detail-item input,
 .task-detail-item textarea {
     width: 100%;
-    padding: 12px; /* Reduced padding for smaller detail inputs/textarea */
+    padding: 12px;
     border: 1px solid var(--input-border);
     border-radius: var(--radius-md);
-    font-size: 0.9rem; /* Smaller font in detail inputs/textarea */
+    font-size: 0.95rem;
     background: var(--bg-primary);
-    box-shadow: none; /* Removed detail input/textarea shadow */
+    box-shadow: none;
 }
 
 .task-detail-item textarea {
-    min-height: 80px; /* Shorter textarea */
+    min-height: 70px;
     resize: vertical;
 }
 
 .modal-buttons {
     display: flex;
-    justify-content: flex-end; /* Align buttons to the right */
+    justify-content: flex-end;
     align-items: center;
-    margin-top: 24px; /* Reduced margin for smaller buttons */
-    gap: 12px; /* Reduced gap */
+    margin-top: 20px;
+    gap: 10px;
 }
 
 .modal-buttons .right-buttons {
     display: flex;
-    gap: 8px; /* Reduced gap */
+    gap: 6px;
 }
 
-/* Delete Button - Smoother & Cleaner */
 .delete-button {
     display: flex;
     align-items: center;
-    gap: 6px; /* Reduced gap */
-    padding: 10px 16px; /* Reduced padding for smaller buttons */
-    background-color: transparent; /* Transparent delete button background */
-    color: var(--gray-500); /* Gray delete button text */
-    border: 1px solid var(--gray-500); /* Gray delete button border */
+    gap: 5px;
+    padding: 8px 12px;
+    background-color: transparent;
+    color: var(--gray-500);
+    border: 1px solid var(--gray-500);
     border-radius: var(--radius-md);
     cursor: pointer;
-    font-size: 0.85rem; /* Smaller delete button font */
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
-    box-shadow: none; /* Removed delete button shadow */
+    font-size: 0.9rem;
+    transition: all 0.12s ease-out;
+    box-shadow: none;
 }
 
 .delete-button:hover {
-    background-color: var(--gray-100); /* Light hover background */
+    background-color: var(--gray-100);
     color: var(--text-primary);
-    transform: scale(1.03); /* Subtle scale on hover */
+    transform: scale(1.01);
 }
 
 .delete-button:active {
     transform: scale(1.0);
-    background-color: transparent; /* No background on active */
+    background-color: transparent;
 }
 
 .delete-button svg {
-    width: 14px; /* Smaller delete icon */
-    height: 14px; /* Smaller delete icon */
+    width: 14px;
+    height: 14px;
 }
 
-/* Primary & Secondary Buttons - Smoother & Cleaner */
 .primary-button, .secondary-button {
-    padding: 12px 24px; /* Reduced button padding */
+    padding: 12px 24px;
     border-radius: var(--radius-md);
     cursor: pointer;
-    font-size: 0.85rem; /* Smaller button font */
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
-    box-shadow: none; /* Removed button shadow */
+    font-size: 0.9rem;
+    transition: all 0.12s ease-out;
+    box-shadow: none;
 }
 
 .primary-button {
-    background-color: var(--black); /* True black primary button */
+    background-color: var(--black);
     color: var(--white);
     border: none;
 }
 
 .primary-button:hover {
-    background-color: var(--gray-600); /* Darker shade on hover */
-    transform: scale(1.03); /* Subtle scale on hover */
+    background-color: var(--gray-600);
+    transform: scale(1.01);
 }
 
 .primary-button:active {
     transform: scale(1.0);
-    background-color: var(--black); /* True black on active */
+    background-color: var(--black);
 }
 
 .secondary-button {
@@ -789,14 +770,14 @@ textarea {
 }
 
 .secondary-button:hover {
-    background-color: var(--gray-100); /* Light hover background */
+    background-color: var(--gray-100);
     color: var(--text-primary);
-    transform: scale(1.03); /* Subtle scale on hover */
+    transform: scale(1.01);
 }
 
 .secondary-button:active {
     transform: scale(1.0);
-    background-color: transparent; /* No background on active */
+    background-color: transparent;
 }
 
 button,
@@ -807,36 +788,35 @@ button,
 }
 
 button:focus-visible {
-    box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--black); /* Black focus outline */
+    box-shadow: 0 0 0 1px var(--white), 0 0 0 2px var(--black);
 }
 
 .send-button, .icon-wrapper {
-    width: 40px; /* Even smaller send button and icon wrapper */
-    height: 40px; /* Even smaller send button and icon wrapper */
+    width: 40px;
+    height: 40px;
     background: var(--black);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
-    box-shadow: none; /* Removed shadow */
+    transition: all 0.12s ease-out;
+    box-shadow: none;
 }
 
-/* Header - Smoother & Cleaner */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem; /* Reduced header padding */
+    padding: 1.2rem;
     background: var(--bg-primary);
     border-bottom: 1px solid var(--border);
 }
 
 .user-name {
     color: var(--text-secondary);
-    font-size: 0.85rem; /* Smaller user name font */
-    margin-right: 1.25rem; /* Reduced margin */
+    font-size: 0.9rem;
+    margin-right: 1.2rem;
 }
 
 .icon-wrapper.logout {
@@ -844,34 +824,33 @@ button:focus-visible {
 }
 
 .icon-wrapper.logout:hover {
-    background: var(--gray-100); /* Light hover background */
+    background: var(--gray-100);
     color: var(--text-primary);
 }
 
 .logout-btn {
-    padding: 0.6rem 1.2rem; /* Reduced logout button padding */
+    padding: 0.5rem 1rem;
     background: var(--black);
     color: var(--white);
     border: none;
     border-radius: var(--radius-md);
-    font-size: 0.85rem; /* Smaller logout button font */
+    font-size: 0.9rem;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: none; /* Removed logout button shadow */
+    box-shadow: none;
 }
 
 .logout-btn:hover {
     opacity: 0.9;
-    background: var(--gray-600); /* Darker shade on hover */
+    background: var(--gray-600);
 }
 
-/* Importance Slider Styles - Smoother & Cleaner */
 .importance-slider-container {
     width: 100%;
-    padding: 16px 0; /* Reduced padding */
+    padding: 14px 0;
     position: relative;
     --slider-value: 50%;
-    --slider-color: var(--black); /* Black slider color */
+    --slider-color: var(--black);
 }
 
 .importance-slider-container::before {
@@ -880,134 +859,131 @@ button:focus-visible {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    height: 5px; /* Even thinner slider track */
+    height: 4px;
     width: var(--slider-value);
     background: var(--slider-color);
-    border-radius: 2.5px;
+    border-radius: 2px;
     pointer-events: none;
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
+    transition: all 0.12s ease-out;
 }
 
 .importance-slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 5px; /* Even thinner slider track */
-    border-radius: 2.5px;
-    background: var(--gray-200); /* Lighter slider track */
+    height: 4px;
+    border-radius: 2px;
+    background: var(--gray-200);
     outline: none;
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
+    transition: all 0.12s ease-out;
 }
 
 .importance-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 18px; /* Smaller slider thumb */
-    height: 18px; /* Smaller slider thumb */
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    background: var(--black); /* Black slider thumb */
+    background: var(--black);
     cursor: pointer;
-    border: 3px solid var(--white); /* White border around thumb */
-    box-shadow: none; /* Removed slider thumb shadow */
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
+    border: 2px solid var(--white);
+    box-shadow: none;
+    transition: all 0.12s ease-out;
     position: relative;
     z-index: 2;
 }
 
 .importance-slider::-moz-range-thumb {
-    width: 18px; /* Smaller slider thumb */
-    height: 18px; /* Smaller slider thumb */
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    background: var(--black); /* Black slider thumb */
+    background: var(--black);
     cursor: pointer;
-    border: 3px solid var(--white); /* White border around thumb */
-    box-shadow: none; /* Removed slider thumb shadow */
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
+    border: 2px solid var(--white);
+    box-shadow: none;
+    transition: all 0.12s ease-out;
     position: relative;
     z-index: 2;
 }
 
 .importance-slider::-webkit-slider-thumb:hover {
-    transform: scale(1.1); /* Subtle scale on hover */
+    transform: scale(1.02);
 }
 
 .importance-slider::-moz-range-thumb:hover {
-    transform: scale(1.1); /* Subtle scale on hover */
+    transform: scale(1.02);
 }
 
 .importance-slider:active::-webkit-slider-thumb {
-    transform: scale(1.1);
-    background: var(--gray-600); /* Darker shade on active */
+    transform: scale(1.02);
+    background: var(--gray-600);
 }
 
 .importance-slider:active::-moz-range-thumb {
-    transform: scale(1.1);
-    background: var(--gray-600); /* Darker shade on active */
+    transform: scale(1.02);
+    background: var(--gray-600);
 }
 
 .importance-value {
-    font-size: 13px; /* Smaller value font */
+    font-size: 12px;
     color: var(--text-secondary);
-    margin-left: 10px; /* Reduced margin */
+    margin-left: 8px;
     font-weight: 500;
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
+    transition: all 0.12s ease-out;
 }
 
 .importance-label {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px; /* Reduced margin */
+    margin-bottom: 8px;
 }
 
 .importance-label span {
-    font-size: 13px; /* Smaller label font */
+    font-size: 12px;
     color: var(--text-secondary);
 }
 
 .importance-markers {
     display: flex;
     justify-content: space-between;
-    padding: 0 12px; /* Reduced padding */
-    margin-top: 4px; /* Reduced margin */
+    padding: 0 10px;
+    margin-top: 3px;
 }
 
 .importance-markers span {
-    font-size: 11px; /* Even smaller marker font */
+    font-size: 10px;
     color: var(--text-tertiary);
 }
 
-/* Progress bar effect */
-
-/* Loading Animation - Smoother & Cleaner */
 .message.loading .message-content {
-    background-color: var(--gray-50); /* Very light loading message background */
+    background-color: var(--gray-50);
     border: 1px solid var(--border);
-    padding: 14px 20px; /* Reduced padding for smaller loading message */
+    padding: 12px 16px;
     border-radius: var(--radius-md);
-    box-shadow: none; /* Removed loading message shadow */
+    box-shadow: none;
 }
 
 .message.loading .message-content p {
     color: var(--text-primary);
-    margin-bottom: 10px; /* Reduced margin */
-    font-size: 0.95rem; /* Smaller loading message font */
+    margin-bottom: 8px;
+    font-size: 0.95rem;
 }
 
 .loading-animation {
     display: flex;
     align-items: center;
-    gap: 6px; /* Reduced gap */
-    height: 20px; /* Smaller loading animation height */
+    gap: 5px;
+    height: 18px;
 }
 
 .loading-animation .dot {
-    width: 5px; /* Smaller dots */
-    height: 5px; /* Smaller dots */
-    background-color: var(--black); /* Black loading dots */
+    width: 4px;
+    height: 4px;
+    background-color: var(--black);
     border-radius: 50%;
-    opacity: 0.5; /* Slightly less opaque dots */
+    opacity: 0.5;
     transform-origin: center;
-    animation: pulseSmoothFast 1s ease-in-out infinite; /* Faster pulse animation */ /* Reduced duration */
+    animation: pulseSmoothFast 1s ease-in-out infinite;
 }
 
 .loading-animation .dot:nth-child(2) {
@@ -1018,7 +994,7 @@ button:focus-visible {
     animation-delay: 0.4s;
 }
 
-@keyframes pulseSmoothFast { /* Faster pulse animation */
+@keyframes pulseSmoothFast {
     0%, 100% {
         transform: scale(0.8);
         opacity: 0.5;
@@ -1029,8 +1005,6 @@ button:focus-visible {
     }
 }
 
-
-/* Mobile Responsiveness - Smoother & Cleaner */
 @media (max-width: 768px) {
     body {
         flex-direction: column;
@@ -1049,15 +1023,23 @@ button:focus-visible {
         border-right: none;
     }
 
+    .chat-container {
+        width: 100%; /* Chat takes full width on mobile */
+    }
+
+    .task-container {
+        width: 100%; /* Tasks take full width on mobile */
+    }
+
     .chat-messages {
         padding: var(--phone-padding);
-        gap: 16px;
+        gap: 12px;
     }
 
     .message {
         max-width: 90%;
-        font-size: 0.85rem; /* Even smaller font on mobile */
-        padding: 12px 16px;
+        font-size: 0.85rem;
+        padding: 10px 14px;
     }
 
     .chat-input-container {
@@ -1076,19 +1058,19 @@ button:focus-visible {
     }
 
     .header-icons {
-        top: 24px;
-        right: 24px;
-        gap: 12px;
+        top: 18px;
+        right: 18px;
+        gap: 10px;
     }
 
     .icon-wrapper {
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
     }
 
     button, .send-button {
         min-width: auto;
-        padding: 12px 20px;
+        padding: 10px 16px;
     }
 
     .modal-content {
@@ -1099,31 +1081,31 @@ button:focus-visible {
     input[type="text"],
     input[type="date"],
     textarea {
-        font-size: 0.85rem; /* Even smaller input font on mobile */
+        font-size: 0.85rem;
     }
 }
 
 @media (max-width: 480px) {
     :root {
-        --phone-padding: 16px;
+        --phone-padding: 10px;
     }
 
     .message {
         max-width: 95%;
-        padding: 10px 14px;
+        padding: 8px 12px;
     }
 
     .send-button svg {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
     }
 
     .task-item {
-        padding: 12px 16px;
+        padding: 8px 12px;
     }
 
     .modal-content {
-        padding: 16px;
+        padding: 15px;
     }
 
     .task-header h2 {
@@ -1131,74 +1113,79 @@ button:focus-visible {
     }
 }
 
-/* Categorized Tasks - Smoother & Cleaner - Smaller Tasks */
 .categorized-tasks {
     display: flex;
     flex-direction: column;
-    gap: 24px; /* Reduced gap for smaller tasks */
-    padding: 24px; /* Reduced padding for smaller tasks */
+    gap: 20px;
+    padding: 20px 0;
     height: 100%;
     overflow-y: auto;
     overscroll-behavior: contain;
+    overflow-x: hidden;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    margin: 20px;
+    align-items: center;
 }
 
 .task-category {
     flex: 0 0 auto;
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    box-shadow: none; /* Removed category shadow */
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin-bottom: 24px; /* Reduced margin for smaller tasks */
-    border: 1px solid var(--border); /* Keeping subtle border */
+    margin-bottom: 20px;
+    border: none;
+    align-items: center;
+    width: 95%;
+    max-width: 600px;
 }
 
 .task-category h3 {
-    padding: 20px; /* Reduced padding for smaller tasks */
+    padding: 12px 14px;
     margin: 0;
-    font-size: 1.15rem; /* Slightly smaller category header font */
-    font-weight: 500; /* Slightly lighter font weight */
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--text-primary);
-    background: var(--bg-primary);
-    border-bottom: 1px solid var(--border);
+    background: transparent;
+    border-bottom: none;
     display: flex;
     align-items: center;
-    gap: 10px; /* Reduced gap for smaller tasks */
+    gap: 8px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 14px;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
 }
 
-/* Add icons for each category - Smoother & Cleaner */
 .task-category h3::before {
-    content: '';
-    width: 22px; /* Smaller category icon */
-    height: 22px; /* Smaller category icon */
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.7; /* Slightly less opaque icon */
-    font-size: 1.1em; /* Smaller icon font size */
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    content: none;
 }
 
 #todayTasks h3::before {
-    content: '📅';
+    content: none;
 }
 
 #tomorrowTasks h3::before {
-    content: '⏰';
+    content: none;
 }
 
 #futureTasks h3::before {
-    content: '🎯';
+    content: none;
 }
 
 .task-list {
-    padding: 16px; /* Reduced padding for smaller tasks */
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Reduced gap for smaller tasks */
+    gap: 6px;
+    width: 100%;
+    align-items: stretch;
 }
 
 .task-item {
@@ -1206,41 +1193,41 @@ button:focus-visible {
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     margin-bottom: 0;
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
+    transition: all 0.12s ease-out;
     position: relative;
     overflow: hidden;
-    box-shadow: none; /* Removed task item shadow */
+    box-shadow: none;
+    width: 100%;
 }
 
 .task-item:hover {
-    transform: translateY(-1px); /* More subtle hover effect */
+    transform: translateY(-0.3px);
     border-color: var(--accent);
-    box-shadow: var(--shadow); /* Re-introduce very subtle shadow on task hover if needed */
+    box-shadow: var(--shadow);
 }
 
 .task-content {
     display: flex;
     align-items: center;
-    padding: 14px 20px; /* Reduced padding for smaller tasks */
-    gap: 14px; /* Reduced gap for smaller tasks */
+    padding: 8px 12px;
+    gap: 10px;
     position: relative;
 }
 
-/* Improved checkbox styling - Smoother & Cleaner */
 .task-content input[type="checkbox"] {
-    width: 18px; /* Smaller checkbox */
-    height: 18px; /* Smaller checkbox */
-    border: 2px solid var(--gray-300);
-    border-radius: 4px;
+    width: 14px;
+    height: 14px;
+    border: 1.3px solid var(--gray-300);
+    border-radius: 3px;
     cursor: pointer;
     position: relative;
-    transition: all 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
+    transition: all 0.12s ease-out;
     flex-shrink: 0;
-    box-shadow: none; /* Removed checkbox shadow */
+    box-shadow: none;
 }
 
 .task-content input[type="checkbox"]:checked {
-    background: var(--black); /* Black checkbox when checked */
+    background: var(--black);
     border-color: var(--black);
 }
 
@@ -1251,19 +1238,23 @@ button:focus-visible {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 11px; /* Even smaller checkmark */
+    font-size: 9px;
+}
+
+.task-content input[type="checkbox"]:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 .task-content span {
-    font-size: 0.9rem; /* Even smaller task text */
+    font-size: 0.8rem;
     color: var(--text-primary);
-    line-height: 1.4; /* Slightly reduced line height */
+    line-height: 1.2;
 }
 
-/* Task completion style - Smoother & Cleaner */
 .task-item.completed {
     background: var(--gray-100);
-    opacity: 0.75;
+    opacity: 0.6;
 }
 
 .task-item.completed .task-content span {
@@ -1271,93 +1262,90 @@ button:focus-visible {
     color: var(--text-secondary);
 }
 
-/* Drag and drop styles - Smoother & Cleaner */
 .task-item.sortable-ghost {
     background: var(--gray-100);
     opacity: 0.5;
-    border: 2px dashed var(--gray-400); /* Gray dashed border */
+    border: 1.3px dashed var(--gray-400);
 }
 
 .task-item.sortable-drag {
     background: var(--bg-primary);
-    box-shadow: var(--shadow-md); /* Keeping subtle shadow during drag */
+    box-shadow: var(--shadow-md);
     opacity: 0.9;
     cursor: grabbing;
 }
 
-/* Add a subtle indicator for draggable items - Smoother & Cleaner */
 .task-content::after {
     content: '⋮';
     position: absolute;
-    right: 20px; /* Adjusted position */
+    right: 12px;
     color: var(--text-secondary);
     opacity: 0;
-    transition: opacity 0.18s ease-out; /* Faster transition */ /* Reduced duration, changed easing */
-    font-size: 1.1em; /* Slightly smaller indicator */
+    transition: opacity 0.12s ease-out;
+    font-size: 0.9em;
 }
 
 .task-item:hover .task-content::after {
-    opacity: 0.4; /* Less opaque indicator on hover */
+    opacity: 0.3;
 }
 
-/* Empty state styling - Smoother & Cleaner */
 .task-category:empty::after {
-    content: 'No tasks in this category';
+    content: 'No tasks';
     display: block;
     text-align: center;
-    padding: 28px; /* Reduced padding for smaller empty state */
+    padding: 16px;
     color: var(--text-secondary);
-    font-size: 0.9rem; /* Even smaller empty state font */
+    font-size: 0.8rem;
 }
 
-/* Category-specific colors - Smoother & Cleaner (grayscale) */
 #todayTasks .task-item {
-    border-left: 3px solid var(--black); /* Black category indicator */
+    border-left: 2px solid var(--black);
 }
 
 #tomorrowTasks .task-item {
-    border-left: 3px solid var(--gray-500); /* Dark gray category indicator */
+    border-left: 2px solid var(--gray-500);
 }
 
 #futureTasks .task-item {
-    border-left: 3px solid var(--gray-400); /* Gray category indicator */
+    border-left: 2px solid var(--gray-400);
 }
 
-/* Responsive adjustments - Smoother & Cleaner */
 @media (max-width: 768px) {
     .categorized-tasks {
         padding: var(--phone-padding);
-        gap: 20px;
+        gap: 14px;
     }
 
     .task-category {
-        margin-bottom: 20px;
+        margin-bottom: 14px;
     }
 
     .task-content {
-        padding: 12px;
-        gap: 12px;
+        padding: 8px;
+        gap: 8px;
     }
 
     .task-category h3 {
-        padding: 16px;
-        font-size: 1rem;
+        padding: 10px;
+        font-size: 0.75rem;
     }
     .task-category:empty::after {
-        padding: 24px;
+        padding: 16px;
+    }
+    .categorized-tasks {
+        margin: 14px;
     }
 }
 
-/* Completed Tasks Modal Styles */
 .completed-task-list {
     max-height: 70vh;
     overflow-y: auto;
-    padding: 1rem;
+    padding: 0.7rem;
 }
 
 .completed-task-list .task-item {
-    margin-bottom: 0.5rem;
-    padding: 0.75rem;
+    margin-bottom: 0.4rem;
+    padding: 0.6rem;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     background: var(--bg-primary);
@@ -1366,7 +1354,7 @@ button:focus-visible {
 .completed-task-list .task-item .task-content {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
 }
 
 .completed-task-list .task-item .task-text {
@@ -1380,68 +1368,66 @@ button:focus-visible {
 
 .completed-task-list .empty-state {
     text-align: center;
-    padding: 2rem;
+    padding: 1.4rem;
     color: var(--text-secondary);
 }
 
 .completed-task-list .error-state {
     text-align: center;
-    padding: 2rem;
+    padding: 1.4rem;
     color: var(--danger);
     background: var(--danger-light);
     border-radius: var(--radius-md);
-    margin: 1rem;
+    margin: 0.7rem;
 }
 
 .completed-task-list .error-state p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
-
-/* Add these styles to your existing style.css or in the <style> block in index.html */
 
 .task-item-loading .task-content {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 20px;
+    gap: 7px;
+    padding: 11px 13px;
 }
 
 .task-item-loading .loading-animation.inline {
-    display: inline-flex; /* Ensure inline display */
+    display: inline-flex;
     width: auto;
     height: auto;
-    margin-right: 8px; /* Add some spacing */
+    margin-right: 6px;
 }
 
 .task-item-loading .loading-animation.inline .dot {
-    width: 6px;
-    height: 6px;
-    margin: 0 2px; /* Adjust dot spacing */
-    background-color: var(--gray-500); /* Adjust dot color if needed */
+    width: 5px;
+    height: 5px;
+    margin: 0 1.5px;
+    background-color: var(--gray-500);
 }
 
 .task-item-loading .loading-content {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 7px;
 }
 
 .task-item-loading .loading-content .loading-animation.inline {
-    margin-right: 8px;
+    margin-right: 6px;
 }
 
 .loading-animation.inline {
     display: flex;
     align-items: center;
-    gap: 4px; /* Reduced gap for inline animation */
-    height: 16px; /* Reduced height for inline animation */
+    gap: 2.5px;
+    height: 14px;
 }
 
 .loading-animation.inline .dot {
-    width: 4px; /* Smaller dots for inline animation */
-    height: 4px; /* Smaller dots for inline animation */
-    background-color: var(--gray-500); /* Adjust dot color as needed */
+    width: 2.5px;
+    height: 2.5px;
+    background-color: var(--gray-500);
     border-radius: 50%;
     opacity: 0.6;
     transform-origin: center;
@@ -1456,10 +1442,8 @@ button:focus-visible {
     animation-delay: 0.4s;
 }
 
-
 .success-message {
-    background-color: #e6f7ff; /* Light blue background */
-    color: #084298; /* Dark blue text */
-    border: 1px solid #b8daff; /* Blue border */
-    /* ... other styling like padding, margin, etc. ... */
+    background-color: #e6f7ff;
+    color: #084298;
+    border: 1px solid #b8daff;
 }
