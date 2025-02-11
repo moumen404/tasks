@@ -1,0 +1,72 @@
+[
+  {
+    "id": "2bba0c83-90ab-40c3-9d4e-8fe2f5bc092f",
+    "text": "how to go to germany in 07.05.2025",
+    "tasks": [
+      {
+        "id": "b62c473f-cb1f-4b33-8694-b232eadf8d16",
+        "text": "1. Secure a valid passport with at least 6 months of validity beyond your intended departure date.",
+        "completed": true,
+        "due_date": "2025-02-07",
+        "context": "Get a passport",
+        "importance": "80"
+      },
+      {
+        "id": "87711974-2fe6-4dac-8ffc-f09e3212291a",
+        "text": "2. Determine the purpose of your visit to Germany and obtain the appropriate visa, if necessary.",
+        "completed": false,
+        "due_date": "2025-02-07",
+        "context": "Plan purpose of visit & Visa",
+        "importance": "90"
+      },
+      {
+        "id": "182b01d0-edf5-480f-af8f-2da2a38f7e2f",
+        "text": "3. Book your flights and accommodation for your trip.",
+        "completed": false,
+        "due_date": "2025-02-07",
+        "context": "Book in advance",
+        "importance": "85"
+      },
+      {
+        "id": "e52c1c79-35c2-48eb-8825-ed512c87d88d",
+        "text": "4. Learn basic German phrases and familiarize yourself with German culture and customs.",
+        "completed": false,
+        "due_date": "2025-02-07",
+        "context": "Learn some basic phrases",
+        "importance": "50"
+      },
+      {
+        "id": "8c8e8755-0f37-4e14-bacb-d28ed0817554",
+        "text": "5. Pack for the trip and ensure you have all necessary travel documents.",
+        "completed": false,
+        "due_date": "2025-02-07",
+        "context": "Double check passport is valid",
+        "importance": "100"
+      },
+      {
+        "id": "856f9d83-eb4c-43c7-9966-802c32b4b796",
+        "text": "6. Arrive in Germany on July 5, 2025, and enjoy your stay.",
+        "completed": false,
+        "due_date": "2025-02-07",
+        "context": "Note down arrival date",
+        "importance": "30"
+      },
+      {
+        "id": "926a76fd-8c4b-46db-8b18-4013cf00cb89",
+        "text": "check visa requirements very important and importance",
+        "completed": false,
+        "due_date": "2025-01-31",
+        "context": "Check visa requirements",
+        "importance": "95"
+      },
+      {
+        "id": "2897f7a8-e41b-40f7-af80-7e2894442da1",
+        "text": "check visa requirements very important and importance",
+        "completed": false,
+        "due_date": "",
+        "context": "Check visa requirements",
+        "importance": "90"
+      }
+    ]
+  }
+]
