@@ -151,10 +151,14 @@ function closeTaskDetailsModal() {
     modal.classList.remove('show');
     document.body.style.overflow = '';
 
-    // Remove the event listener to prevent duplicates
+    // Remove the event listener to prevent duplicates (although not strictly necessary here as modal is recreated each time)
     const importanceSlider = document.getElementById('taskDetailImportance');
-    importanceSlider.removeEventListener('input', null);
+    if (importanceSlider && importanceSlider.eventListener) { // Check if eventListener property exists
+        importanceSlider.removeEventListener('input', importanceSlider.eventListener);
+        importanceSlider.eventListener = null; // Clear the property
+    }
 }
+
 
 async function saveSettings() {
     const settingsData = {
@@ -403,10 +407,15 @@ function showTaskDetails(task) {
     // Initialize the slider
     updateImportanceSlider(taskDetailsImportance, taskDetailsImportance.value);
 
-    // Add input event listener for real-time updates
-    taskDetailsImportance.addEventListener('input', (e) => {
+    // Store the event listener function for removal later
+    const importanceSliderInputHandler = (e) => {
         updateImportanceSlider(e.target, e.target.value);
-    });
+    };
+    taskDetailsImportance.eventListener = importanceSliderInputHandler; // Store it as a property
+
+    // Add input event listener for real-time updates
+    taskDetailsImportance.addEventListener('input', taskDetailsImportance.eventListener);
+
 
     // Set up delete button click handler - moved inside showTaskDetails to have access to task.id
     deleteTaskButton.onclick = function() { // Assign function directly to onclick
@@ -463,9 +472,9 @@ function getImportanceColor(value) {
 async function saveTaskDetails() {
     const taskId = document.getElementById('taskDetailsId').value;
     const taskText = document.getElementById('taskDetailText').value;
-    const dueDate = document.getElementById('taskDetailsDueDate').value;
+    const dueDate = document.getElementById('taskDetailDueDate').value;
     const context = document.getElementById('taskDetailContext').value;
-    const importance = document.getElementById('taskDetailsImportance').value;
+    const importance = document.getElementById('taskDetailImportance').value;
 
     if (!taskId || !taskText) {
         console.error('Missing required fields');
@@ -473,32 +482,39 @@ async function saveTaskDetails() {
     }
 
     try {
-        console.log('Sending task update:', { taskId, text: taskText, dueDate, context, importance }); // Debug log
+        console.log('saveTaskDetails() function is being called!'); // Debug log - step 1
+        console.log('Sending task update:', { taskId, text: taskText, dueDate, context, importance }); // Debug log - step 2
 
         const response = await fetch('/update-task', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                taskId,
+                taskId: taskId,
                 text: taskText,
-                dueDate,
-                context,
+                dueDate: dueDate,
+                context: context,
                 importance: parseInt(importance)
             })
         });
 
-        const result = await response.json();
-
         if (!response.ok) {
-            throw new Error(result.error || 'Failed to update task');
+            // Log the error response for debugging on the client-side
+            const errorData = await response.json(); // Try to parse JSON error response
+            console.error('Server error response:', errorData);
+            throw new Error(`Failed to update task. Server responded with status: ${response.status} and message: ${errorData.message || response.statusText}`);
         }
 
+        const result = await response.json(); // Parse JSON success response
+        console.log('Task update successful:', result); // Log success response
+
         // Refresh goals to show updated task
-        await loadGoals();
+        await loadCategorizedTasks(); // Changed to loadCategorizedTasks
         closeTaskDetailsModal();
+
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error during task update:', error);
         alert('Failed to update task. Please try again.');
+        addMessage('Failed to update task details: ' + error.message, 'error'); // Improved error message
     }
 }
 
@@ -586,7 +602,7 @@ async function toggleTask(taskId, event) {
         }
 
         // Refresh the main task list
-        await loadGoals();
+        await loadCategorizedTasks(); // Changed to loadCategorizedTasks
     } catch (error) {
         // Revert the checkbox state on error
         checkbox.checked = originalState;
@@ -907,13 +923,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const importanceSlider = document.getElementById('taskDetailImportance');
     const importanceValue = document.querySelector('.importance-value');
 
-    importanceSlider.addEventListener('input', (e) => {
+    const importanceSliderInputHandler = (e) => {
         importanceValue.textContent = e.target.value;
+        updateImportanceSlider(e.target, e.target.value); // Call updateImportanceSlider here as well
 
         // Update the gradient of the track
         const value = (e.target.value - e.target.min) / (e.target.max - e.target.min) * 100;
         e.target.style.background = `linear-gradient(to right, var(--accent) 0%, var(--accent) ${value}%, var(--border) ${value}%, var(--border) 100%)`;
-    });
+    };
+    importanceSlider.eventListener = importanceSliderInputHandler; // Store it as a property
+    importanceSlider.addEventListener('input', importanceSlider.eventListener);
+
+
 });
 
 // Add this CSS to show keyboard shortcuts in the UI
