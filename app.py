@@ -23,7 +23,6 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', secrets.token_hex(16))
-ADMIN_SIGNUP_KEY = os.getenv('ADMIN_SIGNUP_KEY')
 
 DATA_FILE = 'data.json'
 task_detail_events = {}
@@ -64,14 +63,6 @@ def login_required(f):
     def decorated_function(*args, **kwargs):
         if 'user_id' not in session:
             return redirect(url_for('login'))
-        return f(*args, **kwargs)
-    decorated_function.__name__ = f.__name__
-    return decorated_function
-
-def admin_required(f):
-    def decorated_function(*args, **kwargs):
-        if 'user_id' not in session or not session.get('is_admin'):
-            return redirect(url_for('login')) # or perhaps a dedicated admin login page
         return f(*args, **kwargs)
     decorated_function.__name__ = f.__name__
     return decorated_function
@@ -195,8 +186,7 @@ def login():
     if user and check_password_hash(user['password'], password):
         session['user_id'] = user['id']
         session['user_name'] = user['name']
-        session['is_admin'] = user.get('is_admin', False) # set is_admin in session
-        logging.info(f"User '{email}' logged in successfully. Admin status: {session['is_admin']}.")
+        logging.info(f"User '{email}' logged in successfully.")
         return jsonify({'success': True})
 
     logging.warning(f"Login attempt failed for user '{email}'. Invalid credentials.")
@@ -211,7 +201,6 @@ def signup():
     name = data.get('name')
     email = data.get('email')
     password = data.get('password')
-    admin_key = data.get('adminKey') # optional admin key during signup
 
     if not name or not email or not password:
         return jsonify({'success': False, 'message': 'All fields are required', 'message_detail': 'Please fill in all the required fields for signup.'}), 400
@@ -223,23 +212,18 @@ def signup():
         return jsonify({'success': False, 'message': 'Email already exists', 'message_detail': 'This email address is already registered. Please use a different email or login.'}), 400
 
     user_id = str(uuid.uuid4())
-    is_admin = False
-    if ADMIN_SIGNUP_KEY and admin_key == ADMIN_SIGNUP_KEY: # check admin key against env variable
-        is_admin = True
-
     new_user = {
         'id': user_id,
         'name': name,
         'email': email,
         'password': generate_password_hash(password),
         'goals': [],
-        'settings': {},
-        'is_admin': is_admin # set is_admin in user data
+        'settings': {}
     }
 
     all_data['users'].append(new_user)
     save_data(all_data)
-    logging.info(f"New user '{email}' signed up successfully. Admin: {is_admin}")
+    logging.info(f"New user '{email}' signed up successfully.")
 
     return jsonify({'success': True})
 
@@ -808,78 +792,22 @@ def get_task_stats():
 
     return jsonify(stats)
 
-@app.route('/users/all', methods=['GET'])
-@login_required
-@admin_required
-def get_all_users_admin():
-    data = load_data()
-    search_term = request.args.get('search', '').lower()
-    users_data = []
-    for user in data['users']:
-        if search_term in user['name'].lower() or search_term in user['email'].lower():
-            users_data.append({"id": user['id'], "name": user['name'], "email": user['email'], "settings": user.get('settings', {})}) #Include settings here for search if needed
-    return jsonify(users_data)
-
 @app.route('/tasks/all', methods=['GET'])
 @login_required
-@admin_required
-def get_all_tasks_admin():
-    data = load_data()
+def get_all_tasks():
+    user = get_user_data(session['user_id'])
     all_tasks = []
-    search_term = request.args.get('search', '').lower()
 
-    for user in data['users']:
-        for goal in user.get('goals', []):
-            for task in goal.get('tasks', []):
-                task_text_lower = task['text'].lower()
-                goal_name_lower = goal['text'].lower()
-                if search_term in task_text_lower or search_term in goal_name_lower:
-                    task_with_goal_user = {
-                        **task,
-                        'goalId': goal['id'],
-                        'goalName': goal['text'],
-                        'userId': user['id'],
-                        'userName': user['name'],
-                        'userEmail': user['email']
-                    }
-                    all_tasks.append(task_with_goal_user)
-    return jsonify(all_tasks)
-
-@app.route('/user/<user_id>/details', methods=['GET'])
-@login_required
-@admin_required
-def get_user_details_admin(user_id):
-    data = load_data()
-    user_data = next((u for u in data['users'] if u['id'] == user_id), None)
-    if not user_data:
-        return jsonify({'message': 'User not found'}), 404
-
-    user_tasks = []
-    user_goals = user_data.get('goals', [])
-    user_settings = user_data.get('settings', {}) # Get user settings
-
-    for goal in user_goals:
+    for goal in user.get('goals', []):
         for task in goal.get('tasks', []):
             task_with_goal = {
                 **task,
                 'goalId': goal['id'],
                 'goalName': goal['text']
             }
-            user_tasks.append(task_with_goal)
+            all_tasks.append(task_with_goal)
 
-    user_details = {
-        'user': {"id": user_data['id'], "name": user_data['name'], "email": user_data['email'], "settings": user_settings}, # Include settings here
-        'tasks': user_tasks,
-        'goals': user_goals
-    }
-    return jsonify(user_details)
-
-
-@app.route('/admin')
-@login_required
-@admin_required
-def admin_dashboard():
-    return render_template('admin_dashboard.html')
+    return jsonify(all_tasks)
 
 def check_due_tasks():
     now = datetime.now()
