@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        /* Root CSS variables inspired by the provided theme */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-50: #f9f9f9;
+            --gray-100: #f2f2f2;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --bg-primary: var(--white);         /* White background */
+            --bg-secondary: var(--gray-50);      /* Light gray sections */
+            --text-primary: var(--black);        /* Primary text color */
+            --text-secondary: var(--gray-500);    /* Secondary text color */
+            --accent-color: var(--black);        /* Accent color (using black for monochromatic theme) */
+            --border-color: var(--gray-200);      /* Border color */
+            --input-border: var(--gray-300);     /* Input border */
+            --radius-sm: 7px;
+            --radius-md: 11px;
+            --radius-lg: 15px;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+            --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 6px 12px rgba(0, 0, 0, 0.09);
+            --transition: 0.15s cubic-bezier(0.33, 1, 0.68, 1);
+            --padding-base: 0.75rem;
+            --padding-large: 1rem;
+            --margin-base: 1rem;
+            --font-family-base: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family-base);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 12px 16px;
+            margin-bottom: var(--margin-base);
+            border: 1px solid var(--input-border);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+            outline: none;
+        }
+
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: var(--margin-base);
+            background-color: var(--bg-primary);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tbody tr:last-child td,
+        tbody tr:last-child th {
+            border-bottom: none; /* No border for last row */
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: var(--gray-50); /* Very light grey even rows */
+        }
+
+        tbody tr:hover {
+            background-color: var(--gray-100); /* Light grey on hover */
+        }
+
+
+        .detail-button {
+            cursor: pointer;
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 18px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9rem;
+            border-radius: var(--radius-sm);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .detail-button:hover {
+            background-color: var(--gray-600); /* Darker gray on hover */
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .detail-button:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow);
+        }
+
+
+        #userDetailsModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.3); /* Slightly lighter overlay */
+            backdrop-filter: blur(6px);
+        }
+
+        .modal-content {
+            background-color: var(--bg-primary);
+            margin: 8% auto; /* Adjusted top margin */
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            width: 80%;
+            max-width: 700px;
+            box-shadow: var(--shadow-lg);
+            animation: modalFadeIn 0.2s ease-out forwards;
+            border: 1px solid var(--border-color);
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-button {
+            color: var(--text-secondary);
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            transition: color 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+            opacity: 0.6;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--text-primary);
+            text-decoration: none;
+            opacity: 1;
+        }
+
+        #userDetailsContent h4 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            border-bottom: 1px dashed var(--gray-300);
+            padding-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        #userDetailsContent table {
+            box-shadow: none;
+            border-radius: 0;
+            margin-bottom: 1rem;
+            border: none;
+        }
+
+        #userDetailsContent th,
+        #userDetailsContent td {
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+        }
+
+
+        #userDetailsContent h5 {
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        #userDetailsContent ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #userDetailsContent li {
+            margin-bottom: 0.4rem;
+        }
+
+
+        /* Statistic Cards Styling - Inspired */
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            padding: 1.5rem;
+            text-align: left;
+            flex: 1 1 220px;
+            min-width: 220px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-card h3 {
+            color: var(--accent-color); /* Accent color for stats - black in this theme */
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .stat-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .stats-container { justify-content: center; }
+            .stat-card { flex-basis: 100%; min-width: auto; text-align: center; }
+            .stat-card h3, .stat-card p { text-align: center; }
+            .modal-content { width: 95%; margin-top: 10%; }
+            .close-button { font-size: 2rem; }
+        }
+
+
+        /* Roboto Font from Google Fonts - Include if not already present */
+        /* <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> */
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+
+    <h2>Users</h2>
+    <input type="text" id="userSearchInput" placeholder="Search Users (Name or Email)">
+    <table id="usersTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- User data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+
+    <!-- User Details Modal -->
+    <div id="userDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeUserDetailsModal">×</span>
+            <h3 id="modalUserName">User Details</h3>
+            <div id="userDetailsContent">
+                <!-- User details, tasks, and goals will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userSearchInput = document.getElementById('userSearchInput');
+            const usersTableBody = document.querySelector('#usersTable tbody');
+            const userDetailsModal = document.getElementById('userDetailsModal');
+            const closeUserDetailsModal = document.getElementById('closeUserDetailsModal');
+            const userDetailsContent = document.getElementById('userDetailsContent');
+            const modalUserNameHeader = document.getElementById('modalUserName');
+
+            // Statistic elements
+            const totalUsersStat = document.getElementById('totalUsersStat');
+            const totalGoalsStat = document.getElementById('totalGoalsStat');
+            const totalTasksStat = document.getElementById('totalTasksStat');
+
+
+            let currentUsersData = []; // Store all user data to filter client-side
+
+            function fetchAndDisplayUsers(searchTerm = '') {
+                fetch(`/users/all?search=${searchTerm}`)
+                    .then(response => response.json())
+                    .then(users => {
+                        currentUsersData = users; // Update current data
+                        renderUsersTable(users);
+                    });
+            }
+
+            function renderUsersTable(users) {
+                usersTableBody.innerHTML = ''; // Clear existing table rows
+                users.forEach(user => {
+                    let row = usersTableBody.insertRow();
+                    row.insertCell().textContent = user.id;
+                    row.insertCell().textContent = user.name;
+                    row.insertCell().textContent = user.email;
+                    let detailsCell = row.insertCell();
+                    let detailsButton = document.createElement('button');
+                    detailsButton.textContent = 'Details';
+                    detailsButton.className = 'detail-button';
+                    detailsButton.onclick = function() { showUserDetails(user.id); };
+                    detailsCell.appendChild(detailsButton);
+                });
+            }
+
+            function showUserDetails(userId) {
+                fetch(`/user/${userId}/details`)
+                    .then(response => response.json())
+                    .then(userDetails => {
+                        modalUserNameHeader.textContent = `User Details: ${userDetails.user.name}`;
+                        userDetailsContent.innerHTML = ''; // Clear previous content
+
+                        let detailsHTML = `
+                            <p><strong>ID:</strong> ${userDetails.user.id}</p>
+                            <p><strong>Name:</strong> ${userDetails.user.name}</p>
+                            <p><strong>Email:</strong> ${userDetails.user.email}</p>
+                        `;
+
+                        const settings = userDetails.user.settings || {};
+                        detailsHTML += `<h4>Settings</h4>`;
+                        if (Object.keys(settings).length > 0) {
+                            detailsHTML += `<ul>`;
+                            for (const key in settings) {
+                                if (settings.hasOwnProperty(key)) {
+                                    detailsHTML += `<li><strong>${key}:</strong> ${settings[key]}</li>`;
+                                }
+                            }
+                            detailsHTML += `</ul>`;
+                            detailsHTML += `<h5>Note: Empty settings will not be displayed.</h5>`;
+                        } else {
+                            detailsHTML += `<p>No settings found for this user.</p>`;
+                        }
+
+
+                        detailsHTML += `<h4>Tasks</h4>`;
+                        if (userDetails.tasks && userDetails.tasks.length > 0) {
+                            detailsHTML += `
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Task Text</th>
+                                            <th>Goal Name</th>
+                                            <th>Due Date</th>
+                                            <th>Completed</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            `;
+                            userDetails.tasks.forEach(task => {
+                                detailsHTML += `
+                                    <tr>
+                                        <td>${task.text}</td>
+                                        <td>${task.goalName}</td>
+                                        <td>${task.due_date || 'N/A'}</td>
+                                        <td>${task.completed ? 'Yes' : 'No'}</td>
+                                    </tr>
+                                `;
+                            });
+                            detailsHTML += `
+                                    </tbody>
+                                </table>
+                            `;
+                        } else {
+                            detailsHTML += `<p>No tasks found for this user.</p>`;
+                        }
+
+                        detailsHTML += `<h4>Goals</h4>`;
+                        if (userDetails.goals && userDetails.goals.length > 0) {
+                            detailsHTML += `
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Goal Text</th>
+                                            <th>Task Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            `;
+                            userDetails.goals.forEach(goal => {
+                                detailsHTML += `
+                                    <tr>
+                                        <td>${goal.text}</td>
+                                        <td>${goal.tasks ? goal.tasks.length : 0}</td>
+                                    </tr>
+                                `;
+                            });
+                            detailsHTML += `
+                                    </tbody>
+                                </table>
+                            `;
+                        } else {
+                            detailsHTML += `<p>No goals found for this user.</p>`;
+                        }
+
+
+                        userDetailsContent.innerHTML = detailsHTML;
+                        userDetailsModal.style.display = "block";
+                    });
+            }
+
+            closeUserDetailsModal.onclick = function() {
+                userDetailsModal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == userDetailsModal) {
+                    userDetailsModal.style.display = "none";
+                }
+            }
+
+            userSearchInput.addEventListener('input', function() {
+                const searchTerm = userSearchInput.value.toLowerCase();
+                fetchAndDisplayUsers(searchTerm);
+            });
+
+            function fetchAndDisplayStats() {
+                fetch('/admin/stats')
+                    .then(response => response.json())
+                    .then(stats => {
+                        totalUsersStat.textContent = stats.totalUsers;
+                        totalGoalsStat.textContent = stats.totalGoals;
+                        totalTasksStat.textContent = stats.totalTasks;
+                    });
+            }
+
+            // Initial load - only users now
+            fetchAndDisplayUsers();
+            fetchAndDisplayStats();
+        });
+    </script>
+</body>
+</html>
