@@ -14,7 +14,7 @@ from threading import Event
 import logging
 
 logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+format='%(asctime)s - %(levelname)s - %(message)s')
 
 genai.configure(api_key="AIzaSyDFSiXE-eyZBABcKZ3Tj0Ssdsm1iIRlaoE")
 model = genai.GenerativeModel('gemini-pro')
@@ -23,6 +23,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', secrets.token_hex(16))
+ADMIN_SIGNUP_KEY = os.getenv('ADMIN_SIGNUP_KEY')
 
 DATA_FILE = 'data.json'
 task_detail_events = {}
@@ -59,10 +60,19 @@ def update_user_data(user_id, update_func):
         return True
     return False
 
+
 def login_required(f):
     def decorated_function(*args, **kwargs):
         if 'user_id' not in session:
             return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    decorated_function.__name__ = f.__name__
+    return decorated_function
+
+def admin_required(f):
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session or not session.get('is_admin'):
+            return redirect(url_for('login')) # or perhaps a dedicated admin login page
         return f(*args, **kwargs)
     decorated_function.__name__ = f.__name__
     return decorated_function
@@ -117,16 +127,17 @@ def extract_date_from_text(text):
 
     return today.strftime('%Y-%m-%d')
 
+
 def generate_context(task):
     prompt = f"""User's Name: {session.get('user_name')}
 Task: "{task}"
 
-    Generate a concise and actionable context (maximum 2 sentences) that explains:
-    1. Why this task is important for achieving goals.
-    2. A quick tip or best practice for completing this task effectively.
+Generate a concise and actionable context (maximum 2 sentences) that explains:
+1. Why this task is important for achieving goals.
+2. A quick tip or best practice for completing this task effectively.
 
-    Return only the context text without any prefixes, labels, or markdown formatting.
-    """
+Return only the context text without any prefixes, labels, or markdown formatting.
+"""
 
     try:
         context_response = model.generate_content(prompt)
@@ -137,13 +148,14 @@ Task: "{task}"
         logging.error(f"Error generating context for task '{task}': {e}", exc_info=True)
         return "Context not available"
 
+
 def generate_importance(task):
     prompt = f"""User's Name: {session.get('user_name')}
 Task: "{task}"
 
-    Return EXACTLY in this format:
-    IMPORTANCE: [number 1-100]
-    """
+Return EXACTLY in this format:
+IMPORTANCE: [number 1-100]
+"""
 
     try:
         response = model.generate_content(prompt)
@@ -154,11 +166,12 @@ Task: "{task}"
         logging.error(f"Error generating importance for task '{task}': {e}", exc_info=True)
         return "50"
 
+
 def generate_task_tags(task_text):
     prompt = f"""User's Name: {session.get('user_name')}
 Given this task: "{task_text}"
-    Generate 2-3 relevant tags/categories (e.g., #work, #personal, #urgent)
-    Return only the tags, comma-separated."""
+Generate 2-3 relevant tags/categories (e.g., #work, #personal, #urgent)
+Return only the tags, comma-separated."""
 
     try:
         response = model.generate_content(prompt)
@@ -167,6 +180,7 @@ Given this task: "{task_text}"
     except Exception as e:
         logging.error(f"Error generating tags for task '{task_text}': {e}", exc_info=True)
         return []
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -186,11 +200,13 @@ def login():
     if user and check_password_hash(user['password'], password):
         session['user_id'] = user['id']
         session['user_name'] = user['name']
-        logging.info(f"User '{email}' logged in successfully.")
+        session['is_admin'] = user.get('is_admin', False) # set is_admin in session
+        logging.info(f"User '{email}' logged in successfully. Admin status: {session['is_admin']}.")
         return jsonify({'success': True})
 
     logging.warning(f"Login attempt failed for user '{email}'. Invalid credentials.")
     return jsonify({'success': False, 'message': 'Invalid email or password', 'message_detail': 'Incorrect email or password. Please try again.'}), 401
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -201,6 +217,7 @@ def signup():
     name = data.get('name')
     email = data.get('email')
     password = data.get('password')
+    admin_key = data.get('adminKey') # optional admin key during signup
 
     if not name or not email or not password:
         return jsonify({'success': False, 'message': 'All fields are required', 'message_detail': 'Please fill in all the required fields for signup.'}), 400
@@ -212,20 +229,26 @@ def signup():
         return jsonify({'success': False, 'message': 'Email already exists', 'message_detail': 'This email address is already registered. Please use a different email or login.'}), 400
 
     user_id = str(uuid.uuid4())
+    is_admin = False
+    if ADMIN_SIGNUP_KEY and admin_key == ADMIN_SIGNUP_KEY: # check admin key against env variable
+        is_admin = True
+
     new_user = {
         'id': user_id,
         'name': name,
         'email': email,
         'password': generate_password_hash(password),
         'goals': [],
-        'settings': {}
+        'settings': {},
+        'is_admin': is_admin # set is_admin in user data
     }
 
     all_data['users'].append(new_user)
     save_data(all_data)
-    logging.info(f"New user '{email}' signed up successfully.")
+    logging.info(f"New user '{email}' signed up successfully. Admin: {is_admin}")
 
     return jsonify({'success': True})
+
 
 @app.route('/logout')
 def logout():
@@ -266,6 +289,7 @@ def chat():
                     task_prompt_context = f" considering the user's work description: '{work_description}', "
 
                 task_prompt = f"""User's Name: {user_name}
+
 List 6 clear, actionable steps for: {message}{task_prompt_context}. Return only tasks, one per line. Be concise and relevant."""
                 task_response = model.generate_content(task_prompt)
 
@@ -315,6 +339,7 @@ List 6 clear, actionable steps for: {message}{task_prompt_context}. Return only 
                                         for task in goal['tasks']:
                                             try:
                                                 detail_prompt = f"""User's Name: {session.get('user_name')}
+
 For the task: {task['text']}\nProvide on two lines:\nCONTEXT: (brief task context)\nIMPORTANCE: (number 1-100)"""
                                                 detail_response = model.generate_content(detail_prompt)
 
@@ -353,6 +378,7 @@ For the task: {task['text']}\nProvide on two lines:\nCONTEXT: (brief task contex
 
             else:
                 prompt = f"""User's Name: {user_name}
+
 Brief helpful response for: {message}"""
                 response = model.generate_content(prompt)
 
@@ -373,6 +399,7 @@ Brief helpful response for: {message}"""
     except Exception as e:
         logging.error(f"Unexpected server error in /chat route: {e}", exc_info=True)
         return jsonify({"error": "An unexpected error occurred", "message_detail": "Please contact support if this issue persists."}), 500
+
 
 @app.route('/task-details-status/<goal_id>', methods=['GET'])
 @login_required
@@ -413,6 +440,7 @@ def update_task():
         logging.error(f"Error updating task status for task ID '{task_id}': {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to update task status. Please try again."}), 500
 
+
 @app.route('/goal', methods=['POST'])
 @login_required
 def add_goal():
@@ -435,6 +463,7 @@ def add_goal():
     except Exception as e:
         logging.error(f"Error adding new goal: {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to add new goal. Please try again."}), 500
+
 
 @app.route('/task', methods=['POST'])
 @login_required
@@ -472,6 +501,7 @@ def add_task():
         logging.error(f"Error adding new task: {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to add new task. Please try again."}), 500
 
+
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
@@ -488,6 +518,7 @@ def settings():
         return jsonify({'success': True})
     return jsonify({'success': False, 'message': 'Failed to save settings', 'message_detail': 'Could not save your settings. Please try again.'}), 400
 
+
 @app.route('/generate-ai-settings', methods=['POST'])
 @login_required
 def generate_ai_settings():
@@ -499,13 +530,14 @@ def generate_ai_settings():
             return jsonify({"error": "Work description is required", "message_detail": "Please provide a description of your work to generate settings."}), 400
 
         prompt = f"""User's Name: {user_name}
+
 Based on this work description: "{work_description}"
 
-        Generate appropriate settings in exactly this format:
-        SHORT TERM FOCUS: [3-month goals and immediate priorities based on the work description]
-        LONG TERM GOALS: [1-year vision and major milestones to achieve]
-        SORTING PREFERENCES: [how tasks should be prioritized based on the work context]
-        """
+Generate appropriate settings in exactly this format:
+    SHORT TERM FOCUS: [3-month goals and immediate priorities based on the work description]
+    LONG TERM GOALS: [1-year vision and major milestones to achieve]
+    SORTING PREFERENCES: [how tasks should be prioritized based on the work context]
+    """
 
         response = model.generate_content(prompt)
         response_text = response.text
@@ -523,6 +555,7 @@ Based on this work description: "{work_description}"
     except Exception as e:
         logging.error(f"Error generating AI settings: {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to generate AI settings. Please try again later."}), 500
+
 
 @app.route('/generate-tasks', methods=['POST'])
 @login_required
@@ -544,10 +577,10 @@ def generate_tasks():
             task_prompt_context = f" considering my work description: '{work_description}', "
 
         task_prompt = f"""User's Name: {user_name}
-Create 6 clear, actionable steps for: {goal_text}{task_prompt_context}
-        Even if the goal is not directly related to my work description, generate relevant and helpful tasks.
-        Return only the tasks, one per line. Be specific and concise."""
 
+Create 6 clear, actionable steps for: {goal_text}{task_prompt_context}
+Even if the goal is not directly related to my work description, generate relevant and helpful tasks.
+Return only the tasks, one per line. Be specific and concise."""
 
         task_response = model.generate_content(task_prompt)
         if not task_response or not task_response.text:
@@ -583,6 +616,7 @@ Create 6 clear, actionable steps for: {goal_text}{task_prompt_context}
         logging.error(f"Error generating tasks for goal '{goal_text}': {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to generate tasks for this goal. Please try again later."}), 500
 
+
 @app.route('/generate-task-details', methods=['POST'])
 @login_required
 def generate_task_details():
@@ -596,11 +630,12 @@ def generate_task_details():
             return jsonify({"error": "Task text and ID required", "message_detail": "Please provide both task text and task ID."}), 400
 
         prompt = f"""User's Name: {user_name}
+
 For the task: "{task_text}"
-        Return EXACTLY in this format:
-        CONTEXT: [one quick tip in 3-5 words only] just the context without numbers  or any other information
-        IMPORTANCE: [number 1-100]
-        """
+Return EXACTLY in this format:
+CONTEXT: [one quick tip in 3-5 words only] just the context without numbers  or any other information
+IMPORTANCE: [number 1-100]
+"""
 
         response = model.generate_content(prompt)
         response_text = response.text
@@ -628,6 +663,7 @@ For the task: "{task_text}"
     except Exception as e:
         logging.error(f"Error generating task details for task '{task_text}': {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to generate task details. Please try again later."}), 500
+
 
 @app.route('/task/<task_id>', methods=['DELETE'])
 @login_required
@@ -683,6 +719,7 @@ def update_task_details():
         logging.error(f"Error updating task details for task ID '{task_id}': {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to update task details. Please try again."}), 500
 
+
 def get_task_category(due_date):
     if not due_date:
         return "today"
@@ -697,6 +734,7 @@ def get_task_category(due_date):
         return "tomorrow"
     else:
         return "future"
+
 
 @app.route('/tasks/categorized', methods=['GET'])
 @login_required
@@ -737,6 +775,7 @@ def get_categorized_tasks():
 
     return jsonify(categorized_tasks)
 
+
 @app.route('/task/move', methods=['POST'])
 @login_required
 def move_task():
@@ -757,6 +796,7 @@ def move_task():
     except Exception as e:
         logging.error(f"Error moving task with ID '{task_id}' to new date: {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to move task. Please try again."}), 500
+
 
 @app.route('/task-stats', methods=['GET'])
 @login_required
@@ -792,22 +832,78 @@ def get_task_stats():
 
     return jsonify(stats)
 
+
+@app.route('/users/all', methods=['GET'])
+@login_required
+@admin_required
+def get_all_users_admin():
+    data = load_data()
+    search_term = request.args.get('search', '').lower()
+    users_data = []
+    for user in data['users']:
+        if search_term in user['name'].lower() or search_term in user['email'].lower():
+            users_data.append({"id": user['id'], "name": user['name'], "email": user['email'], "settings": user.get('settings', {})}) #Include settings here for search if needed
+    return jsonify(users_data)
+
 @app.route('/tasks/all', methods=['GET'])
 @login_required
-def get_all_tasks():
-    user = get_user_data(session['user_id'])
+@admin_required
+def get_all_tasks_admin():
+    data = load_data()
     all_tasks = []
+    search_term = request.args.get('search', '').lower()
 
-    for goal in user.get('goals', []):
+    for user in data['users']:
+        for goal in user.get('goals', []):
+            for task in goal.get('tasks', []):
+                task_text_lower = task['text'].lower()
+                goal_name_lower = goal['text'].lower()
+                if search_term in task_text_lower or search_term in goal_name_lower:
+                    task_with_goal_user = {
+                        **task,
+                        'goalId': goal['id'],
+                        'goalName': goal['text'],
+                        'userId': user['id'],
+                        'userName': user['name'],
+                        'userEmail': user['email']
+                    }
+                    all_tasks.append(task_with_goal_user)
+    return jsonify(all_tasks)
+
+@app.route('/user/<user_id>/details', methods=['GET'])
+@login_required
+@admin_required
+def get_user_details_admin(user_id):
+    data = load_data()
+    user_data = next((u for u in data['users'] if u['id'] == user_id), None)
+    if not user_data:
+        return jsonify({'message': 'User not found'}), 404
+
+    user_tasks = []
+    user_goals = user_data.get('goals', [])
+    user_settings = user_data.get('settings', {}) # Get user settings
+
+    for goal in user_goals:
         for task in goal.get('tasks', []):
             task_with_goal = {
                 **task,
                 'goalId': goal['id'],
                 'goalName': goal['text']
             }
-            all_tasks.append(task_with_goal)
+            user_tasks.append(task_with_goal)
 
-    return jsonify(all_tasks)
+    user_details = {
+        'user': {"id": user_data['id'], "name": user_data['name'], "email": user_data['email'], "settings": user_settings}, # Include settings here
+        'tasks': user_tasks,
+        'goals': user_goals
+    }
+    return jsonify(user_details)
+
+@app.route('/admin')
+@login_required
+@admin_required
+def admin_dashboard():
+    return render_template('admin_dashboard.html')
 
 def check_due_tasks():
     now = datetime.now()
@@ -841,16 +937,17 @@ def check_due_tasks():
 
     return notifications
 
+
 def generate_task_dependencies(tasks):
     dependencies = []
     for i, task in enumerate(tasks):
         if i > 0:
             prompt = f"""User's Name: {session.get('user_name')}
 Given these two tasks:
-            1. {tasks[i-1]}
-            2. {task}
+1. {tasks[i-1]['text']}
+2. {task['text']}
 
-            Should task 2 depend on task 1? Answer only YES or NO."""
+Should task 2 depend on task 1? Answer only YES or NO."""
 
             try:
                 response = model.generate_content(prompt)
@@ -865,6 +962,7 @@ Given these two tasks:
 
     return dependencies
 
+
 def generate_task_suggestions(user_id):
     user = get_user_data(user_id)
     settings = user.get('settings', {})
@@ -876,12 +974,13 @@ def generate_task_suggestions(user_id):
         completed_tasks = [t['text'] for t in latest_goal.get('tasks', []) if t.get('completed')]
 
     prompt = f"""User's Name: {user_name}
-Based on:
-    - Work description: {settings.get('workDescription')}
-    - Completed tasks: {', '.join(completed_tasks)}
 
-    Suggest 3 new tasks that would be logical next steps.
-    Return only the tasks, one per line."""
+Based on:
+- Work description: {settings.get('workDescription')}
+- Completed tasks: {', '.join(completed_tasks)}
+
+Suggest 3 new tasks that would be logical next steps.
+Return only the tasks, one per line."""
 
     try:
         response = model.generate_content(prompt)
@@ -889,6 +988,7 @@ Based on:
     except Exception as e:
         logging.error(f"Error generating task suggestions for user ID '{user_id}': {e}", exc_info=True)
         return []
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
