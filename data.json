@@ -4831,7 +4831,7 @@
               "id": "c9e7c408-5c1d-413b-ad49-5d7f9d0cce4d",
               "text": "Install Docker Desktop",
               "completed": false,
-              "due_date": "2025-02-11",
+              "due_date": "2025-02-12",
               "importance": "90",
               "context": "Part of setting up the development environment for Docker",
               "isManual": false
@@ -4840,7 +4840,7 @@
               "id": "8125262d-9bbc-4638-aa6e-8e095157a871",
               "text": "Create a new Dockerfile",
               "completed": false,
-              "due_date": "2025-02-11",
+              "due_date": "2025-02-12",
               "importance": "10",
               "context": "Create a Dockerfile for a simple web application.",
               "isManual": false
@@ -4849,7 +4849,7 @@
               "id": "a17c5079-a624-45df-82cb-2f906ac3fccc",
               "text": "Write your code in the Dockerfile",
               "completed": false,
-              "due_date": "2025-02-11",
+              "due_date": "2025-02-12",
               "importance": "85",
               "context": "Write your code in the Dockerfile",
               "isManual": false
@@ -4880,6 +4880,1231 @@
               "importance": "30",
               "context": "To manage and terminate Docker container instances",
               "isManual": false
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "4591a768-2cd4-4eb6-a06e-5dd9c02e8d12",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "46b516af-ba05-4320-8b7b-8b0a9d51b2f8",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "due_date": "2025-02-12",
+              "importance": "50",
+              "context": "",
+              "isManual": false
+            },
+            {
+              "id": "c8e1f083-fabf-40bf-9005-8477f5315e94",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "due_date": "2025-02-12",
+              "importance": "50",
+              "context": "",
+              "isManual": false
+            },
+            {
+              "id": "d71071ea-07f6-42ac-9bd8-d22b77612871",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "due_date": "2025-02-12",
+              "importance": "50",
+              "context": "",
+              "isManual": false
+            },
+            {
+              "id": "37772135-b343-43c2-888a-8ff8b2858c24",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "due_date": "2025-02-12",
+              "importance": "50",
+              "context": "",
+              "isManual": false
+            },
+            {
+              "id": "5bfb2f70-30ba-40b2-bcf7-405fee3975d5",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "due_date": "2025-02-12",
+              "importance": "50",
+              "context": "",
+              "isManual": false
+            },
+            {
+              "id": "6e42eb9d-ca81-4503-9ec7-43c35a0cd1a6",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "due_date": "2025-02-12",
+              "importance": "50",
+              "context": "",
+              "isManual": false
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "1ce4b473-4f06-444c-81d2-82c6b5af52d9",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "b6771a21-f44f-40ac-9f65-3370ed019aa4",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early allows you to start your day with a sense of accomplishment and gives you more time to complete tasks or engage in personal activities. It also helps regulate your body's natural sleep-wake cycle.",
+              "importance": "80",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "6efc0c04-4cc9-4b34-be15-507d00b18991",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Exercise is essential for maintaining a healthy weight, improving cardiovascular health, and strengthening muscles and bones.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "232f6df3-ec3e-4437-87e7-66c953f54f2a",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "**Boxing it out** is a tactic in basketball that helps players create scoring opportunities.",
+              "importance": "85",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "b93afae9-964e-4311-9f04-2e42740d2e2c",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Education is key to success in life. Studying hard helps us learn new things, develop our skills, and achieve our goals.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "d95d291b-2651-4ced-b743-01558af64cbf",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-12",
+              "error": true
+            },
+            {
+              "id": "4886786c-9b58-47bc-9f73-d3b8a72cdbff",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-12",
+              "error": true
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "4e802011-27c2-4a5c-9269-6d62cf7f39c8",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "790ab17e-33d2-429b-be8d-adf4aaf3857f",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early allows for increased productivity, better time management, and improved mental clarity.",
+              "importance": "85",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "f9b11547-869f-4f7b-9904-0c0312ff4ac4",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Exercise is essential for maintaining a healthy body and mind. Regular physical activity can help improve cardiovascular health, strengthen muscles and bones, reduce the risk of chronic diseases, and boost mood.",
+              "importance": "80",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "109bed8b-8924-4770-8ba2-a0f70dada625",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-12",
+              "error": true
+            },
+            {
+              "id": "60b24aab-e633-4e00-bdd5-15ba4cc7e3ea",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is crucial for academic success and personal growth. It allows individuals to acquire knowledge, develop critical thinking skills, and lay the foundation for future career and life opportunities.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "f473197e-2849-479d-9629-63a9152a5546",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Building relationships is crucial for personal and professional growth. Networking allows individuals to connect with others, share ideas, and access opportunities.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "500f6c41-16c7-4758-9b47-7db5b2a511fd",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night's sleep is essential for physical and mental health. It helps the body repair itself, restore energy, and improve cognitive function.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "f5e26f10-3a1f-47d4-a8e2-ed6ea6c94f76",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "ea8c2a0f-6bfb-4006-8b5a-b9b9f845f627",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early allows you to have more time to get things done, be more productive, and have a more relaxed morning routine.",
+              "importance": "80",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "08c27e3b-6e68-4d3b-acfa-1cdd1779c3b6",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Staying fit and active is essential for overall well-being. Regular exercise can help reduce the risk of chronic diseases, improve mood and sleep, and increase energy levels.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "3641989c-7e36-4083-985c-7f8583683b4a",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Boxing out is a fundamental basketball skill that helps players secure rebounds. By positioning oneself effectively between an opponent and the basket, players can prevent the opponent from getting into position for a rebound. This skill is crucial for teams that want to control the boards and gain an advantage in the game.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "6051d9d1-5f26-468e-9745-3d2c1c18a01a",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is important for students to succeed in their academic pursuits. It helps them to develop critical thinking skills, improve their memory, and increase their knowledge base. Studying hard also builds perseverance and resilience, which are valuable traits for success in any field.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "19609f9e-ca07-4aab-ad3b-01bb18693288",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Networking and building relationships are crucial for career advancement, knowledge acquisition, and personal growth. By connecting with others, individuals can gain access to opportunities, learn from diverse perspectives, and establish a support network. It fosters collaboration, innovation, and a sense of belonging within professional communities.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "2ba21fa3-b1df-4f88-adaf-37ce79cdf8de",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night's sleep is essential for both physical and mental health. It allows the body to repair itself, improves cognitive function, and boosts mood.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "d09ca9b1-8def-4ec9-abba-2f8f13d27ad5",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "f41c744d-e10e-4916-9c94-3c2de033c67a",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early allows for more time to get things done, reduces stress, and improves overall well-being.",
+              "importance": "85",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "cacd1405-5323-4419-be60-76d281a18e0f",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Hitting the gym is important for maintaining a healthy lifestyle, reducing the risk of chronic diseases, and improving overall well-being.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "ff4fee5b-623b-4d52-96be-ff81480e1674",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "\"Box it out\" is a structured process that helps individuals and teams work through complex problems or challenges by breaking them down into smaller, manageable chunks. It provides a framework for brainstorming, organizing ideas, and developing solutions.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "e7957805-2006-4a9f-ae00-b9f9d3f9d88c",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is important for academic success, personal growth, and future opportunities. It helps individuals develop critical thinking skills, expand their knowledge base, and achieve their full potential.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "409b9452-f3d8-4169-bc9f-70523909cdcb",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Networking and building relationships is crucial for personal and professional growth. It allows individuals to connect with others, exchange ideas, and access valuable resources and opportunities.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "3f69ae5d-1ce7-4d99-b617-c37e381e3dfc",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night's sleep is essential for both physical and mental health. When we sleep, our bodies repair themselves and our minds process information from the day. Without enough sleep, we can experience a range of problems, including fatigue, irritability, difficulty concentrating, and impaired judgment.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "54345a4a-fbff-4aa1-b337-e8bb09c54933",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "bc7959cf-7cd4-4f45-b908-57e62061f8a7",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early allows you to start your day with a clear mind and ample time to complete tasks without feeling rushed or stressed.",
+              "importance": "70",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "4db6402c-aac3-48a7-8a52-e37f487539e3",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Hitting the gym helps improve heart health, build muscle strength and mass, burn fat, increase flexibility, reduce depression and anxiety, and potentially improve memory and learning.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "38e9acda-ed30-4e18-bd1d-aaf5071fabc4",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Boxing it out is a critical task as it allows users to challenge each other on their opinions and perspectives in a structured and respectful manner. This fosters open and constructive dialogue, promotes critical thinking, and helps build stronger relationships through mutual understanding.",
+              "importance": "80",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "59663500-5f9d-4f87-af00-664556e52dec",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard helps you learn the material, improve your memory, and develop critical thinking skills.",
+              "importance": "85",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "538ef67e-78b0-4235-9f49-c85b1cd77c8f",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Networking and building relationships is crucial for career growth, personal development, and success in all aspects of life. It allows individuals to expand their knowledge, access opportunities, and gain support from a diverse network of professionals.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "f8b708cb-f955-4914-97f9-40d3e716bcd4",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Adequate sleep is essential for overall health and well-being. It allows your body and mind to rest and repair, and helps you to function at your best.",
+              "importance": "80",
+              "due_date": "2025-02-12"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "5f016461-57ec-4cfc-ac6b-7c3d80c2114d",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "8119b978-5629-4988-8114-39ce80295807",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early allows for a more productive and organized start to the day, giving ample time for essential activities and appointments.",
+              "importance": "80",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "5f5330a3-2e2c-4d2e-afd7-68ff121978bd",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Exercise is crucial for maintaining a healthy body and mind. Hitting the gym regularly can improve cardiovascular health, increase strength, boost mood, and reduce the risk of various diseases.",
+              "importance": "95",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "2a5f5696-14fc-4147-bbd4-a215270162f2",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Boxing it out can help resolve conflicts, improve communication, and build relationships. It provides a safe and structured environment for people to express their feelings and work towards a solution.",
+              "importance": "70",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "5dc14176-0046-461b-9b81-52800ea71bf3",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is important for students of all ages. It is the key to success in school, college, and beyond. Students who study hard are more likely to get good grades, get into the colleges of their choice, and get the jobs they want.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "db11377b-e628-4628-805b-85be51d436dd",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Networking and building relationships are crucial for personal and professional growth. It allows individuals to connect with others in their field, exchange ideas, share knowledge, and access opportunities.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "25000ad8-270e-454d-b669-37871e0a08d6",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night's sleep helps restore your body and mind, improves your mood and cognitive function, and reduces your risk of chronic diseases.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "862ff269-e0fe-4793-8c9e-aeb91fa114ad",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "8bdd01df-f7d4-4a12-aabd-3534d2525265",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early has been linked to a variety of benefits, including improved mood, increased productivity, and better sleep.",
+              "importance": "75",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "bb605808-21da-478d-90b9-52b5fef79f4a",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Hitting the gym is one of the best ways to improve your physical and mental health. Regular exercise has been shown to reduce the risk of chronic diseases such as heart disease, stroke, and type 2 diabetes. It can also improve your mood, boost your energy levels, and help you sleep better.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "39c09f17-d04c-419e-be9e-5be29ecc9e72",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Boxing it out is a crucial skill in the sport of boxing, as it allows fighters to protect themselves from their opponent's punches and counterattack effectively.",
+              "importance": "95",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "dadb031b-f326-404f-8df7-d1a39855da71",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is fundamental for acquiring knowledge and skills, achieving academic success, enhancing cognitive abilities, and preparing for future opportunities. It cultivates discipline, perseverance, and a lifelong love for learning.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "d11e37cf-3b31-45bf-998d-4f5095411b48",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Building relationships and networking is essential for professional growth, knowledge acquisition, and career advancement.",
+              "importance": "95",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "80bd420f-ff9c-4007-a09b-963607c40e48",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Sleep is essential for both physical and mental health. Getting a good night's sleep can improve mood, boost immunity, and reduce the risk of chronic diseases.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "e0f817d1-87bd-4996-b869-bb0eeb2a665f",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "65d3ae99-99b8-4550-98ff-8c8c0d641718",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": true,
+              "isGenerating": true,
+              "context": null,
+              "importance": null,
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T17:27:38.226318"
+            },
+            {
+              "id": "82bb2f61-e7d8-41fa-ae33-eeaea5f9b842",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": true,
+              "context": "",
+              "importance": 50,
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "69abf886-836c-49ed-b5b7-ad29803720dd",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": true,
+              "context": null,
+              "importance": null,
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "d916269f-cb20-47fd-aab4-2997711a21fd",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": true,
+              "context": null,
+              "importance": null,
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "07afdccd-77e7-4767-a5da-b510cb751ffe",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": true,
+              "context": null,
+              "importance": null,
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "e16f954e-9e57-4534-8c4d-72293a22ca8c",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": true,
+              "context": null,
+              "importance": null,
+              "due_date": "2025-02-12"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "810ac408-34f9-425b-aff4-2bffcaba37ee",
+          "text": "tasks for how to achive my goals",
+          "tasks": [
+            {
+              "id": "dac55382-870b-46e1-96e9-287818d87921",
+              "text": "Study and evaluate existing super AGI architectures and algorithms",
+              "context": "Research/Design",
+              "importance": "70",
+              "due_date": "2025-02-12",
+              "completed": false,
+              "tags": [
+                "#superAGI",
+                "#architecture",
+                "#algorithms"
+              ]
+            },
+            {
+              "id": "cb8a0b2f-baa2-4472-9b26-3602cd2da929",
+              "text": "Define and prioritize a set of core tasks for the initial development phase",
+              "context": "Design/Planning",
+              "importance": "65",
+              "due_date": "2025-02-12",
+              "completed": false,
+              "tags": [
+                "#work",
+                "#urgent"
+              ]
+            },
+            {
+              "id": "f34417ae-b130-4bdb-a0e2-7a20842581ce",
+              "text": "Establish collaborations with relevant researchers and institutions to share knowledge and resources",
+              "context": "Partnerships/Outreach",
+              "importance": "50",
+              "due_date": "2025-02-12",
+              "completed": true,
+              "tags": [
+                "#research",
+                "#collaboration"
+              ],
+              "completedAt": "2025-02-12T17:33:15.766557"
+            },
+            {
+              "id": "ac3af6dc-0f79-48ab-b13a-ed93b1c7f275",
+              "text": "Conduct a market analysis to identify potential industry partners and end-users",
+              "context": "Business Development/Partnerships",
+              "importance": "40",
+              "due_date": "2025-02-12",
+              "completed": false,
+              "tags": [
+                "#marketanalysis",
+                "#industrypartners",
+                "#endusers"
+              ]
+            },
+            {
+              "id": "db929d72-d31b-4dd4-bffe-f3bde1ebd7af",
+              "text": "Develop a roadmap for the project, including milestones and deliverables",
+              "context": "Planning/Execution",
+              "importance": "60",
+              "due_date": "2025-02-12",
+              "completed": false,
+              "tags": [
+                "#roadmap",
+                "#project-management"
+              ]
+            },
+            {
+              "id": "db06511e-9186-420c-9caa-5f0285705ab7",
+              "text": "Secure funding for the project through grants, investments, or partnerships",
+              "context": "Funding/Resources",
+              "importance": "35",
+              "due_date": "2025-02-12",
+              "completed": false,
+              "tags": [
+                "#fundraising",
+                "#grants",
+                "#investments"
+              ]
+            }
+          ],
+          "isGenerated": true,
+          "created_at": "2025-02-12T17:32:21.053026"
+        },
+        {
+          "id": "184f8233-cbb5-495e-8621-586c3a5be143",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "bf4d5753-96c0-489d-88d0-a3b877cad77f",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early allows you to start your day with a clear mind and a sense of accomplishment. It gives you more time to get things done, exercise, or simply relax before the hustle and bustle of the day begins.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "5dd51d5d-7482-49c4-95db-76e4ebda4b05",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Regular physical exercise is essential for maintaining a healthy weight, reducing the risk of chronic diseases, improving mood and sleep, and boosting energy levels.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "c821cc75-91ef-42ba-8dd4-512f0f690162",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "**Boxing it out** is a fundamental skill in basketball that allows players to create space and maintain possession of the ball. It involves using one's body to shield the ball from opponents while simultaneously moving in a controlled manner. Mastering this technique is crucial for players to gain an advantage in tight spaces and avoid turnovers.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "86df8c17-d33e-459c-8dba-90b6cbc67fbc",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is essential for academic success. It allows students to retain information better, improve their understanding of concepts, and develop critical thinking skills.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "d53534f5-84be-4356-ac3d-fe7239c93ed5",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Networking and building relationships are crucial for professional and personal growth. It allows individuals to expand their knowledge, gain access to new opportunities, and build a support system.",
+              "importance": "80",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "2629fd16-0426-445e-8f0a-2c9c92be2377",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night's sleep is essential for overall health and well-being. It helps improve cognitive function, mood, and energy levels, while reducing the risk of chronic diseases.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "af359c06-e467-4ea2-b513-aa83b669caf3",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "9a797729-07e9-47f3-a188-4c821294dbbe",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early allows you to start your day with a clear mind and a sense of accomplishment. It gives you more time to plan your day, get things done, and enjoy the morning hours.",
+              "importance": "80",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "5fbf2656-8ff1-4724-b249-95a16dc90dac",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Working out at the gym is a great way to improve your overall health and fitness.  It can help you lose weight, gain muscle, and improve your cardiovascular health. Additionally, working out at the gym can help you relieve stress and improve your mood.",
+              "importance": "95",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "5f85b14e-4cc0-4055-8ee8-60c4db528275",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "This task is a valuable tool for improving cognitive function, enhancing problem-solving abilities, and promoting physical activity. By engaging in boxing-based activities, individuals can stimulate brain function, develop strategic thinking, and enhance their overall fitness.",
+              "importance": "85",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "c427978c-ede2-416e-999e-ebed70cd1ed1",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is important because it helps students to learn and retain information, which can help them to succeed in school and in their careers.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "7a939406-5cb7-4a23-8aeb-e62408b63db6",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Networking and building relationships are crucial for personal and professional growth. It allows individuals to expand their knowledge, access opportunities, and gain support.",
+              "importance": "95",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "911c0bd8-a71e-4e02-8f28-6e8fdb38c694",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night's sleep is essential for both physical and mental health. It helps to improve mood, boost energy levels, and enhance cognitive function. It also helps to reduce stress, strengthen the immune system, and promote overall well-being.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "52c72c1a-be27-4813-8e09-d809604ad2f2",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "75a5d02f-e2ac-4727-b381-bf179edfdf49",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early is important for several reasons. First, it allows you to start your day with a sense of accomplishment. Second, it gives you more time to complete tasks and engage in activities that are important to you. Third, it promotes a better night's sleep by regulating your circadian rhythm.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "fecd8be2-22f4-48fd-a94b-17fd3d823207",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Hitting the gym is important for physical health, mental health, and overall well-being.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "948cf094-0e7d-42bf-b7e8-b639d4429af4",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "This task tests the candidate's physical abilities, coordination, and quick thinking. It also helps develop their teamwork and communication skills.",
+              "importance": "75",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "f4c3483f-537d-4137-8297-ca013677ce46",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Education is essential for personal growth, career advancement, and contributing meaningfully to society. Studying hard ensures the acquisition of knowledge, skills, and critical thinking abilities necessary for future success.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "19f70c63-87cd-48c5-aed7-b6b38371cd33",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Building relationships and networking are essential for career development and personal growth. It allows individuals to expand their knowledge, access opportunities, and gain support.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "3c232167-52fd-484c-a581-edf0419ff429",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night\u2019s sleep is essential for both physical and mental health. It allows the body to rest and repair itself, and it helps to improve cognitive function and mood.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "31d81efd-1f0b-431e-97e8-694f8ae1d718",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "bd44a0a3-7034-40fd-b9fa-2cccaf28df73",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early allows you to start your day with a sense of accomplishment and gives you more time to complete your tasks before the day gets busy. It can also help improve your overall health and well-being.",
+              "importance": "85",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "0ce92f9e-c546-4a00-ae0f-694cf886c836",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Hitting the gym is important for maintaining a healthy lifestyle and improving overall fitness. It can help strengthen muscles, reduce body fat, and improve cardiovascular health.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "77cecebd-baa2-4552-9527-a3dd67659875",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-12",
+              "error": true
+            },
+            {
+              "id": "89b5de18-5111-42e2-9ad8-cfde6b79a55c",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is crucial for academic and personal growth, as it helps individuals acquire knowledge, develop critical thinking skills, and achieve their educational and career goals.",
+              "importance": "95",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "86345228-bc43-4336-9265-7f2e7202fafb",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Networking and building relationships is important because it helps you find new opportunities, learn about different industries, and build your career.",
+              "importance": "90",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "9dcc83fd-4e84-47c8-a491-fa6c7d9481c7",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night's sleep is important for both physical and mental health. When you don't get enough sleep, you can experience a range of symptoms, including fatigue, irritability, and difficulty concentrating. Over time, chronic sleep deprivation can lead to more serious health problems, such as heart disease, stroke, and diabetes.",
+              "importance": "95",
+              "due_date": "2025-02-12"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "d65c4867-0fde-4979-aba4-3ce4c1a8a28c",
+          "text": "generate steps how to use docker for free",
+          "tasks": [
+            {
+              "id": "4bd477c0-0105-4590-a665-d4572baf14fc",
+              "text": "Download and install Docker Desktop on your computer",
+              "completed": true,
+              "isGenerating": false,
+              "context": "Docker Desktop allows you to run containers on your computer for development and testing purposes.",
+              "importance": "80",
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T18:11:54.573778"
+            },
+            {
+              "id": "4499d07b-1001-4f30-bfba-84c4db462e5c",
+              "text": "Create a Docker account",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Docker account is essential for managing and sharing Docker images and containers.",
+              "importance": "100",
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T18:05:59.012027"
+            },
+            {
+              "id": "bae8312b-e9cd-4958-8fd5-6ca63ec3a7bb",
+              "text": "Create a new Docker image",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Creating Docker images allows you to package and distribute your applications in a consistent and isolated environment, ensuring that they will run reliably on any system with Docker installed. This can greatly simplify the deployment and management of your applications.",
+              "importance": "90",
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T18:06:00.213415"
+            },
+            {
+              "id": "a7e4d154-8b11-4eb4-a4a3-60c63bcc683b",
+              "text": "Run a Docker container",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Running a Docker container is important because it allows you to isolate and run an application in a controlled environment. This can be useful for testing, development, and production.",
+              "importance": "90",
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T18:06:01.403590"
+            },
+            {
+              "id": "666786ff-7e5b-42e9-b546-28dfa9083d2f",
+              "text": "Connect to a Docker container",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Connecting to a Docker container allows you to interact with the container, inspect its contents, and execute commands within it. This is essential for debugging, troubleshooting, and managing your Dockerized applications.",
+              "importance": "75",
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T18:06:02.294634"
+            },
+            {
+              "id": "cde271db-ba3d-46bb-8133-52f65b7d3b7d",
+              "text": "Commit changes made in a Docker container",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Committing changes made in a Docker container allows you to save those changes and create a new image that includes them. This is important for several reasons:\n- It allows you to share your changes with others.\n- It allows you to roll back to a previous version of your image if necessary.\n- It allows you to deploy your image to a different environment.",
+              "importance": "50",
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T18:06:03.955667"
+            },
+            {
+              "id": "840fe5ec-d60e-4a8a-a8f2-fe5be85343c3",
+              "text": "Push a Docker image to Docker Hub",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Pushing a Docker image to Docker Hub allows you to share and distribute your images with others, collaborate on projects, and leverage a centralized repository for managing images. It facilitates the deployment of containerized applications across multiple environments and simplifies image maintenance.",
+              "importance": "80",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "7d9a692c-871f-43df-a7b7-c80508eec74a",
+              "text": "Pull a Docker image from Docker Hub",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Pulling a Docker image from Docker Hub allows you to access and run pre-built container images, simplifying the deployment and management of applications. These images provide a consistent and isolated environment for running your applications, ensuring portability and reproducibility across different environments.",
+              "importance": 49,
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T18:06:12.476436"
+            },
+            {
+              "id": "4238df93-2ee7-48f9-857c-a2b0b2670aad",
+              "text": "Deploy a Docker application to a production environment",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Deploying a Docker application to a production environment is essential for businesses looking to deliver their applications securely and efficiently. Docker containers provide isolation, consistency, and portability, making it easier to manage and scale applications across different environments. By deploying to production, businesses can ensure their applications are available to users and maintain a high level of availability and performance.",
+              "importance": 63,
+              "due_date": "2025-02-19"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "e827d414-3c83-4c11-91e3-6b1e312e32c4",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "76d171e3-0771-4740-80c5-30b5814090dd",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early allows you to start your day with a sense of accomplishment and gives you more time to complete your tasks. It also helps you to be more productive and focused throughout the day.",
+              "importance": "90",
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T18:20:51.732998"
+            },
+            {
+              "id": "f440c8c4-6104-47f6-8031-98b0618fed15",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Maintaining physical health and fitness is essential for overall well-being, reducing the risk of chronic diseases, and improving quality of life. Regularly engaging in physical activity, such as hitting the gym, can help achieve these benefits.",
+              "importance": "80",
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T18:20:36.404706"
+            },
+            {
+              "id": "d4ff6cdc-b456-4fc9-9bb2-01261849a680",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "This task helps you work on your reflexes, timing, and hand-eye coordination. It's a great way to get a workout in.",
+              "importance": "80",
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T18:21:11.009643"
+            },
+            {
+              "id": "9dabe780-6a4e-44ee-b80b-2e0256bff5bb",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is crucial for academic success, intellectual growth, and personal fulfillment. It enables individuals to acquire knowledge, skills, and critical thinking abilities necessary for their future endeavors.",
+              "importance": "100",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "32e988bf-096c-423a-9623-21bf8b02ec52",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Networking and relationship building is important because it helps you connect with people who can help you achieve your goals. This could mean finding a mentor, getting a job, or getting involved in a business venture.",
+              "importance": "95",
+              "due_date": "2025-02-12"
+            },
+            {
+              "id": "896ec0c1-a0ca-4e97-af4e-9f4854a382aa",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night's sleep is essential for both physical and mental health. When we sleep, our bodies repair themselves, our minds process information, and our immune systems are strengthened. Lack of sleep can lead to a variety of health problems, including obesity, heart disease, and diabetes.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "94124cb8-c422-46b8-93ff-40116d2bd9d1",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "2ba99ded-c60f-4b2c-9947-4742279fcc01",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Morning hours are usually quiet and peaceful, free from distractions. Waking up early can give you time to reflect, plan, and get things done before the rush of the day begins.",
+              "importance": "70",
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-12T22:46:14.675475"
+            },
+            {
+              "id": "3ea0569a-edc3-43b1-bb27-bec3685fe5d5",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Regular exercise has numerous benefits for physical and mental health, including improved cardiovascular health, muscle strength, and mood.",
+              "importance": "90",
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-12T23:57:03.932602"
+            },
+            {
+              "id": "547eed92-5275-446a-bccb-296de1172262",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "This task helps users practice their boxing skills, improve their hand-eye coordination, and get a great workout.",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-12T22:45:48.109723"
+            },
+            {
+              "id": "a5e58244-828f-4c68-bb91-37458ef06764",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is essential for academic success. It helps students develop good study habits, learn the material, and improve their grades.",
+              "importance": 100,
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-12T23:56:55.789581"
+            },
+            {
+              "id": "3b446810-f1a7-4fe8-91a0-fb6d62e84bc1",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Networking and building relationships are crucial for career growth and success, as they expand your knowledge base, provide career opportunities, and offer access to valuable insights and resources.",
+              "importance": 95,
+              "due_date": "2025-02-12",
+              "completedAt": "2025-02-12T22:46:50.469393"
+            },
+            {
+              "id": "d1e93be0-9f14-43a6-a2d4-2240c7500f0e",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night's sleep is essential for maintaining your physical and mental health. When you don't get enough sleep, you may experience fatigue, irritability, difficulty concentrating, and impaired judgment. Over time, chronic sleep deprivation can increase your risk for serious health problems, such as heart disease, stroke, obesity, and diabetes.",
+              "importance": 100,
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-12T23:56:58.241462"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "daf3cf15-20fc-48bf-8501-d8d7e066611a",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "79d4d36a-cb64-46f5-964c-ede23bc5a7fc",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Exercise is crucial for maintaining good health and reducing the risk of chronic diseases like heart disease, stroke, type 2 diabetes, and some cancers.",
+              "importance": "95",
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-13T01:06:27.948330"
+            },
+            {
+              "id": "2e631400-9385-4e44-9687-0d12b6ac0258",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "This task assists in improving hand-eye coordination, reaction times, and spatial awareness, all of which are crucial for various sports and activities.",
+              "importance": 70,
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-13T01:06:29.514462"
+            },
+            {
+              "id": "07d63c78-e5d9-4e95-8efb-f141f34abf47",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is crucial for academic success and personal growth. It helps develop critical thinking skills, reinforces learning, boosts confidence, and prepares individuals for future challenges.",
+              "importance": "100",
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-13T01:06:30.735823"
+            },
+            {
+              "id": "5600caf5-11ae-4f8e-bc4f-b6b199474c6e",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Building relationships and networks is crucial for career growth, accessing opportunities, and gaining knowledge and support. It allows individuals to connect with experts in their field, learn from others, and leverage connections for career advancement.",
+              "importance": "85",
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-13T01:06:31.772161"
+            },
+            {
+              "id": "d9f3dae8-fbbb-4c40-8100-130649c39cde",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night's sleep is essential for overall health and well-being. Sleep helps to repair your body and mind, and it improves your focus, concentration, and mood. When you don't get enough sleep, you're more likely to experience fatigue, irritability, and difficulty concentrating. You're also more likely to get sick and have accidents.",
+              "importance": "100",
+              "due_date": "2025-02-13"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "318af226-75d6-440c-867e-c822392543ef",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "c64f469a-c526-4327-81dd-40ff88dcc7eb",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Waking up early allows you to start your day with more time and less stress, giving you a sense of accomplishment and control over your schedule. It also improves your sleep quality, boosts your energy levels, and enhances your cognitive function.",
+              "importance": "100",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "4dd9fc44-c234-4fb6-8493-a5e0e24bc6a7",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Hitting the gym matters because it helps you stay healthy and fit, and can improve your physical and mental well-being.",
+              "importance": "75",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "a280de33-5578-4efa-80de-4fbcae902d0a",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Boxing is a physical activity that helps develop coordination, balance, and strength. It also helps to improve cardiovascular health and can be a fun way to relieve stress.",
+              "importance": "75",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "7977e4e3-4342-42b5-9fa4-fb5a96cabb27",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying hard is important because it allows you to learn new information and skills, improve your critical thinking and problem-solving abilities, and achieve your academic goals.",
+              "importance": "100",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "1a2a21d5-5b22-43d5-a185-3fb4495c6d8a",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Building relationships is crucial for personal and professional growth, as it allows individuals to tap into a wider pool of knowledge, resources, and support.",
+              "importance": "75",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "f6791cbe-c661-41cc-8dcc-7eeef53d6777",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a good night's sleep is essential for both physical and mental health. It helps to repair the body, boost the immune system, and improve mood.",
+              "importance": "90",
+              "due_date": "2025-02-13"
             }
           ],
           "isGenerated": true
