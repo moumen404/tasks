@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon_new.svg') }}">
+    <title>Sign Up - Dia - Task Manager</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Light theme variables */
+            --black: #000000;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f4f4f5;
+            --gray-200: #e4e4e7;
+            --gray-300: #d4d4d8;
+            --gray-400: #a1a1aa;
+            --gray-500: #71717a;
+            --gray-600: #52525b;
+            --bg-primary: var(--white);
+            --bg-secondary: var(--gray-50);
+            --text-primary: var(--black);
+            --text-secondary: var(--gray-600);
+            --accent: var(--black);
+            --border: var(--gray-200);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark theme colors - deeper blacks */
+                --black: #ffffff;
+                --white: #080808;
+                --gray-50: #0d0d0d;
+                --gray-100: #111111;
+                --gray-200: #1a1a1a;
+                --gray-300: #222222;
+                --gray-400: #2a2a2a;
+                --gray-500: #333333;
+                --gray-600: #444444;
+                
+                /* Main theme colors - extra dark */
+                --bg-primary: #080808;
+                --bg-secondary: #0d0d0d;
+                --text-primary: #ffffff;
+                --text-secondary: #999999;
+                --accent: #ffffff;
+                --border: #1a1a1a;
+                
+                /* Enhanced shadows for deeper depth */
+                --shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+                --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.7);
+                --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.9);
+            }
+
+            /* Enhanced dark mode adjustments */
+            .auth-container {
+                background: var(--bg-primary);
+                border: 1px solid var(--border);
+                box-shadow: var(--shadow-lg),
+                            0 0 0 1px rgba(255, 255, 255, 0.03);
+            }
+
+            .auth-header h1 {
+                color: var(--text-primary);
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+                letter-spacing: -0.01em;
+            }
+
+            .auth-header p {
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"] {
+                background: var(--bg-secondary);
+                color: var(--text-primary);
+                border-color: var(--border);
+                transition: all 0.2s ease;
+            }
+
+            input[type="text"]:hover,
+            input[type="email"]:hover,
+            input[type="password"]:hover {
+                border-color: var(--gray-400);
+                background: var(--gray-100);
+            }
+
+            input[type="text"]:focus,
+            input[type="email"]:focus,
+            input[type="password"]:focus {
+                border-color: var(--accent);
+                background: var(--gray-100);
+                box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1),
+                            0 0 0 3px rgba(255, 255, 255, 0.05);
+            }
+
+            .form-group label {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            .btn {
+                background: var(--accent);
+                color: var(--bg-primary);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+                font-weight: 500;
+            }
+
+            .btn:hover {
+                opacity: 0.95;
+                transform: translateY(-1px);
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            }
+
+            .btn:active {
+                transform: translateY(0);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+            }
+
+            .auth-footer {
+                opacity: 0.8;
+            }
+
+            .auth-footer a {
+                color: var(--accent);
+                opacity: 0.9;
+                transition: all 0.2s ease;
+                position: relative;
+            }
+
+            .auth-footer a:hover {
+                opacity: 1;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            }
+
+            .auth-footer a::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: var(--accent);
+                opacity: 0.3;
+                transition: opacity 0.2s ease;
+            }
+
+            .auth-footer a:hover::after {
+                opacity: 0.6;
+            }
+
+            .error-message {
+                background: rgba(220, 38, 38, 0.1);
+                border: 1px solid rgba(220, 38, 38, 0.15);
+                color: #ff6b6b;
+                padding: 0.75rem;
+                border-radius: var(--radius-md);
+                font-size: 0.875rem;
+            }
+
+            /* Smooth transitions for color scheme changes */
+            * {
+                transition: background-color 0.3s ease,
+                            border-color 0.3s ease,
+                            box-shadow 0.3s ease,
+                            color 0.3s ease,
+                            transform 0.2s ease;
+            }
+
+            /* Selection styling */
+            ::selection {
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--text-primary);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .auth-container {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-header h1 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .auth-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .error-message {
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h1>Create Account</h1>
+            <p>Sign up to start managing your tasks</p>
+        </div>
+        <form id="signupForm" onsubmit="handleSignup(event)">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required minlength="6">
+            </div>
+            <div class="error-message" id="errorMessage"></div>
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <div class="auth-footer">
+            <p>Already have an account? <a href="/login">Sign in</a></p>
+        </div>
+    </div>
+
+    <script>
+        async function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            try {
+                const response = await fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, password }),
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    window.location.href = '/login';
+                } else {
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = data.message || 'Signup failed';
+                }
+            } catch (error) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'An error occurred. Please try again.';
+            }
+        }
+    </script>
+</body>
+</html>
