@@ -6055,29 +6055,32 @@
             {
               "id": "c64f469a-c526-4327-81dd-40ff88dcc7eb",
               "text": "\ud83c\udf05 Wake up early",
-              "completed": false,
+              "completed": true,
               "isGenerating": false,
               "context": "Waking up early allows you to start your day with more time and less stress, giving you a sense of accomplishment and control over your schedule. It also improves your sleep quality, boosts your energy levels, and enhances your cognitive function.",
               "importance": "100",
-              "due_date": "2025-02-13"
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-13T02:00:25.182237"
             },
             {
               "id": "4dd9fc44-c234-4fb6-8493-a5e0e24bc6a7",
               "text": "\ud83d\udcaa Hit the gym",
-              "completed": false,
+              "completed": true,
               "isGenerating": false,
               "context": "Hitting the gym matters because it helps you stay healthy and fit, and can improve your physical and mental well-being.",
               "importance": "75",
-              "due_date": "2025-02-13"
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-13T02:00:25.933127"
             },
             {
               "id": "a280de33-5578-4efa-80de-4fbcae902d0a",
               "text": "\ud83e\udd4a Box it out",
-              "completed": false,
+              "completed": true,
               "isGenerating": false,
               "context": "Boxing is a physical activity that helps develop coordination, balance, and strength. It also helps to improve cardiovascular health and can be a fun way to relieve stress.",
               "importance": "75",
-              "due_date": "2025-02-13"
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-13T02:02:15.208292"
             },
             {
               "id": "7977e4e3-4342-42b5-9fa4-fb5a96cabb27",
@@ -6108,12 +6111,873 @@
             }
           ],
           "isGenerated": true
+        },
+        {
+          "id": "388efe42-e643-44a3-b771-b424bb8b6539",
+          "text": "how to achieve my goals using my settings",
+          "tasks": [
+            {
+              "id": "650f2492-af4c-4c16-9a99-3f4ca29736b7",
+              "text": "Research and develop advanced artificial intelligence algorithms.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "3ffa4a65-4804-44ea-847a-5298e84aeb60",
+              "text": "Create large-scale datasets for training and testing AI models.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "2f0348ca-18a1-444a-b39d-fb6add903144",
+              "text": "Design and implement AI architectures that enable cognitive reasoning and learning.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "6fb6808e-d323-4a7f-aed3-16febc00114e",
+              "text": "Develop methods for integrating AI with physical systems and the real world.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "53ae2d87-56b9-4b6b-98d5-899e7330ab0b",
+              "text": "Collaborate with experts in various fields to explore potential applications of super agi.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "3468e70f-5cc0-44d8-beec-afcc7678fab6",
+              "text": "Establish ethical guidelines and regulations for the development and use of super agi.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "b6e27176-0ce4-4cb9-8b93-d65f55b87d73",
+              "text": "Foster public understanding and engagement with super agi research.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "baadb35d-e2cb-4ba0-9756-f7979a283b71",
+          "text": "how to achieve my goals using my settings",
+          "tasks": [
+            {
+              "id": "aed61d05-538c-4f81-a718-470de4d34c54",
+              "text": "Learn German and make money (e.g. freelancing)",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "b98525b5-30c6-4f91-9276-16353797d18c",
+              "text": "Make new friends by going to public places often and meeting new people",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "aa9ea106-6403-46c4-932a-ac3ecf71bc1c",
+          "text": "how to achieve my goals using my settings",
+          "tasks": [
+            {
+              "id": "3ec76abe-e749-46cf-8a8a-b57ba341db37",
+              "text": "KHLEQ SCENARIO F 3QLEK DYAL CHI MERA MA3RFTICH CHNO TQOL O HAWL TQAD AQWED JAWAB",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "03691a5c-ca56-4e3e-834b-f8c756c85064",
+              "text": "L3EB GYM + MARTIAL ART",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "5008ed8b-8ea5-4d1a-9e32-2ba304fc7321",
+              "text": "JIB L B2 F DEUTSCH O DIR LFLOS",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "67972499-3f6b-4f7f-8e33-44267a262f13",
+              "text": "TMECHI LBLAYS O TLAQA M3A BNADM BZZF",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "34b14f7c-f2d4-4ff6-91ac-d50a82d96b71",
+          "text": "how to achieve my goals using my settings",
+          "tasks": [],
+          "isGenerated": true
+        },
+        {
+          "id": "c6b03568-4f71-4664-b2af-e8edbd9d8031",
+          "text": "how to achieve my goals using my settings",
+          "tasks": [
+            {
+              "id": "f9d95c2e-08fa-4ddf-ab80-19aed7418faa",
+              "text": "KHLEQ SCENARIO F 3QLEK DYAL CHI MERA MA3RFTICH CHNO TQOL O HAWL TQAD AQWED JAWAB",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "d470bb8d-c6b9-4bdb-97e4-51f1cec01720",
+              "text": "L3EB GYM + MARTIAL ART",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "3bdb4b75-31d1-4955-afcf-24f817d3f689",
+              "text": "JIB L B2 F DEUTSCH O DIR LFLOS",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "c4a54c5e-70eb-49a5-b539-8c9ef05384d4",
+              "text": "TMECHI LBLAYS O TLAQA M3A BNADM BZZF",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "299083e0-97f1-432c-908c-7c1c595c36d0",
+          "text": "how to give me just this tasks \ud83c\udf05 Wake up early \ud83d\udcaa Hit the gym \ud83e\udd4a Box it out \ud83d\udcda Study hard \ud83e\udd1d Network & build relationships \ud83d\ude34 Get a good night's sleep with emojis",
+          "tasks": [
+            {
+              "id": "7683511c-b64e-4167-ac50-2a5b197c9ec1",
+              "text": "\ud83c\udf05 Wake up early",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "e5d7c02c-171c-4c2e-a759-bf4e30597908",
+              "text": "\ud83d\udcaa Hit the gym",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "c9e1e773-4fb0-4d2f-8a2b-497cc5f08501",
+              "text": "\ud83e\udd4a Box it out",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "b1b9f8bc-7a5d-4978-aec7-f20bd96942a9",
+              "text": "\ud83d\udcda Study hard",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "2b157434-551b-4c1b-a3d1-c7e843b7371a",
+              "text": "\ud83e\udd1d Network & build relationships",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "bd204b6b-9757-41f9-a2cc-38fe6830b460",
+              "text": "\ud83d\ude34 Get a good night's sleep",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "a8779038-1b89-4a86-b07c-b9f114fd4e43",
+          "text": "based on that GET THE POWER  Lmqweed kolchi kayhtarmo o kolchi kaykhaf mno besif 3lihom   Ama li dryef ghi li dyrfin bhalo li kaytarmoh o ta wahd mamjbor ihtarmo  # TYPES OF POWER  ## 1. TONGUE POWER  Kat3awnk threb mn ma2ziq  Wla twsel l mokafa2  ### HOW? \u2192 KHLEQ SCENARIO F 3QLEK DYAL CHI MERA MA3RFTICH CHNO TQOL O HAWL TQAD AQWED JAWAB  ## 2. PHYSICAL POWER  Syaasa zwina mais machi dima chi mra khask thel l mochkil b derb  ### HOW? \u2192 L3EB GYM + MARTIAL ART  ## 3. FINANCIAL POWER  Lflos katshel lhayat o kathel lik bzzf d l biban nta 3arfhom  ### HOW? \u2192 JIB L B2 F DEUTSCH O DIR LFLOS  ## 4. SOCIAL POWER  Mahma kneti mqweed o 3ndek lflos ila ma3ndkch shab msta3din yheto hyathom b khatar 3la wdek fa ma3mrk gha twsel l POWER  ### HOW?  ## L3AMIL LWEL: EXPOSURE  TMECHI LBLAYS O TLAQA M3A BNADM BZZF   KOLMA MCHITI L BLYAS BZZF GHA DIR M3ARF KTER  ## L3AMIL TANI: LSANK Build a successful dropshipping and trading business Complete all Hustler University courses Save 1 million before age 19 Find a European partner Build meaningful relationships with at least 5 quality people who will be impressed by your character Move to Germany Develop better breathing technique and improve stamina Obtain 5 certificates in any domain Train to become skilled in boxingPass the B2 language exam Obtain a driver's license Get a passport Grow Instagram account to 3K followers and post 6 times Get a visa Improve personal style Start boxing training Increase weight to 75kg Build a network of quality friends and connections Visit 3 new places generate steps how to achieve this goals",
+          "tasks": [
+            {
+              "id": "a688f08e-9644-4e5e-a731-f81fc7becd5f",
+              "text": "Complete all Hustler University courses",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Completing all Hustler University courses is important for personal and financial growth as it provides access to valuable knowledge and resources.",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "70641359-5855-4792-bd1f-830df94e58c4",
+              "text": "Save 1 million before age 19",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Accumulating 1 million dollars before the age of 19 is an ambitious but achievable goal that can provide a significant financial foundation for the future. This goal fosters responsible financial habits, encourages long-term planning, and sets the stage for financial independence.",
+              "importance": "95",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "19577de5-cea6-45ed-b88b-0cfaffe6ad1a",
+              "text": "Find a European partner",
+              "completed": false,
+              "isGenerating": false,
+              "context": "The task is important because it will allow Mouman Et-taibi to find a European partner, which can be beneficial for a variety of reasons. For example, a European partner can provide financial support, help with marketing and sales, and provide access to new markets.",
+              "importance": "75",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "e49718ff-41a9-4baf-ba7d-9c05c09baec5",
+              "text": "Build meaningful relationships with at least 5 quality people who will be impressed by your character",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Building genuine and meaningful relationships is crucial for personal growth, emotional well-being, and unlocking opportunities in various aspects of life. Nurturing a network of supportive individuals who value your character can provide a sense of belonging, purpose, and inspiration.",
+              "importance": "95",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "7812c484-985c-45b0-b79d-a228f1e4f990",
+              "text": "Move to Germany",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Moving to Germany can provide significant opportunities for personal growth, career advancement, and cultural immersion. It offers access to a strong economy, high living standards, and a rich cultural scene.",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "46aed171-5330-4d55-983d-2957d3824414",
+              "text": "Develop better breathing technique and improve stamina",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Developing better breathing techniques and improving stamina are crucial for overall health, as they increase oxygen intake, enhance endurance, and reduce the risk of various health issues.",
+              "importance": "95",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "ec2c2371-79b1-45a8-bebc-db19c22146cc",
+              "text": "Obtain 5 certificates in any domain",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Certifications demonstrate knowledge and skills in a specific domain, validating expertise and enhancing credibility.",
+              "importance": "85",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "61137e3f-7265-4b1b-8da0-3dbc8df38006",
+              "text": "Train to become skilled in boxing",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Boxing is a challenging and rewarding sport that can improve your fitness, coordination, and self-confidence. Training to become skilled in boxing can help you achieve your fitness goals and improve your overall well-being.",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "a99b8e63-ecc0-4782-b083-5dbd9527e494",
+              "text": "Pass the B2 language exam",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Passing the B2 language exam is a significant milestone in language learning, demonstrating proficiency in reading, writing, listening, and speaking. It opens doors to higher education, career opportunities, and improved communication skills.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "b5fc1888-7ffc-458e-be2d-a824cbcc666f",
+              "text": "Obtain a driver's license",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Driving is a common mode of transportation that provides individuals with freedom and mobility. A driver's license is a legal requirement in most jurisdictions, allowing individuals to operate motor vehicles safely and responsibly.",
+              "importance": "95",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "5eca4f0c-b1bb-4247-bbad-f7fcb077e3ab",
+              "text": "Get a passport",
+              "completed": false,
+              "isGenerating": false,
+              "context": "A passport is an essential travel document that allows citizens to travel internationally and prove their identity. It is required for entry into many countries and is used to verify nationality and identity at border crossings.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "98943618-ff4d-4380-a639-41a04b68f213",
+              "text": "Grow Instagram account to 3K followers and post 6 times",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Growing an Instagram account to 3K followers and posting 6 times is crucial for establishing a strong online presence, building credibility, and generating engagement.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "c8a7cc90-b72d-4056-8cde-82e1e0404613",
+              "text": "Get a visa",
+              "completed": false,
+              "isGenerating": false,
+              "context": "A visa is a document that grants permission to enter, leave, or remain in a particular country. It is essential for travelers who wish to visit or stay in a foreign country for a specified period of time. Obtaining a visa can be a complex and time-consuming process, but it is necessary in order to comply with immigration laws and regulations.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "01b86f97-dd32-4d43-b4e5-417424d4824c",
+              "text": "Improve personal style",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Enhancing one's personal style contributes to self-confidence, self-expression, and can positively impact professional and social interactions.",
+              "importance": "85",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "40b3f524-f871-4dcf-b5fe-1344c7a24759",
+              "text": "Start boxing training",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Boxing training improves cardiovascular health, coordination, strength, power, and agility",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "c9943e6e-7fde-429e-8f74-6e2d3a08ff2f",
+              "text": "Increase weight to 75kg",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "92c64d97-8519-41e0-8450-9b12674b0ea6",
+              "text": "Build a network of quality friends and connections",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            },
+            {
+              "id": "107f88f9-a959-47ac-86d6-6a6e3705929d",
+              "text": "Visit 3 new places",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Failed to generate context",
+              "importance": "50",
+              "due_date": "2025-02-13",
+              "error": true
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "20778459-1218-40f6-9873-514f99062ab1",
+          "text": "based on my goals generate steps to achieve my gaols",
+          "tasks": [
+            {
+              "id": "a1283cf5-dd5a-4b12-8916-641338ffd76f",
+              "text": "Create a comprehensive plan that outlines goals, objectives, and timelines",
+              "completed": false,
+              "isGenerating": false,
+              "context": "**\n\nCreating a comprehensive plan is essential for achieving any objective effectively and efficiently. It provides a clear roadmap of goals, objectives, and timelines, allowing individuals or organizations to stay on track and make informed decisions.\n\n**",
+              "importance": "50",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "89884d47-78fe-4e81-af78-d219bda136af",
+              "text": "Break down large goals into smaller, manageable tasks",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Breaking large goals into smaller, manageable tasks is important for a number of reasons. First, it can help to make the task seem less daunting and more achievable. Second, it can help to keep you on track and motivated, as you can see progress being made. Third, it can help to prevent you from becoming overwhelmed or discouraged.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "ea5018de-176e-4fc2-bf85-09a6d3ea404f",
+              "text": "Prioritize tasks based on importance and urgency",
+              "completed": false,
+              "isGenerating": false,
+              "context": "N/A",
+              "importance": "50",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "f59c656b-8dc8-43d5-ac47-29a11377d0b5",
+              "text": "Allocate specific time slots for working on tasks",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Allocating specific time slots for working on tasks helps prioritize and manage time effectively, reduce distractions, and achieve a better work-life balance.",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "b12c2601-289a-4b7a-a6e8-fb6491c39e39",
+              "text": "Track progress and make adjustments as needed",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Progress tracking and adjustment are crucial for ensuring timely and successful completion of tasks, identifying and addressing issues early on, and making necessary changes to improve outcomes. It allows teams to stay on track, avoid setbacks, and deliver high-quality results.",
+              "importance": "95",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "27c22f69-bdbb-4ff4-b037-7bc7ca1c6902",
+              "text": "Seek support and guidance from mentors or peers",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Seeking support and guidance from mentors or peers provides individuals with access to valuable knowledge, experience, and insights, helping them navigate challenges, develop their skills, and achieve their goals.",
+              "importance": "85",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "94c7ede0-1f53-4388-95ef-9eaffa891b26",
+              "text": "Celebrate successes and learn from setbacks",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Celebrating successes and learning from setbacks are both essential for personal and professional growth. Recognizing and acknowledging achievements helps boost motivation, build confidence, and set new goals. Similarly, analyzing setbacks identifies areas for improvement, promotes resilience, and fosters a growth mindset.",
+              "importance": "100",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "c9ae25f0-d721-4eae-8961-71084d57d2ee",
+              "text": "Stay motivated and focused by visualizing the desired outcome",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Visualizing the desired outcome helps to keep you motivated and focused by providing a clear target to strive for. It helps to break down the task into smaller, more manageable steps, and to stay on track even when faced with challenges. This can be a particularly effective strategy for long-term goals or complex tasks.",
+              "importance": "85",
+              "due_date": "2025-02-13"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "81523bb8-fb94-417c-8ec8-923ba83ce95f",
+          "text": "Create tasks for project planning, considering my work description",
+          "tasks": [
+            {
+              "id": "3972fac7-4cc2-400e-b9cb-b7755c59682f",
+              "text": "Identify project objectives and deliverables",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Identifying project objectives and deliverables is crucial in project planning and management. Clearly defining what the project aims to achieve and what specific outcomes are expected ensures that all stakeholders are aligned and working towards the same goal.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "9dcb9f21-8a1d-43c2-bcf8-6b92a288081f",
+              "text": "Create a project timeline",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Project timelines are essential for planning and managing projects effectively. They provide a visual representation of the project's tasks, deadlines, and dependencies, allowing project managers and stakeholders to monitor progress and make informed decisions.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "e88935a9-3008-4497-b827-cd9f83c8497d",
+              "text": "Establish project budget",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Establishing a project budget is essential for effective project planning and execution. It allows stakeholders to allocate resources efficiently, prioritize tasks, and track financial progress.",
+              "importance": "95",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "00c9811f-bd9c-4f4c-8b97-ea5f6c43bf0a",
+              "text": "Identify resources needed",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Identifying resources is essential for planning and executing any project successfully. It enables organizations to allocate resources effectively, avoid potential bottlenecks, and maximize productivity.",
+              "importance": "85",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "f905c459-0cd7-4c50-8641-198898f81d4f",
+              "text": "Assign responsibilities to team members",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Assigning responsibilities to team members is crucial for ensuring that tasks are completed effectively and efficiently. It helps to avoid confusion, overlapping efforts, and bottlenecks in the workflow.",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "adc00e23-b824-4821-af66-8d80b93d58a8",
+              "text": "Develop a communication plan",
+              "completed": false,
+              "isGenerating": false,
+              "context": "A communication plan lays out the strategies and tactics for communicating with stakeholders about a project or initiative. It is important to develop a communication plan in order to ensure that all stakeholders are informed and engaged throughout the project lifecycle.",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "94f7860e-d33a-4678-ab3b-c60f97d19a08",
+              "text": "Conduct risk assessment",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Conducting risk assessments is essential for identifying and mitigating potential risks and vulnerabilities that could impact an organization's success or stability. By conducting thorough risk assessments, organizations can take proactive measures to minimize the likelihood and impact of adverse events, ensuring their operations are secure, compliant, and aligned with strategic objectives.",
+              "importance": "95",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "f9358cb7-e33b-4e94-a068-4b73ffbcdf66",
+              "text": "Plan for project monitoring and evaluation",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Project monitoring and evaluation are critical to ensure that a project is on track to meet its objectives and that resources are being used effectively. A well-structured monitoring and evaluation plan allows project managers to track progress, identify areas for improvement, and make informed decisions about the project's direction.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "d17ea71f-abc8-43e4-9725-38071d57cf93",
+          "text": "based on my settings generate steps how to achieve the short term goals",
+          "tasks": [
+            {
+              "id": "cf38b019-7c29-47f8-a240-140a9566cd8e",
+              "text": "Study German grammar and vocabulary daily.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Studying German grammar and vocabulary daily is essential for developing a strong foundation in the language, improving comprehension, and increasing fluency. Consistent practice helps reinforce concepts, expand vocabulary, and enhance overall language proficiency.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "75ae0403-1804-4704-91e1-b73fb954855c",
+              "text": "Practice speaking and listening to German through conversation groups or language exchange apps.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Practicing speaking and listening to German through conversation groups or language exchange apps helps learners improve their fluency, pronunciation, and comprehension. It also provides a valuable opportunity to connect with native speakers and gain insights into German culture.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "2bdf4789-f881-4e41-9593-def042708e20",
+              "text": "Take practice exams to simulate the B2 exam format.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Practice exams help you become familiar with the format and time constraints of the B2 exam, allowing you to develop test-taking strategies and improve your confidence.",
+              "importance": "95",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "e2216afa-a2e6-4a30-a765-2910ac5b110f",
+              "text": "Identify areas for improvement and focus on strengthening them.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Identifying areas for improvement is crucial for personal and professional growth, allowing individuals to capitalize on strengths and address weaknesses.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "62e321d4-35be-4736-be39-f522f7b8d3ec",
+              "text": "Schedule regular driving lessons to prepare for the driver's license exam.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Preparing for the driver's license exam is crucial for acquiring proper driving skills, reducing traffic accidents, and ensuring road safety. Regular driving lessons provide structured instruction, supervised practice, and feedback, enhancing the student's ability to pass the exam and become a confident and responsible driver.",
+              "importance": "95",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "c73f2d24-9a9b-4108-8110-9682e55767e1",
+              "text": "Gather necessary documents and apply for a passport.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "A passport is an essential travel document that allows individuals to cross international borders. Obtaining a passport is crucial for those who wish to travel for business, leisure, or education purposes.",
+              "importance": "100",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "3397ec26-7ad0-402a-9102-790d7252d0ab",
+              "text": "Create high-quality content and post it consistently on Instagram to attract followers.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Content is the backbone of Instagram and drives engagement, brand awareness, and follower growth.",
+              "importance": "95",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "b24bf1cd-0aa7-4f96-a2f1-f0915a0bec99",
+              "text": "Research visa requirements and apply for the necessary visa.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Applying for the necessary visa is essential to ensure compliance with immigration regulations and avoid potential legal consequences or delays in travel.",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "bafd534b-5003-45ff-8388-14327c944fdd",
+              "text": "Seek inspiration from fashion blogs and experiment with different styles to enhance personal style.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Enhancing personal style through fashion experimentation is crucial for expressing individuality, boosting confidence, and staying up-to-date with current trends.",
+              "importance": "75",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "1bab0c1b-148a-48f3-a084-b83f86ab8abe",
+              "text": "Enroll in a boxing training program and attend classes regularly.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Engaging in a boxing training program not only provides an excellent cardiovascular workout but also enhances coordination, agility, and self-defense skills.",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "148a7f6f-e0c2-4cb3-bd21-a0855548825f",
+              "text": "Adjust diet and exercise routine to gradually gain weight and reach 75kg.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Gradual weight gain can improve overall health and well-being.",
+              "importance": "50",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "07bea234-7544-4dc6-a748-37a496b9b368",
+              "text": "Attend social events and engage in networking to build quality connections.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Building quality connections through social events and networking is crucial for establishing mutually beneficial relationships, accessing valuable information, and advancing career or business goals.",
+              "importance": "100",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "1e649a84-5791-4af4-a405-6785cca0bb7e",
+              "text": "Plan trips to explore new destinations and broaden perspectives.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Planning trips to explore new destinations and broaden perspectives is an important task because it allows individuals to gain new experiences, learn about different cultures, and develop a more well-rounded understanding of the world.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "1330393b-9f7c-4b00-840e-bd3ee2926327",
+          "text": "based on my settings generate steps how to achieve the short term goals just the 6 important tasks",
+          "tasks": [
+            {
+              "id": "73404960-ccfb-4828-b189-327c7f9f2a24",
+              "text": "Pass the B2 language exam by studying regularly and taking practice tests.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Passing the B2 language exam demonstrates proficiency in a language, enhancing communication skills, job opportunities, and academic pursuits.",
+              "importance": "85",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "8254b946-09ca-4dea-856e-a7373fb2cf55",
+              "text": "Obtain a driver's license by completing the necessary training and passing the test.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Obtaining a driver's license enables individuals to operate a motor vehicle legally, providing them with the freedom of transportation and independence.",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "24be58e0-aaef-4d93-86ee-2bad4e9191b8",
+              "text": "Get a passport by applying online or through the embassy.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Getting a passport is essential for international travel, as it serves as proof of identity and nationality.",
+              "importance": "100",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "49aa657f-7483-4bab-895f-fcca9e2837a3",
+              "text": "Grow Instagram account to 3K followers and post 6 times by creating engaging content and interacting with others.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Growing an Instagram account to 3K followers is important for establishing a strong online presence and reaching a wider audience. Posting engaging content and interacting with others helps attract and retain followers.",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "1db13dd0-c8be-46cf-b2aa-1b07d2d10e87",
+              "text": "Get a visa by researching the requirements and submitting the necessary documentation.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Obtaining a visa is crucial for international travel, as it grants individuals legal permission to enter and reside in a foreign country. The process involves gathering and submitting specific documentation that meets the requirements of the destination country.",
+              "importance": "80",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "653ecba5-057d-418d-9553-1ed031be0238",
+              "text": "Improve personal style by experimenting with different outfits and accessories.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Experimenting with different outfits and accessories allows individuals to express their creativity, explore their personal style and build their confidence. It fosters a sense of self-discovery and enables individuals to find clothing and accessories that reflect their unique personality and taste.",
+              "importance": "85",
+              "due_date": "2025-02-13"
+            }
+          ],
+          "isGenerated": true
+        },
+        {
+          "id": "d6568d3d-8156-418c-b35d-6581608e4fef",
+          "text": "based on my settings generate steps how to achieve the long term goals just the 6 important tasks",
+          "tasks": [
+            {
+              "id": "37b4a7a8-8e98-444d-bae7-613da1616043",
+              "text": "Apply for Hustler University courses.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Applying for Hustler University courses gives you access to exclusive online training materials and coaching programs designed to help you grow your business or career.",
+              "importance": "90",
+              "due_date": "2025-02-13",
+              "completedAt": "2025-02-13T02:53:16.982260"
+            },
+            {
+              "id": "d8fd0765-769a-4d77-8f26-51aa43010824",
+              "text": "Research dropshipping and trading strategies.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Researching dropshipping and trading strategies is crucial for individuals looking to establish successful businesses in e-commerce. By understanding the nuances of these business models, entrepreneurs can make informed decisions, optimize their operations, and maximize their chances of profitability.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "d31196b7-c9c7-46a7-9607-9712500cf80f",
+              "text": "Network with entrepreneurs in the dropshipping and trading industry.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Networking with entrepreneurs in the dropshipping and trading industry is crucial for staying updated on industry trends, gaining insights, and expanding your business connections.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "1ff12d82-b0a6-4241-9182-e1ed0e619e1b",
+              "text": "Practice German language skills daily.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "**Developing communication and cognitive skills**",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "77f238cf-ea0d-4e3a-9ded-68afb4e0c0ef",
+              "text": "Attend workshops and seminars on relationship building.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Attending workshops and seminars on relationship building provides opportunities to enhance interpersonal skills and strategies, allowing individuals to foster stronger and more effective relationships in various aspects of their lives.",
+              "importance": "90",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "c37aa33f-9b25-4232-b5ce-577bc1f94506",
+              "text": "Explore potential job opportunities in Germany.",
+              "completed": false,
+              "isGenerating": false,
+              "context": "Exploring potential job opportunities in Germany is crucial, especially for those seeking to advance their careers in a thriving and dynamic economy. With a strong emphasis on innovation, technology, and skilled labor, Germany offers a wealth of job opportunities in various sectors.",
+              "importance": "85",
+              "due_date": "2025-02-13"
+            },
+            {
+              "id": "a71aaa43-38a5-4b76-844d-a19a2d3809d6",
+              "text": "test",
+              "completed": false,
+              "due_date": "2025-02-13",
+              "context": "",
+              "importance": "50",
+              "tags": [
+                "#testing",
+                "#qualityassurance"
+              ],
+              "isManual": true
+            }
+          ],
+          "isGenerated": true
         }
       ],
       "settings": {
-        "workDescription": "i want to build super agi that can do any task",
-        "shortTermFocus": "Research state-of-the-art techniques in super AGI, Define initial scope and approach for developing a task-agnostic AI",
-        "longTermGoals": "Develop and deploy a super AGI capable of automating complex tasks across various domains, Establish partnerships with industry leaders and research institutions",
+        "workDescription": "GET THE POWER\n\nLmqweed kolchi kayhtarmo o kolchi kaykhaf mno besif 3lihom \n\nAma li dryef ghi li dyrfin bhalo li kaytarmoh o ta wahd mamjbor ihtarmo\n\n# TYPES OF POWER\n\n## 1. TONGUE POWER\n\nKat3awnk threb mn ma2ziq\n\nWla twsel l mokafa2\n\n### HOW? \u2192 KHLEQ SCENARIO F 3QLEK DYAL CHI MERA MA3RFTICH CHNO TQOL O HAWL TQAD AQWED JAWAB\n\n## 2. PHYSICAL POWER\n\nSyaasa zwina mais machi dima chi mra khask thel l mochkil b derb\n\n### HOW? \u2192 L3EB GYM + MARTIAL ART\n\n## 3. FINANCIAL POWER\n\nLflos katshel lhayat o kathel lik bzzf d l biban nta 3arfhom\n\n### HOW? \u2192 JIB L B2 F DEUTSCH O DIR LFLOS\n\n## 4. SOCIAL POWER\n\nMahma kneti mqweed o 3ndek lflos ila ma3ndkch shab msta3din yheto hyathom b khatar 3la wdek fa ma3mrk gha twsel l POWER\n\n### HOW?\n\n## L3AMIL LWEL: EXPOSURE\n\nTMECHI LBLAYS O TLAQA M3A BNADM BZZF \n\nKOLMA MCHITI L BLYAS BZZF GHA DIR M3ARF KTER\n\n## L3AMIL TANI: LSANK",
+        "shortTermFocus": "Pass the B2 language exam\nObtain a driver's license\nGet a passport\nGrow Instagram account to 3K followers and post 6 times\nGet a visa\nImprove personal style\nStart boxing training\nIncrease weight to 75kg\nBuild a network of quality friends and connections\nVisit 3 new places",
+        "longTermGoals": "Build a successful dropshipping and trading business\nComplete all Hustler University courses\nSave 1 million before age 19\nFind a European partner\nBuild meaningful relationships with at least 5 quality people who will be impressed by your character\nMove to Germany\nDevelop better breathing technique and improve stamina\nObtain 5 certificates in any domain\nTrain to become skilled in boxing",
         "sortingPreferences": "P"
       },
       "conversation_history": [
