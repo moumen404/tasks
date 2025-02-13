@@ -548,7 +548,7 @@ async function renderCompletedTasks() {
     modalCompletedTaskList.innerHTML = '';
 
     try {
-        const response = await fetch('/tasks/all');
+        const response = await fetch('/tasks/completed'); // Changed endpoint here
         if (!response.ok) {
             throw new Error('Failed to fetch tasks');
         }
@@ -966,7 +966,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             await loadCategorizedTasks(); // Reload tasks to reflect changes
-            
+
 
         } catch (error) {
             console.error('Error moving task:', error);
