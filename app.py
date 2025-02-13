@@ -16,7 +16,7 @@ import logging
 logging.basicConfig(level=logging.INFO,
 format='%(asctime)s - %(levelname)s - %(message)s')
 
-genai.configure(api_key="AIzaSyDFSiXE-eyZBABcKZ3Tj0Ssdsm1iIRlaoE") # Replace with your actual API key or environment variable
+genai.configure(api_key="AIzaSyDFSiXE-eyZBABcKZ3Tj0Ssdsm1iIRlaoE")
 model = genai.GenerativeModel('gemini-pro')
 
 load_dotenv()
@@ -275,16 +275,73 @@ def chat():
         if not message:
             return jsonify({"error": "Message is required"}), 400
 
+        if message.lower() == '/help':
+            help_message = """
+**How to talk to the AI:**
+
+* **General Chat:** Just type your message! The AI will respond helpfully.
+* **Generate Tasks:** To ask the AI to create tasks, use phrases like:
+    * "Create tasks for [your topic]"
+    * "Help me plan [your goal]"
+    * "Generate a to-do list for [activity]"
+
+* **Using Your Settings for Task Generation:**
+    To make the AI consider your user settings (like work description, short-term/long-term goals) when generating tasks, include the phrase "**my settings**" in your prompt.
+
+    **Example:** "Create tasks for project planning based on **my settings**."
+
+    The AI will then try to generate tasks that are relevant to your work and goals as defined in your settings.
+
+* **To NOT use settings:** Simply omit "**my settings**" from your prompt, and the AI will generate tasks more generally.
+            """
+            return jsonify({"response": help_message, "tasks": [], "isGenerating": False})
+
+
         # Check if it's likely a task generation request
         task_keywords = ['create', 'make', 'generate', 'help me', 'todo', 'task', 'plan']
         is_task_request = any(keyword in message.lower() for keyword in task_keywords)
 
         if is_task_request:
             # Generate tasks
-            task_prompt = f"""User's Name: {user_name}
+            task_prompt_base = f"""User's Name: {user_name}
 
 Generate a list of specific, actionable tasks for: {message}
 Return only the tasks, one per line, starting each line with "- "."""
+
+            # Check if user wants to use settings
+            use_settings = "my settings" in message.lower()
+            task_prompt_context = ""
+            if use_settings:
+                user_settings = get_user_data(session['user_id']).get('settings', {})
+                work_description = user_settings.get('workDescription', '')
+                short_term_focus = user_settings.get('shortTermFocus', '')
+                long_term_goals = user_settings.get('longTermGoals', '')
+
+                context_parts = []
+                if work_description:
+                    context_parts.append(f"Work Description: '{work_description}'")
+                if short_term_focus:
+                    context_parts.append(f"Short Term Focus: '{short_term_focus}'")
+                if long_term_goals:
+                    context_parts.append(f"Long Term Goals: '{long_term_goals}'")
+
+                if context_parts:
+                    settings_context = "Considering my user settings: " + ", ".join(context_parts) + ". "
+                    task_prompt = f"""User's Name: {user_name}
+
+{settings_context}
+Create a list of specific, actionable tasks for: {message}
+Make sure the tasks are relevant to my settings and help me achieve my goals.
+Return only the tasks, one per line, starting each line with "- "."""
+                else:
+                    task_prompt = f"""User's Name: {user_name}
+
+Create a list of specific, actionable tasks for: {message}
+You were asked to consider user settings, but no relevant settings (work description, goals) are available. Generate general tasks for: {message}
+Return only the tasks, one per line, starting each line with "- "."""
+            else:
+                task_prompt = task_prompt_base
+
 
             try:
                 response = model.generate_content(task_prompt)
@@ -332,8 +389,14 @@ Return only the tasks, one per line, starting each line with "- "."""
                 thread.daemon = True
                 thread.start()
 
+                response_message = "I've created your tasks!"
+                if use_settings:
+                    response_message = "Considering your settings, I've created your tasks!"
+                response_message += " I'm now adding more details to each task..."
+
+
                 return jsonify({
-                    "response": "I've created your tasks! I'm now adding more details to each task...",
+                    "response": response_message,
                     "tasks": tasks,
                     "isGenerating": True,
                     "goalId": new_goal['id']
@@ -613,7 +676,7 @@ Generate appropriate settings in exactly this format:
 
 @app.route('/generate-tasks', methods=['POST'])
 @login_required
-def generate_tasks():
+def generate_tasks(): # this endpoint is not directly used in the chat logic anymore, but kept for potential direct calls
     try:
         data = request.get_json()
         goal_text = data.get('goalText')
@@ -833,6 +896,16 @@ def get_categorized_tasks():
             categorized_tasks[category].append(task)
 
     return jsonify(categorized_tasks)
+
+@app.route('/tasks/completed', methods=['GET'])
+@login_required
+def get_completed_tasks():
+    user = get_user_data(session['user_id'])
+    completed_tasks = []
+    if user.get('goals'):
+        latest_goal = user['goals'][-1]
+        completed_tasks = [task for task in latest_goal.get('tasks', []) if task.get('completed')]
+    return jsonify(completed_tasks)
 
 
 @app.route('/task/move', methods=['POST'])
