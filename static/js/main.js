@@ -970,7 +970,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Error moving task:', error);
-            addMessage('Failed to move task. Please try again.', 'error');
         }
     };
 
