@@ -16,7 +16,7 @@ import logging
 logging.basicConfig(level=logging.INFO,
 format='%(asctime)s - %(levelname)s - %(message)s')
 
-genai.configure(api_key="AIzaSyDFSiXE-eyZBABcKZ3Tj0Ssdsm1iIRlaoE")
+genai.configure(api_key="AIzaSyDFSiXE-eyZBABcKZ3Tj0Ssdsm1iIRlaoE") # Replace with your actual API key or use environment variable
 model = genai.GenerativeModel('gemini-pro')
 
 load_dotenv()
@@ -27,6 +27,45 @@ ADMIN_SIGNUP_KEY = os.getenv('ADMIN_SIGNUP_KEY')
 
 DATA_FILE = 'data.json'
 task_detail_events = {}
+
+def format_gemini_response(text):
+    """
+    Removes common Markdown-like formatting from a text string.
+
+    Args:
+        text: The input string (Gemini API response).
+
+    Returns:
+        A cleaned string with Markdown formatting removed.
+    """
+
+    # Remove bold and italic markers (** and *) and underscores (__ and _)
+    text = re.sub(r'\*\*|__|\*', '', text)  # Remove **, __, and *
+    text = re.sub(r'_', '', text)       # Remove _
+
+    # Remove headings (e.g., #, ##, ###)
+    text = re.sub(r'#+\s*', '', text)    # Remove headings and leading spaces
+
+    # Remove list markers (e.g., *, -, 1., etc.)
+    text = re.sub(r'^[\s]*[-+*]\s+', '', text, flags=re.MULTILINE) # Remove unordered lists
+    text = re.sub(r'^[\s]*\d+\.\s+', '', text, flags=re.MULTILINE) # Remove ordered lists
+
+    # Remove code blocks (```...``` and `...`) - You might want to handle these differently
+    text = re.sub(r'```.*?```', '', text, flags=re.DOTALL) # Remove multiline code blocks
+    text = re.sub(r'`.*?`', '', text)                     # Remove inline code
+
+    # Remove links ( [link text](url) ) - You might want to extract link text instead
+    text = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', text) # Remove links, keep link text
+
+    # Remove blockquotes (>)
+    text = re.sub(r'^>\s*', '', text, flags=re.MULTILINE) # Remove blockquote markers
+
+    # Clean up extra whitespace (multiple spaces, leading/trailing spaces)
+    text = text.strip()
+    text = re.sub(r'\s+', ' ', text) # Replace multiple spaces with single space
+
+    return text
+
 
 def load_data():
     if not os.path.exists(DATA_FILE):
@@ -294,7 +333,7 @@ def chat():
 
 * **To NOT use settings:** Simply omit "**my settings**" from your prompt, and the AI will generate tasks more generally.
             """
-            return jsonify({"response": help_message, "tasks": [], "isGenerating": False})
+            return jsonify({"response": format_gemini_response(help_message), "tasks": [], "isGenerating": False})
 
 
         # Check if it's likely a task generation request
@@ -316,6 +355,7 @@ Return only the tasks, one per line, starting each line with "- "."""
                 work_description = user_settings.get('workDescription', '')
                 short_term_focus = user_settings.get('shortTermFocus', '')
                 long_term_goals = user_settings.get('longTermGoals', '')
+                user_email = user_settings.get('email', '')
 
                 context_parts = []
                 if work_description:
@@ -327,7 +367,7 @@ Return only the tasks, one per line, starting each line with "- "."""
 
                 if context_parts:
                     settings_context = "Considering my user settings: " + ", ".join(context_parts) + ". "
-                    task_prompt = f"""User's Name: {user_name}
+                    task_prompt = f"""User's Name: {user_name} - User Email: {user_email}
 
 {settings_context}
 Create a list of specific, actionable tasks for: {message}
@@ -396,7 +436,7 @@ Return only the tasks, one per line, starting each line with "- "."""
 
 
                 return jsonify({
-                    "response": response_message,
+                    "response": format_gemini_response(response_message), # Format response message
                     "tasks": tasks,
                     "isGenerating": True,
                     "goalId": new_goal['id']
@@ -416,7 +456,7 @@ Brief helpful response for: {message}"""
                 raise Exception("No response from model")
 
             return jsonify({
-                "response": response.text,
+                "response": format_gemini_response(response.text), # Format chat response here
                 "tasks": [],
                 "isGenerating": False
             })
@@ -461,7 +501,7 @@ IMPORTANCE: (just a number 1-100)"""
                                     importance_match = re.search(r"IMPORTANCE:\s*(\d+)", detail_response.text)
 
                                     if context_match:
-                                        task['context'] = context_match.group(1).strip()
+                                        task['context'] = format_gemini_response(context_match.group(1).strip()) # Format context
                                     else:
                                         task['context'] = "Task context not available"
 
@@ -767,7 +807,7 @@ IMPORTANCE: [number 1-100]
             for goal in user_data.get('goals', []):
                 for task in goal.get('tasks', []):
                     if task['id'] == task_id:
-                        task['context'] = context
+                        task['context'] = format_gemini_response(context) # Format context here too if needed, although the prompt asks for plain text.
                         task['importance'] = importance
         update_user_data(session['user_id'], update_task_details)
 
