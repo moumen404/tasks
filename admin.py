@@ -1,3 +1,5 @@
+
+
 from flask import Blueprint, render_template, session, redirect, url_for, jsonify
 from app import load_data
 
@@ -5,16 +7,11 @@ admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
 @admin_bp.before_request
 def check_admin():
-    # Get current user from session
     user_id = session.get('user_id')
     if not user_id:
         return redirect(url_for('login'))
-    
-    # Load user data
     data = load_data()
     user = next((u for u in data['users'] if u['id'] == user_id), None)
-    
-    # Check admin status (default to False if not present)
     if not user or not user.get('is_admin', False):
         return redirect(url_for('index'))
 
@@ -25,7 +22,6 @@ def dashboard():
 @admin_bp.route('/users')
 def get_users():
     data = load_data()
-    # Sanitize user data before sending
     users = []
     for user in data.get('users', []):
         sanitized = {
@@ -37,3 +33,5 @@ def get_users():
         }
         users.append(sanitized)
     return jsonify(users)
+
+app.register_blueprint(admin_bp)
