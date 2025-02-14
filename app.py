@@ -14,7 +14,7 @@ from threading import Event
 import logging
 
 logging.basicConfig(level=logging.INFO,
-format='%(asctime)s - %(levelname)s - %(message)s')
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 genai.configure(api_key="AIzaSyDFSiXE-eyZBABcKZ3Tj0Ssdsm1iIRlaoE") # Replace with your actual API key or use environment variable
 model = genai.GenerativeModel('gemini-pro')
@@ -31,48 +31,47 @@ task_detail_events = {}
 def format_gemini_response(text):
     """
     Removes common Markdown-like formatting from a text string.
-
-    Args:
-        text: The input string (Gemini API response).
-
-    Returns:
-        A cleaned string with Markdown formatting removed.
     """
-
-    # Remove bold and italic markers (** and *) and underscores (__ and _)
-    text = re.sub(r'\*\*|__|\*', '', text)  # Remove **, __, and *
-    text = re.sub(r'_', '', text)       # Remove _
-
-    # Remove headings (e.g., #, ##, ###)
-    text = re.sub(r'#+\s*', '', text)    # Remove headings and leading spaces
-
-    # Remove list markers (e.g., *, -, 1., etc.)
-    text = re.sub(r'^[\s]*[-+*]\s+', '', text, flags=re.MULTILINE) # Remove unordered lists
-    text = re.sub(r'^[\s]*\d+\.\s+', '', text, flags=re.MULTILINE) # Remove ordered lists
-
-    # Remove code blocks (```...``` and `...`) - You might want to handle these differently
-    text = re.sub(r'```.*?```', '', text, flags=re.DOTALL) # Remove multiline code blocks
-    text = re.sub(r'`.*?`', '', text)                     # Remove inline code
-
-    # Remove links ( [link text](url) ) - You might want to extract link text instead
-    text = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', text) # Remove links, keep link text
-
-    # Remove blockquotes (>)
-    text = re.sub(r'^>\s*', '', text, flags=re.MULTILINE) # Remove blockquote markers
-
-    # Clean up extra whitespace (multiple spaces, leading/trailing spaces)
+    text = re.sub(r'\*\*|__|\*', '', text)
+    text = re.sub(r'_', '', text)
+    text = re.sub(r'#+\s*', '', text)
+    text = re.sub(r'^[\s]*[-+*]\s+', '', text, flags=re.MULTILINE)
+    text = re.sub(r'^[\s]*\d+\.\s+', '', text, flags=re.MULTILINE)
+    text = re.sub(r'```.*?```', '', text, flags=re.DOTALL)
+    text = re.sub(r'`.*?`', '', text)
+    text = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', text)
+    text = re.sub(r'^>\s*', '', text, flags=re.MULTILINE)
     text = text.strip()
-    text = re.sub(r'\s+', ' ', text) # Replace multiple spaces with single space
-
+    text = re.sub(r'\s+', ' ', text)
     return text
-
 
 def load_data():
     if not os.path.exists(DATA_FILE):
-        return {"users": []}
+        # Initialize data with admin user if data file doesn't exist
+        admin_password_hash = generate_password_hash('password')
+        initial_data = {
+            "users": [
+                {
+                    "id": str(uuid.uuid4()),
+                    "name": "Admin User",
+                    "email": "admin@example.com",
+                    "password": admin_password_hash,
+                    "goals": [],
+                    "settings": {},
+                    "is_admin": True  # First user is admin
+                }
+            ]
+        }
+        save_data(initial_data)
+        return initial_data
     try:
         with open(DATA_FILE, 'r') as f:
-            return json.load(f)
+            data = json.load(f)
+            if 'users' in data and isinstance(data['users'], list) and len(data['users']) > 0: # More robust check
+                # Ensure the first user in the list is admin
+                data['users'][0]['is_admin'] = True
+                save_data(data)
+            return data
     except (json.JSONDecodeError, IOError) as e:
         logging.error(f"Error loading data from {DATA_FILE}: {e}", exc_info=True)
         return {"users": []}
@@ -92,13 +91,11 @@ def get_user_data(user_id):
 def update_user_data(user_id, update_func):
     data = load_data()
     user_index = next((i for i, u in enumerate(data['users']) if u['id'] == user_id), None)
-
     if user_index is not None:
         update_func(data['users'][user_index])
         save_data(data)
         return True
     return False
-
 
 def login_required(f):
     def decorated_function(*args, **kwargs):
@@ -111,7 +108,7 @@ def login_required(f):
 def admin_required(f):
     def decorated_function(*args, **kwargs):
         if 'user_id' not in session or not session.get('is_admin'):
-            return redirect(url_for('login')) # or perhaps a dedicated admin login page
+            return redirect(url_for('login'))
         return f(*args, **kwargs)
     decorated_function.__name__ = f.__name__
     return decorated_function
@@ -129,10 +126,8 @@ def extract_date_from_text(text):
         r'in\s+(\d+)\s+weeks?',
         r'in\s+(\d+)\s+months?'
     ]
-
     text = text.lower()
     today = datetime.now()
-
     for pattern in patterns:
         match = re.search(pattern, text)
         if match:
@@ -163,21 +158,16 @@ def extract_date_from_text(text):
                     return parsed_date.strftime('%Y-%m-%d')
                 except ValueError:
                     pass
-
     return today.strftime('%Y-%m-%d')
-
 
 def generate_context(task):
     prompt = f"""User's Name: {session.get('user_name')}
 Task: "{task}"
-
 Generate a concise and actionable context (maximum 2 sentences) that explains:
-1. Why this task is important for achieving goals.
-2. A quick tip or best practice for completing this task effectively.
-
+Why this task is important for achieving goals.
+A quick tip or best practice for completing this task effectively.
 Return only the context text without any prefixes, labels, or markdown formatting.
 """
-
     try:
         context_response = model.generate_content(prompt)
         context = context_response.text.strip()
@@ -187,15 +177,12 @@ Return only the context text without any prefixes, labels, or markdown formattin
         logging.error(f"Error generating context for task '{task}': {e}", exc_info=True)
         return "Context not available"
 
-
 def generate_importance(task):
     prompt = f"""User's Name: {session.get('user_name')}
 Task: "{task}"
-
 Return EXACTLY in this format:
 IMPORTANCE: [number 1-100]
 """
-
     try:
         response = model.generate_content(prompt)
         response_text = response.text
@@ -205,13 +192,11 @@ IMPORTANCE: [number 1-100]
         logging.error(f"Error generating importance for task '{task}': {e}", exc_info=True)
         return "50"
 
-
 def generate_task_tags(task_text):
     prompt = f"""User's Name: {session.get('user_name')}
 Given this task: "{task_text}"
 Generate 2-3 relevant tags/categories (e.g., #work, #personal, #urgent)
 Return only the tags, comma-separated."""
-
     try:
         response = model.generate_content(prompt)
         tags = [tag.strip() for tag in response.text.split(',')]
@@ -220,58 +205,45 @@ Return only the tags, comma-separated."""
         logging.error(f"Error generating tags for task '{task_text}': {e}", exc_info=True)
         return []
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
-
     data = request.get_json()
     email = data.get('email')
     password = data.get('password')
-
     if not email or not password:
         return jsonify({'success': False, 'message': 'Email and password are required', 'message_detail': 'Please enter your email and password.'}), 400
-
     all_data = load_data()
     user = next((u for u in all_data['users'] if u['email'] == email), None)
-
     if user and check_password_hash(user['password'], password):
         session['user_id'] = user['id']
         session['user_name'] = user['name']
-        session['is_admin'] = user.get('is_admin', False) # set is_admin in session
+        session['is_admin'] = user.get('is_admin', False)
         logging.info(f"User '{email}' logged in successfully. Admin status: {session['is_admin']}.")
         return jsonify({'success': True})
-
     logging.warning(f"Login attempt failed for user '{email}'. Invalid credentials.")
     return jsonify({'success': False, 'message': 'Invalid email or password', 'message_detail': 'Incorrect email or password. Please try again.'}), 401
-
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'GET':
         return render_template('signup.html')
-
     data = request.get_json()
     name = data.get('name')
     email = data.get('email')
     password = data.get('password')
-    admin_key = data.get('adminKey') # optional admin key during signup
-
+    admin_key = data.get('adminKey')
     if not name or not email or not password:
         return jsonify({'success': False, 'message': 'All fields are required', 'message_detail': 'Please fill in all the required fields for signup.'}), 400
-
     all_data = load_data()
-
     if any(u['email'] == email for u in all_data['users']):
         logging.warning(f"Signup attempt failed. Email '{email}' already exists.")
         return jsonify({'success': False, 'message': 'Email already exists', 'message_detail': 'This email address is already registered. Please use a different email or login.'}), 400
-
     user_id = str(uuid.uuid4())
     is_admin = False
-    if ADMIN_SIGNUP_KEY and admin_key == ADMIN_SIGNUP_KEY: # check admin key against env variable
+    if ADMIN_SIGNUP_KEY and admin_key == ADMIN_SIGNUP_KEY:
         is_admin = True
-
     new_user = {
         'id': user_id,
         'name': name,
@@ -279,15 +251,12 @@ def signup():
         'password': generate_password_hash(password),
         'goals': [],
         'settings': {},
-        'is_admin': is_admin # set is_admin in user data
+        'is_admin': is_admin
     }
-
     all_data['users'].append(new_user)
     save_data(all_data)
     logging.info(f"New user '{email}' signed up successfully. Admin: {is_admin}")
-
     return jsonify({'success': True})
-
 
 @app.route('/logout')
 def logout():
@@ -310,44 +279,40 @@ def chat():
         data = request.get_json()
         message = data.get('message', '').strip()
         user_name = session.get('user_name', 'User')
-
         if not message:
             return jsonify({"error": "Message is required"}), 400
-
         if message.lower() == '/help':
             help_message = """
-**How to talk to the AI:**
+How to talk to the AI:
 
-* **General Chat:** Just type your message! The AI will respond helpfully.
-* **Generate Tasks:** To ask the AI to create tasks, use phrases like:
-    * "Create tasks for [your topic]"
-    * "Help me plan [your goal]"
-    * "Generate a to-do list for [activity]"
+General Chat: Just type your message! The AI will respond helpfully.
 
-* **Using Your Settings for Task Generation:**
-    To make the AI consider your user settings (like work description, short-term/long-term goals) when generating tasks, include the phrase "**my settings**" in your prompt.
+Generate Tasks: To ask the AI to create tasks, use phrases like:
 
-    **Example:** "Create tasks for project planning based on **my settings**."
+"Create tasks for [your topic]"
 
-    The AI will then try to generate tasks that are relevant to your work and goals as defined in your settings.
+"Help me plan [your goal]"
 
-* **To NOT use settings:** Simply omit "**my settings**" from your prompt, and the AI will generate tasks more generally.
-            """
+"Generate a to-do list for [activity]"
+
+Using Your Settings for Task Generation:
+To make the AI consider your user settings (like work description, short-term/long-term goals) when generating tasks, include the phrase "my settings" in your prompt.
+
+Example: "Create tasks for project planning based on my settings."
+
+The AI will then try to generate tasks that are relevant to your work and goals as defined in your settings.
+
+To NOT use settings: Simply omit "my settings" from your prompt, and the AI will generate tasks more generally.
+"""
             return jsonify({"response": format_gemini_response(help_message), "tasks": [], "isGenerating": False})
 
-
-        # Check if it's likely a task generation request
         task_keywords = ['create', 'make', 'generate', 'help me', 'todo', 'task', 'plan']
         is_task_request = any(keyword in message.lower() for keyword in task_keywords)
 
         if is_task_request:
-            # Generate tasks
             task_prompt_base = f"""User's Name: {user_name}
-
 Generate a list of specific, actionable tasks for: {message}
 Return only the tasks, one per line, starting each line with "- "."""
-
-            # Check if user wants to use settings
             use_settings = "my settings" in message.lower()
             task_prompt_context = ""
             if use_settings:
@@ -356,7 +321,6 @@ Return only the tasks, one per line, starting each line with "- "."""
                 short_term_focus = user_settings.get('shortTermFocus', '')
                 long_term_goals = user_settings.get('longTermGoals', '')
                 user_email = user_settings.get('email', '')
-
                 context_parts = []
                 if work_description:
                     context_parts.append(f"Work Description: '{work_description}'")
@@ -364,31 +328,25 @@ Return only the tasks, one per line, starting each line with "- "."""
                     context_parts.append(f"Short Term Focus: '{short_term_focus}'")
                 if long_term_goals:
                     context_parts.append(f"Long Term Goals: '{long_term_goals}'")
-
                 if context_parts:
                     settings_context = "Considering my user settings: " + ", ".join(context_parts) + ". "
                     task_prompt = f"""User's Name: {user_name} - User Email: {user_email}
-
 {settings_context}
 Create a list of specific, actionable tasks for: {message}
 Make sure the tasks are relevant to my settings and help me achieve my goals.
 Return only the tasks, one per line, starting each line with "- "."""
                 else:
                     task_prompt = f"""User's Name: {user_name}
-
 Create a list of specific, actionable tasks for: {message}
 You were asked to consider user settings, but no relevant settings (work description, goals) are available. Generate general tasks for: {message}
 Return only the tasks, one per line, starting each line with "- "."""
             else:
                 task_prompt = task_prompt_base
 
-
             try:
                 response = model.generate_content(task_prompt)
                 if not response or not response.text:
                     raise Exception("No response from model")
-
-                # Parse tasks
                 tasks = []
                 for line in response.text.strip().split('\n'):
                     if line.startswith('- '):
@@ -398,29 +356,22 @@ Return only the tasks, one per line, starting each line with "- "."""
                                 "id": str(uuid.uuid4()),
                                 "text": task_text,
                                 "completed": False,
-                                "isGenerating": True,  # Mark as generating initially
-                                "context": None,  # Will be filled by background task
-                                "importance": None,  # Will be filled by background task
+                                "isGenerating": True,
+                                "context": None,
+                                "importance": None,
                                 "due_date": datetime.now().strftime('%Y-%m-%d')
                             })
-
                 if not tasks:
                     return jsonify({"error": "No tasks could be generated"}), 400
-
-                # Create new goal with tasks
                 new_goal = {
                     "id": str(uuid.uuid4()),
                     "text": message,
                     "tasks": tasks,
                     "isGenerated": True
                 }
-
-                # Add the goal to user data
                 def add_new_goal(user_data):
                     user_data.setdefault('goals', []).append(new_goal)
                 update_user_data(session['user_id'], add_new_goal)
-
-                # Start background task to generate details
                 task_detail_events[new_goal['id']] = Event()
                 thread = threading.Thread(
                     target=generate_task_details_bg,
@@ -428,43 +379,34 @@ Return only the tasks, one per line, starting each line with "- "."""
                 )
                 thread.daemon = True
                 thread.start()
-
                 response_message = "I've created your tasks!"
                 if use_settings:
                     response_message = "Considering your settings, I've created your tasks!"
                 response_message += " I'm now adding more details to each task..."
-
-
                 return jsonify({
-                    "response": format_gemini_response(response_message), # Format response message
+                    "response": format_gemini_response(response_message),
                     "tasks": tasks,
                     "isGenerating": True,
                     "goalId": new_goal['id']
                 })
-
             except Exception as e:
                 logging.error(f"Task generation error: {e}", exc_info=True)
                 return jsonify({"error": str(e)}), 500
 
-        # Handle non-task messages
         try:
             chat_prompt = f"""User's Name: {user_name}
 Brief helpful response for: {message}"""
             response = model.generate_content(chat_prompt)
-
             if not response or not response.text:
                 raise Exception("No response from model")
-
             return jsonify({
-                "response": format_gemini_response(response.text), # Format chat response here
+                "response": format_gemini_response(response.text),
                 "tasks": [],
                 "isGenerating": False
             })
-
         except Exception as e:
             logging.error(f"Chat response error: {e}", exc_info=True)
             return jsonify({"error": str(e)}), 500
-
     except Exception as e:
         logging.error(f"General chat error: {e}", exc_info=True)
         return jsonify({"error": str(e)}), 500
@@ -472,7 +414,6 @@ Brief helpful response for: {message}"""
 def generate_task_details_bg(user_id, goal_id):
     with app.app_context():
         try:
-            # Get user data first
             user_data = get_user_data(user_id)
             user_name = None
             for user in load_data().get('users', []):
@@ -485,37 +426,29 @@ def generate_task_details_bg(user_id, goal_id):
                     if goal['id'] == goal_id:
                         for task in goal.get('tasks', []):
                             try:
-                                # Generate context and importance for each task
                                 detail_prompt = f"""User's Name: {user_name}
-
 For the task: {task['text']}
 Provide exactly in this format:
 CONTEXT: (write a brief explanation why this task matters)
 IMPORTANCE: (just a number 1-100)"""
-
                                 detail_response = model.generate_content(detail_prompt)
-
                                 if detail_response and detail_response.text:
-                                    # Extract context and importance using more robust regex
                                     context_match = re.search(r"CONTEXT:\s*(.+?)(?=\n*IMPORTANCE:|$)", detail_response.text, re.DOTALL)
                                     importance_match = re.search(r"IMPORTANCE:\s*(\d+)", detail_response.text)
-
                                     if context_match:
-                                        task['context'] = format_gemini_response(context_match.group(1).strip()) # Format context
+                                        task['context'] = format_gemini_response(context_match.group(1).strip())
                                     else:
                                         task['context'] = "Task context not available"
-
                                     if importance_match:
                                         task['importance'] = importance_match.group(1)
                                     else:
-                                        task['importance'] = "50"  # Default importance
+                                        task['importance'] = "50"
                                 else:
                                     task['context'] = "Task context not available"
                                     task['importance'] = "50"
-
                                 task['isGenerating'] = False
                                 logging.info(f"Generated details for task: {task['text']}")
-                                time.sleep(0.5)  # Small delay between tasks
+                                time.sleep(0.5)
 
                             except Exception as task_error:
                                 logging.error(f"Error generating details for task '{task['text']}': {task_error}", exc_info=True)
@@ -525,17 +458,12 @@ IMPORTANCE: (just a number 1-100)"""
                                 task['importance'] = "50"
                                 continue
                         break
-
-            # Update the tasks with generated details
             update_user_data(user_id, update_tasks)
-
-            # Signal completion
             if goal_id in task_detail_events:
                 task_detail_events[goal_id].set()
 
         except Exception as e:
             logging.error(f"Background task error: {e}", exc_info=True)
-            # Update all tasks to error state
             def mark_tasks_error(user_data):
                 for goal in user_data.get('goals', []):
                     if goal['id'] == goal_id:
@@ -545,7 +473,6 @@ IMPORTANCE: (just a number 1-100)"""
                             task['context'] = "Failed to generate context"
                             task['importance'] = "50"
             update_user_data(user_id, mark_tasks_error)
-
             if goal_id in task_detail_events:
                 task_detail_events[goal_id].set()
 
@@ -554,15 +481,13 @@ IMPORTANCE: (just a number 1-100)"""
 def check_task_details_status(goal_id):
     user = get_user_data(session['user_id'])
     is_complete = True
-
     for goal in user.get('goals', []):
         if goal['id'] == goal_id:
             for task in goal.get('tasks', []):
                 if task.get('isGenerating'):
                     is_complete = False
                     break
-            break
-
+        break
     return jsonify({
         'isComplete': is_complete,
         'goalId': goal_id
@@ -581,7 +506,6 @@ def update_task():
         data = request.get_json()
         task_id = data.get('taskId')
         completed = data.get('completed')
-
         def update_task_status(user_data):
             for goal in user_data.get('goals', []):
                 for task in goal.get('tasks', []):
@@ -597,17 +521,14 @@ def update_task():
         logging.error(f"Error updating task status for task ID '{task_id}': {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to update task status. Please try again."}), 500
 
-
 @app.route('/goal', methods=['POST'])
 @login_required
 def add_goal():
     try:
         data = request.get_json()
         goal_text = data.get('goal')
-
         if not goal_text:
             return jsonify({'success': False, 'message': 'Goal text is required', 'message_detail': 'Please provide text for your new goal.'}), 400
-
         def add_new_goal(user_data):
             user_data.setdefault('goals', []).append({
                 'id': str(uuid.uuid4()),
@@ -621,17 +542,14 @@ def add_goal():
         logging.error(f"Error adding new goal: {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to add new goal. Please try again."}), 500
 
-
 @app.route('/task', methods=['POST'])
 @login_required
 def add_task():
     try:
         data = request.get_json()
         task_data = data.get('task')
-
         if not task_data or not task_data.get('text'):
             return jsonify({"error": "Task text is required", "message_detail": "Please provide text for your new task."}), 400
-
         new_task = {
             'id': str(uuid.uuid4()),
             'text': task_data['text'],
@@ -642,7 +560,6 @@ def add_task():
             'tags': generate_task_tags(task_data['text']),
             'isManual': True
         }
-
         def add_new_task(user_data):
             if not user_data.get('goals'):
                 user_data['goals'] = [{
@@ -658,23 +575,18 @@ def add_task():
         logging.error(f"Error adding new task: {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to add new task. Please try again."}), 500
 
-
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
     user = get_user_data(session['user_id'])
-
     if request.method == 'GET':
         return jsonify(user.get('settings', {}))
-
     settings_data = request.get_json()
-
     def update_settings(user_data):
         user_data['settings'] = settings_data
     if update_user_data(session['user_id'], update_settings):
         return jsonify({'success': True})
     return jsonify({'success': False, 'message': 'Failed to save settings', 'message_detail': 'Could not save your settings. Please try again.'}), 400
-
 
 @app.route('/generate-ai-settings', methods=['POST'])
 @login_required
@@ -685,65 +597,50 @@ def generate_ai_settings():
         user_name = session.get('user_name')
         if not work_description:
             return jsonify({"error": "Work description is required", "message_detail": "Please provide a description of your work to generate settings."}), 400
-
         prompt = f"""User's Name: {user_name}
-
 Based on this work description: "{work_description}"
-
 Generate appropriate settings in exactly this format:
-    SHORT TERM FOCUS: [3-month goals and immediate priorities based on the work description]
-    LONG TERM GOALS: [1-year vision and major milestones to achieve]
-    SORTING PREFERENCES: [how tasks should be prioritized based on the work context]
-    """
-
+SHORT TERM FOCUS: [3-month goals and immediate priorities based on the work description]
+LONG TERM GOALS: [1-year vision and major milestones to achieve]
+SORTING PREFERENCES: [how tasks should be prioritized based on the work context]
+"""
         response = model.generate_content(prompt)
         response_text = response.text
-
         short_term = re.search(r"SHORT TERM FOCUS:\s*(.+?)(?=LONG TERM GOALS:|$)", response_text, re.DOTALL)
         long_term = re.search(r"LONG TERM GOALS:\s*(.+?)(?=SORTING PREFERENCES:|$)", response_text, re.DOTALL)
         sorting = re.search(r"SORTING PREFERENCES:\s*(.+?)(?=|$)", response_text, re.DOTALL)
-
         return jsonify({
             "shortTermFocus": short_term.group(1).strip() if short_term else "",
             "longTermGoals": long_term.group(1).strip() if long_term else "",
             "sortingPreferences": sorting.group(1).strip() if sorting else ""
         })
-
     except Exception as e:
         logging.error(f"Error generating AI settings: {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to generate AI settings. Please try again later."}), 500
 
-
 @app.route('/generate-tasks', methods=['POST'])
 @login_required
-def generate_tasks(): # this endpoint is not directly used in the chat logic anymore, but kept for potential direct calls
+def generate_tasks():
     try:
         data = request.get_json()
         goal_text = data.get('goalText')
         goal_id = data.get('goalId')
         user_name = session.get('user_name')
-
         if not goal_text or not goal_id:
             return jsonify({"error": "Goal text and ID are required", "message_detail": "Please provide both goal text and goal ID."}), 400
-
         user_settings = get_user_data(session['user_id']).get('settings', {})
         work_description = user_settings.get('workDescription', '')
-
         task_prompt_context = ""
         if work_description:
             task_prompt_context = f" considering my work description: '{work_description}', "
-
         task_prompt = f"""User's Name: {user_name}
-
 Create 6 clear, actionable steps for: {goal_text}{task_prompt_context}
 Even if the goal is not directly related to my work description, generate relevant and helpful tasks.
 Return only the tasks, one per line. Be specific and concise."""
-
         task_response = model.generate_content(task_prompt)
         if not task_response or not task_response.text:
             logging.error(f"Gemini failed to generate tasks for goal '{goal_text}'.")
             return jsonify({"error": "Failed to generate tasks", "message_detail": "The AI model could not generate tasks for this goal. Please try again later."}), 500
-
         tasks = [t.strip() for t in task_response.text.split('\n') if t.strip()]
         new_tasks = []
         for task in tasks:
@@ -756,23 +653,19 @@ Return only the tasks, one per line. Be specific and concise."""
                 'importance': '50',
                 'tags': generate_task_tags(task)
             })
-
         def update_goal_tasks(user_data):
             for goal in user_data.get('goals', []):
                 if goal['id'] == goal_id:
                     goal['tasks'] = new_tasks
                     break
         update_user_data(session['user_id'], update_goal_tasks)
-
         return jsonify({
             "success": True,
             "tasks": new_tasks
         })
-
     except Exception as e:
         logging.error(f"Error generating tasks for goal '{goal_text}': {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to generate tasks for this goal. Please try again later."}), 500
-
 
 @app.route('/generate-task-details', methods=['POST'])
 @login_required
@@ -782,45 +675,35 @@ def generate_task_details():
         task_id = data.get('task_id')
         task_text = data.get('task_text')
         user_name = session.get('user_name')
-
         if not task_text or not task_id:
             return jsonify({"error": "Task text and ID required", "message_detail": "Please provide both task text and task ID."}), 400
-
         prompt = f"""User's Name: {user_name}
-
 For the task: "{task_text}"
 Return EXACTLY in this format:
 CONTEXT: [one quick tip in 3-5 words only] just the context without numbers  or any other information
 IMPORTANCE: [number 1-100]
 """
-
         response = model.generate_content(prompt)
         response_text = response.text
-
         context_match = re.search(r"CONTEXT:\s*(.*?)(?=IMPORTANCE:|$)", response_text, re.DOTALL)
         importance_match = re.search(r"IMPORTANCE:\s*(\d+)", response_text)
-
         context = context_match.group(1).strip() if context_match else ""
         importance = importance_match.group(1) if importance_match else "50"
-
         def update_task_details(user_data):
             for goal in user_data.get('goals', []):
                 for task in goal.get('tasks', []):
                     if task['id'] == task_id:
-                        task['context'] = format_gemini_response(context) # Format context here too if needed, although the prompt asks for plain text.
+                        task['context'] = format_gemini_response(context)
                         task['importance'] = importance
         update_user_data(session['user_id'], update_task_details)
-
         return jsonify({
             "success": True,
             "context": context,
             "importance": importance
         })
-
     except Exception as e:
         logging.error(f"Error generating task details for task '{task_text}': {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to generate task details. Please try again later."}), 500
-
 
 @app.route('/task/<task_id>', methods=['DELETE'])
 @login_required
@@ -846,10 +729,8 @@ def update_task_details():
         due_date = data.get('dueDate')
         context = data.get('context')
         importance = data.get('importance')
-
         if not task_id:
             return jsonify({"error": "Task ID is required", "message_detail": "Please provide the ID of the task to update."}), 400
-
         task_found = False
         def update_task_info(user_data):
             nonlocal task_found
@@ -864,30 +745,24 @@ def update_task_details():
                         break
                 if task_found:
                     break
-
         if not update_user_data(session['user_id'], update_task_info):
             return jsonify({'success': False, 'message': 'User not found'}), 404
-
         if not task_found:
             return jsonify({"error": "Task not found", "message_detail": "The task with the provided ID could not be found."}), 404
-
         return jsonify({"success": True})
     except Exception as e:
         logging.error(f"Error updating task details for task ID '{task_id}': {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to update task details. Please try again."}), 500
 
-
 def get_task_category(due_date):
     if not due_date:
-        return "today"  # Default to today if no date
-
+        return "today"
     try:
         due_date = datetime.strptime(due_date, '%Y-%m-%d').date()
         today = datetime.now().date()
         tomorrow = today + timedelta(days=1)
-
         if due_date < today:
-            return "today"  # Past due tasks show in today
+            return "today"
         elif due_date == today:
             return "today"
         elif due_date == tomorrow:
@@ -895,27 +770,22 @@ def get_task_category(due_date):
         else:
             return "future"
     except (ValueError, TypeError):
-        return "today"  # Handle invalid date formats gracefully
-
+        return "today"
 
 @app.route('/tasks/categorized', methods=['GET'])
 @login_required
 def get_categorized_tasks():
     user = get_user_data(session['user_id'])
-
     categorized_tasks = {
         "today": [],
         "tomorrow": [],
         "future": []
     }
-
     goals = user.get('goals', [])
     if goals:
         latest_goal = goals[-1]
-
         ai_tasks = []
         manual_tasks = []
-
         for task in latest_goal.get('tasks', []):
             task_with_goal = {
                 **task,
@@ -926,15 +796,12 @@ def get_categorized_tasks():
                 manual_tasks.append(task_with_goal)
             else:
                 ai_tasks.append(task_with_goal)
-
         for task in ai_tasks:
             category = get_task_category(task.get('due_date'))
             categorized_tasks[category].append(task)
-
         for task in manual_tasks:
             category = get_task_category(task.get('due_date'))
             categorized_tasks[category].append(task)
-
     return jsonify(categorized_tasks)
 
 @app.route('/tasks/completed', methods=['GET'])
@@ -947,7 +814,6 @@ def get_completed_tasks():
         completed_tasks = [task for task in latest_goal.get('tasks', []) if task.get('completed')]
     return jsonify(completed_tasks)
 
-
 @app.route('/task/move', methods=['POST'])
 @login_required
 def move_task():
@@ -955,7 +821,6 @@ def move_task():
         data = request.get_json()
         task_id = data.get('taskId')
         new_date = data.get('newDate')
-
         def update_task_date(user_data):
             for goal in user_data.get('goals', []):
                 for task in goal.get('tasks', []):
@@ -969,7 +834,6 @@ def move_task():
         logging.error(f"Error moving task with ID '{task_id}' to new date: {e}", exc_info=True)
         return jsonify({"error": str(e), "message_detail": "Failed to move task. Please try again."}), 500
 
-
 @app.route('/task-stats', methods=['GET'])
 @login_required
 def get_task_stats():
@@ -981,15 +845,12 @@ def get_task_stats():
         'tasks_by_priority': {'high': 0, 'medium': 0, 'low': 0},
         'tasks_by_category': {'today': 0, 'tomorrow': 0, 'future': 0}
     }
-
     if user.get('goals'):
         latest_goal = user['goals'][-1]
         tasks = latest_goal.get('tasks', [])
-
         stats['total_tasks'] = len(tasks)
         stats['completed_tasks'] = sum(1 for t in tasks if t.get('completed'))
         stats['completion_rate'] = (stats['completed_tasks'] / stats['total_tasks'] * 100) if stats['total_tasks'] > 0 else 0
-
         for task in tasks:
             importance = int(task.get('importance', 0))
             if importance > 75:
@@ -998,12 +859,9 @@ def get_task_stats():
                 stats['tasks_by_priority']['medium'] += 1
             else:
                 stats['tasks_by_priority']['low'] += 1
-
             category = get_task_category(task.get('due_date'))
             stats['tasks_by_category'][category] += 1
-
     return jsonify(stats)
-
 
 @app.route('/users/all', methods=['GET'])
 @login_required
@@ -1014,7 +872,7 @@ def get_all_users_admin():
     users_data = []
     for user in data['users']:
         if search_term in user['name'].lower() or search_term in user['email'].lower():
-            users_data.append({"id": user['id'], "name": user['name'], "email": user['email'], "settings": user.get('settings', {})}) #Include settings here for search if needed
+            users_data.append({"id": user['id'], "name": user['name'], "email": user['email'], "settings": user.get('settings', {})})
     return jsonify(users_data)
 
 @app.route('/tasks/all', methods=['GET'])
@@ -1024,7 +882,6 @@ def get_all_tasks_admin():
     data = load_data()
     all_tasks = []
     search_term = request.args.get('search', '').lower()
-
     for user in data['users']:
         for goal in user.get('goals', []):
             for task in goal.get('tasks', []):
@@ -1050,11 +907,9 @@ def get_user_details_admin(user_id):
     user_data = next((u for u in data['users'] if u['id'] == user_id), None)
     if not user_data:
         return jsonify({'message': 'User not found'}), 404
-
     user_tasks = []
     user_goals = user_data.get('goals', [])
-    user_settings = user_data.get('settings', {}) # Get user settings
-
+    user_settings = user_data.get('settings', {})
     for goal in user_goals:
         for task in goal.get('tasks', []):
             task_with_goal = {
@@ -1063,9 +918,8 @@ def get_user_details_admin(user_id):
                 'goalName': goal['text']
             }
             user_tasks.append(task_with_goal)
-
     user_details = {
-        'user': {"id": user_data['id'], "name": user_data['name'], "email": user_data['email'], "settings": user_settings}, # Include settings here
+        'user': {"id": user_data['id'], "name": user_data['name'], "email": user_data['email'], "settings": user_settings},
         'tasks': user_tasks,
         'goals': user_goals
     }
@@ -1080,10 +934,8 @@ def admin_dashboard():
 def check_due_tasks():
     now = datetime.now()
     tomorrow = now + timedelta(days=1)
-
     users = load_data().get('users', [])
     notifications = []
-
     for user in users:
         if user.get('goals'):
             latest_goal = user['goals'][-1]
@@ -1106,9 +958,7 @@ def check_due_tasks():
                     except ValueError:
                         logging.warning(f"Invalid date format for task '{task['text']}', task ID: {task['id']}")
                         continue
-
     return notifications
-
 
 def generate_task_dependencies(tasks):
     dependencies = []
@@ -1116,11 +966,12 @@ def generate_task_dependencies(tasks):
         if i > 0:
             prompt = f"""User's Name: {session.get('user_name')}
 Given these two tasks:
-1. {tasks[i-1]['text']}
-2. {task['text']}
+
+{tasks[i-1]['text']}
+
+{task['text']}
 
 Should task 2 depend on task 1? Answer only YES or NO."""
-
             try:
                 response = model.generate_content(prompt)
                 if 'YES' in response.text.upper():
@@ -1131,36 +982,28 @@ Should task 2 depend on task 1? Answer only YES or NO."""
             except Exception as e:
                 logging.error(f"Error generating dependency for tasks '{tasks[i-1]['text']}' and '{task['text']}': {e}", exc_info=True)
                 continue
-
     return dependencies
-
 
 def generate_task_suggestions(user_id):
     user = get_user_data(user_id)
     settings = user.get('settings', {})
     completed_tasks = []
     user_name = user.get('name')
-
     if user.get('goals'):
         latest_goal = user['goals'][-1]
         completed_tasks = [t['text'] for t in latest_goal.get('tasks', []) if t.get('completed')]
-
     prompt = f"""User's Name: {user_name}
-
 Based on:
-- Work description: {settings.get('workDescription')}
-- Completed tasks: {', '.join(completed_tasks)}
-
+Work description: {settings.get('workDescription')}
+Completed tasks: {', '.join(completed_tasks)}
 Suggest 3 new tasks that would be logical next steps.
 Return only the tasks, one per line."""
-
     try:
         response = model.generate_content(prompt)
         return [task.strip() for task in response.text.split('\n') if task.strip()]
     except Exception as e:
         logging.error(f"Error generating task suggestions for user ID '{user_id}': {e}", exc_info=True)
         return []
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
